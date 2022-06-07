@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "5fd4668f-d785-4aa5-8985-d47296792fbe",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "point",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 512,
+  "height": 544,
+  "platformSettings": {},
+  "subMetas": {
+    "24_Ice_Cream_Shop_32x32": {
+      "ver": "1.0.6",
+      "uuid": "c0b5c812-f9c9-4ac9-b8da-cd2a693e3573",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "5fd4668f-d785-4aa5-8985-d47296792fbe",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 1,
+      "offsetY": -3,
+      "trimX": 2,
+      "trimY": 6,
+      "width": 510,
+      "height": 538,
+      "rawWidth": 512,
+      "rawHeight": 544,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

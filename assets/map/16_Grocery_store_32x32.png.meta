@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "40d11e35-e97a-4108-b5b5-b27f72543622",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "point",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 512,
+  "height": 2496,
+  "platformSettings": {},
+  "subMetas": {
+    "16_Grocery_store_32x32": {
+      "ver": "1.0.6",
+      "uuid": "421c425d-dbee-4c93-9e34-826a978a4718",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "40d11e35-e97a-4108-b5b5-b27f72543622",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 7,
+      "trimX": 0,
+      "trimY": 2,
+      "width": 512,
+      "height": 2478,
+      "rawWidth": 512,
+      "rawHeight": 2496,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
