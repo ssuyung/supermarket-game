@@ -7,13 +7,16 @@ export default class NewClass extends cc.Component {
     player: cc.Node = null;
 
     private selected = false;
-
+    private pickedUp = false;
     onKeyDown(event){
         switch(event.keyCode)
         {
             case cc.macro.KEY.enter:
                 if(this.selected) {
-                    this.node.destroy();
+                    this.pickedUp = true;
+                    this.node.scale = 1;
+                    this.node.opacity = 255;
+                    // this.node.destroy();
                 }
                 break;
         }
@@ -30,12 +33,23 @@ export default class NewClass extends cc.Component {
     }
 
     update (dt) {
-        if(Math.abs(this.player.x - this.node.x) < 8 && Math.abs(this.player.y - this.node.y) < 32) {
-            this.selected = true;
-            this.node.opacity = 150;
+        if(!this.pickedUp){
+            if(Math.abs(this.player.x - this.node.x) < 8 && Math.abs(this.player.y - this.node.y) < 32) {
+                this.selected = true;
+                this.node.opacity = 150;
+            } else {
+                this.selected = false;
+                this.node.opacity = 255;
+            }
         } else {
-            this.selected = false;
-            this.node.opacity = 255;
+            let player_node = this.player.getComponent("Player");
+            // if(player_node.xMoveDir == 0){
+            //     if(player_node.yMoveDir == 1){
+
+            //     } else if(player_node)
+            // }
+            // this.node.setPosition(cc.v2(this.player.x+player_node.xMoveDir*16, this.player.y-8));
+            this.node.setPosition(cc.v2(this.player.x, this.player.y+32));
         }
     }
 }

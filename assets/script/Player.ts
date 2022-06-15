@@ -74,7 +74,7 @@ export default class NewClass extends cc.Component {
         this.xMoveDir = dir;
     }
     playerYMove(dir:number){
-        console.log(dir);
+        // console.log(dir);
         this.yMoveDir = dir;
     }
 }
