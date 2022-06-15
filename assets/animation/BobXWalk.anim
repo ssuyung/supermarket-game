@@ -1,0 +1,61 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "BobXWalk",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.5166666666666667,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "3e9de77d-f98d-4461-bcc5-a5c0706e53ff"
+            }
+          },
+          {
+            "frame": 0.08333333333333333,
+            "value": {
+              "__uuid__": "c9363664-81ff-4e3d-98b7-46c25a27e4c0"
+            }
+          },
+          {
+            "frame": 0.16666666666666666,
+            "value": {
+              "__uuid__": "3807c4a4-3cf5-4f18-b99e-b2f3e6b5249d"
+            }
+          },
+          {
+            "frame": 0.25,
+            "value": {
+              "__uuid__": "bf0901cc-78f9-4549-b202-993b469d5489"
+            }
+          },
+          {
+            "frame": 0.3333333333333333,
+            "value": {
+              "__uuid__": "ee77d290-3fd4-495c-999f-87a67a280771"
+            }
+          },
+          {
+            "frame": 0.4166666666666667,
+            "value": {
+              "__uuid__": "cd919112-50b1-40c5-80ad-86d8ae3a0c54"
+            }
+          },
+          {
+            "frame": 0.5,
+            "value": {
+              "__uuid__": "3e9de77d-f98d-4461-bcc5-a5c0706e53ff"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}
