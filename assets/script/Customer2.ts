@@ -6,7 +6,6 @@ export default class NewClass extends cc.Component {
     private idleFrame = null;
     private anim = null;
     private action1: cc.Action = null;
-    private action2: cc.Action = null;
     private posX : number = 0;
     private posY : number = 0;
 
@@ -19,11 +18,9 @@ export default class NewClass extends cc.Component {
         this.idleFrame = this.getComponent(cc.Sprite).spriteFrame;
         this.anim  = this.getComponent(cc.Animation);
 
-        var sequence1 = cc.sequence(cc.moveBy(4.4, 0, -220), cc.moveBy(3, 150, 0));
+        var sequence1 = cc.sequence(cc.moveBy(5.2, 0, -260), cc.moveBy(1, 50, 0), cc.moveBy(3, 0, 0), cc.moveBy(0.4, -20, 0), 
+        cc.moveBy(3.6, 0, -180), cc.moveBy(0.8, 40, 0), cc.moveBy(1, 0, -50), cc.moveBy(0.4, -20, 0), cc.moveBy(3, 0, 0), cc.moveBy(0.4, 20, 0), cc.moveBy(6, 0, -300));
         this.action1 = cc.repeat(sequence1, 1);
-
-        var sequence2 = cc.sequence(cc.moveBy(3, 150, 0), cc.moveBy(4, 0, 0), cc.moveBy(6, -300, 0), cc.moveBy(4, 0, 0), cc.moveBy(3, 150, 0));
-        this.action2 = cc.repeatForever(sequence2);
 
         this.customerMove();
     }
@@ -47,20 +44,20 @@ export default class NewClass extends cc.Component {
             this.anim.stop();
             this.getComponent(cc.Sprite).spriteFrame = this.idleFrame;
         } else if(deltaX != 0){
-            if(!this.anim.getAnimationState("BobXWalk").isPlaying) {
-                this.anim.play("BobXWalk");
+            if(!this.anim.getAnimationState("OldWomanXWalk").isPlaying) {
+                this.anim.play("OldWomanXWalk");
             }
         } else if(deltaY != 0){
             if(deltaY > 0){
-                if(!this.anim.getAnimationState("BobUpWalk").isPlaying) {
+                if(!this.anim.getAnimationState("OldWomanUpWalk").isPlaying) {
                     console.log("Up");
-                    this.anim.play("BobUpWalk");
+                    this.anim.play("OldWomanUpWalk");
                 }
             }
             else if(deltaY < 0){
-                if(!this.anim.getAnimationState("BobDownWalk").isPlaying) {
+                if(!this.anim.getAnimationState("OldWomanDownWalk").isPlaying) {
                     console.log("down");
-                    this.anim.play("BobDownWalk");
+                    this.anim.play("OldWomanDownWalk");
                 }
             }
         }
@@ -71,9 +68,6 @@ export default class NewClass extends cc.Component {
     {
         this.scheduleOnce(() => {
             this.node.runAction(this.action1);
-        }, 0);
-        this.scheduleOnce(() => {
-            this.node.runAction(this.action2);
-        }, 7.5);
+        }, 3);
     }
 }
