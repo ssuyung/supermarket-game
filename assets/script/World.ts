@@ -23,6 +23,8 @@ export default class NewClass extends cc.Component {
     private Player = null;
     private leftDown: boolean = false;
     private rightDown: boolean = false;
+    private upDown: boolean = false;
+    private downDown: boolean = false; // whether the down key is pressed
     onLoad () {
         cc.director.getPhysicsManager().enabled = true;
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
@@ -36,20 +38,22 @@ export default class NewClass extends cc.Component {
             case cc.macro.KEY.left:
             case cc.macro.KEY.a:
                 this.leftDown = true;
-                this.Player.playerMove(-1);
+                this.Player.playerXMove(-1);
                 break;
             case cc.macro.KEY.right:
             case cc.macro.KEY.d:
                 this.rightDown = true;
-                this.Player.playerMove(1);
+                this.Player.playerXMove(1);
                 break;
             case cc.macro.KEY.w:
             case cc.macro.KEY.up:
-            case cc.macro.KEY.space:
-                this.Player.playerJump("Normal");
+                this.upDown = true;
+                this.Player.playerYMove(1);
                 break;
-            case cc.macro.KEY.p:
-                // this.gameStart();
+            case cc.macro.KEY.s:
+            case cc.macro.KEY.down:
+                this.downDown = true;
+                this.Player.playerYMove(-1);
                 break;
             // case cc.macro.KEY.d:
             //     this.gameOver();
@@ -65,17 +69,33 @@ export default class NewClass extends cc.Component {
             case cc.macro.KEY.a:
                 this.leftDown = false;
                 if(this.rightDown)
-                    this.Player.playerMove(1);
+                    this.Player.playerXMove(1);
                 else
-                    this.Player.playerMove(0);
+                    this.Player.playerXMove(0);
                 break;
             case cc.macro.KEY.right:
             case cc.macro.KEY.d:
                 this.rightDown = false;
                 if(this.leftDown)
-                    this.Player.playerMove(-1);
+                    this.Player.playerXMove(-1);
                 else
-                    this.Player.playerMove(0);
+                    this.Player.playerXMove(0);
+                break;
+            case cc.macro.KEY.w:
+            case cc.macro.KEY.up:
+                this.upDown = false;
+                if(this.downDown)
+                    this.Player.playerYMove(-1);
+                else 
+                    this.Player.playerYMove(0);
+                break;
+            case cc.macro.KEY.s:
+            case cc.macro.KEY.down:
+                this.downDown = false;
+                if(this.upDown)
+                    this.Player.playerYMove(1);
+                else 
+                    this.Player.playerYMove(0);
                 break;
         }
     }

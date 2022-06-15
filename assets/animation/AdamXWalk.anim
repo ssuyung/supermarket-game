@@ -1,0 +1,55 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "AdamXWalk",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.43333333333333335,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "f2bcfb52-e400-42ad-9b70-5bf9eb988490"
+            }
+          },
+          {
+            "frame": 0.08333333333333333,
+            "value": {
+              "__uuid__": "4f87d382-8593-4cad-b3db-e6d97d0a6aaf"
+            }
+          },
+          {
+            "frame": 0.16666666666666666,
+            "value": {
+              "__uuid__": "6c6464ee-e8ab-400e-a526-4dd9bcd6dab5"
+            }
+          },
+          {
+            "frame": 0.25,
+            "value": {
+              "__uuid__": "ba4b2009-7604-4772-a9f1-942f0b46996a"
+            }
+          },
+          {
+            "frame": 0.3333333333333333,
+            "value": {
+              "__uuid__": "7e579a15-3180-47c7-8244-21b980e7731d"
+            }
+          },
+          {
+            "frame": 0.4166666666666667,
+            "value": {
+              "__uuid__": "c79c7b14-d748-41a3-a61e-46046fa80add"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

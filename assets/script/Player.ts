@@ -17,8 +17,10 @@ export default class NewClass extends cc.Component {
     text: string = 'hello';
     @property()
     playerXSpeed: number = 0;
-
-    private moveDir = 0;
+    @property()
+    playerYSpeed: number = 0;
+    private xMoveDir = 0;
+    private yMoveDir = 0;
     private idleFrame = null;
     private anim = null;
     // private playerXSpeed = 300;
@@ -27,27 +29,43 @@ export default class NewClass extends cc.Component {
     // onLoad () {}
 
     start () {
-        // this.idleFrame = this.getComponent(cc.Sprite).spriteFrame;
+        this.idleFrame = this.getComponent(cc.Sprite).spriteFrame;
         // console.log(this.idleFrame);
-        // this.anim  = this.getComponent(cc.Animation);
+        this.anim  = this.getComponent(cc.Animation);
     }
 
     update (dt) {
         let velocity = this.node.getComponent(cc.RigidBody).linearVelocity 
-        this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.playerXSpeed*this.moveDir, velocity.y);
-        switch(this.moveDir){
+        this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.playerXSpeed*this.xMoveDir, this.playerYSpeed*this.yMoveDir);
+
+        switch(this.xMoveDir){
             case 1:
             case -1:
-                this.node.scaleX = this.moveDir;
+                this.node.scaleX = this.xMoveDir;
                 break;
         }
-        // if(this.node.scaleX == 0){
-
-        // }
-        // this.node.scaleX = this.moveDir;
-        console.log("speed: " + this.node.getComponent(cc.RigidBody).linearVelocity);
+        this.playAnimation();
     }
-    playerMove(dir:number){
-        this.moveDir = dir;
+    playAnimation(){
+        if(this.xMoveDir == 0 && this.yMoveDir == 0){
+            this.anim.stop();
+            this.getComponent(cc.Sprite).spriteFrame = this.idleFrame;
+        } else if(this.xMoveDir != 0){
+            if(!this.anim.getAnimationState("AdamXWalk").isPlaying) {
+                this.anim.play("AdamXWalk");
+            }
+        } else if(this.yMoveDir != 0){
+            if(!this.anim.getAnimationState("AdamUpWalk").isPlaying) {
+                this.anim.play("AdamUpWalk");
+            }
+        }
+        
+    }
+    playerXMove(dir:number){
+        this.xMoveDir = dir;
+    }
+    playerYMove(dir:number){
+        // console.log(dir);
+        this.yMoveDir = dir;
     }
 }
