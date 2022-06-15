@@ -22,6 +22,18 @@ export default class NewClass extends cc.Component {
         }
     }
 
+    onBeginContact (contact, self, other) {
+        if(other.node.name == "Player" && !this.pickedUp) {
+            this.selected = true;
+            this.node.opacity = 150;
+        }
+    }
+
+    onEndContact (contact, self, other) {
+        this.selected = false;
+        this.node.opacity = 255;
+    }
+
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
@@ -34,13 +46,13 @@ export default class NewClass extends cc.Component {
 
     update (dt) {
         if(!this.pickedUp){
-            if(Math.abs(this.player.x - this.node.x) < 8 && Math.abs(this.player.y - this.node.y) < 32) {
+            /*if(Math.abs(this.player.x - this.node.x) < 16 && Math.abs(this.player.y - this.node.y) < 48) {
                 this.selected = true;
                 this.node.opacity = 150;
             } else {
                 this.selected = false;
                 this.node.opacity = 255;
-            }
+            }*/
         } else {
             let player_node = this.player.getComponent("Player");
             // if(player_node.xMoveDir == 0){
