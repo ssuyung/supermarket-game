@@ -55,8 +55,17 @@ export default class NewClass extends cc.Component {
                 this.anim.play("AdamXWalk");
             }
         } else if(this.yMoveDir != 0){
-            if(!this.anim.getAnimationState("AdamUpWalk").isPlaying) {
-                this.anim.play("AdamUpWalk");
+            if(this.yMoveDir==1){
+                // console.log("up");
+                if(!this.anim.getAnimationState("AdamUpWalk").isPlaying) {
+                    this.anim.play("AdamUpWalk");
+                }
+            }
+            else if(this.yMoveDir == -1){
+                // console.log("down");
+                if(!this.anim.getAnimationState("AdamDownWalk").isPlaying) {
+                    this.anim.play("AdamDownWalk");
+                }
             }
         }
         
@@ -65,7 +74,7 @@ export default class NewClass extends cc.Component {
         this.xMoveDir = dir;
     }
     playerYMove(dir:number){
-        // console.log(dir);
+        console.log(dir);
         this.yMoveDir = dir;
     }
 }
