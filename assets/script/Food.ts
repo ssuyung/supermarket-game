@@ -61,7 +61,7 @@ export default class NewClass extends cc.Component {
             //     } else if(player_node)
             // }
             // this.node.setPosition(cc.v2(this.player.x+player_node.xMoveDir*16, this.player.y-8));
-            this.node.setPosition(cc.v2(this.player.x, this.player.y+32));
+            this.node.setPosition(cc.v2(this.player.x, this.player.y + 42));
         }
     }
 }
