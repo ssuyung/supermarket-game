@@ -1,28 +1,21 @@
-// Learn TypeScript:
-//  - https://docs.cocos.com/creator/manual/en/scripting/typescript.html
-// Learn Attribute:
-//  - https://docs.cocos.com/creator/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
-
 const {ccclass, property} = cc._decorator;
 // import Player from "./Player";
 @ccclass
 export default class NewClass extends cc.Component {
-
-    @property(cc.Label)
-    label: cc.Label = null;
-
-    @property
-    text: string = 'hello';
-
+    @property({type:cc.AudioClip})
+    bgm: cc.AudioClip = null;
+    @property({type:cc.Prefab})
+    pause: cc.Prefab = null;
     @property(cc.Node)
     PlayerNode: cc.Node = null;
     // LIFE-CYCLE CALLBACKS:
 
     private timer: number = 180;
 
+    private audioID: number;
     private Player = null;
+    private escapeDown: boolean = false;
+    private escapeCounter: number = 0;
     private leftDown: boolean = false;
     private rightDown: boolean = false;
     private upDown: boolean = false;
@@ -60,6 +53,11 @@ export default class NewClass extends cc.Component {
             // case cc.macro.KEY.d:
             //     this.gameOver();
             //     break;
+            case cc.macro.KEY.escape:
+                cc.log("Escape");
+                this.escapeDown = true;
+                this.escapeCounter++;
+                break;
         }
     }
 
@@ -102,13 +100,80 @@ export default class NewClass extends cc.Component {
         }
     }
 
-    start () {
+    getPauseState () {
+        return this.escapeDown;
+    }
 
+    Pause() {
+        cc.director.getScheduler().setTimeScale(0);
+        cc.audioEngine.pauseMusic();
+        var pause = cc.instantiate(this.pause);
+        cc.find("Canvas").addChild(pause);
+        pause.setPosition(0, 0);
+        //pause.destroy();
+        let handle = this;
+        //this.scheduleOnce(function() {
+            cc.log("Worked");
+            handle.ContinueBtn();
+            handle.QuitBtn();
+        //}, 0.5);
+        
+        cc.log("Paused");
+        this.escapeCounter++;
+    }
+
+    Continue() {
+        
+        cc.director.getScheduler().setTimeScale(1);
+        cc.find("Canvas/Pause").destroy();
+        cc.audioEngine.resumeMusic();
+        this.escapeDown = false;
+        this.escapeCounter = 0;
+    }
+
+    Quit() {
+        cc.director.getScheduler().setTimeScale(1);
+        var pause = cc.find("Canvas/Pause");
+        pause.destroy();
+        var seq = cc.sequence(cc.fadeOut(2.5), cc.callFunc(function () {
+            cc.director.loadScene('Login');
+        }));
+        this.node.runAction(seq);
+    }
+
+    ContinueBtn() {
+        cc.log("Hi");
+        let eventHandler = new cc.Component.EventHandler();
+        eventHandler.target = this.node;
+        eventHandler.component = "World";
+        eventHandler.handler = "Continue";
+        cc.find("Canvas/Pause/Resume").getComponent(cc.Button).clickEvents.push(eventHandler);
+    }
+
+    QuitBtn() {
+        let eventHandler = new cc.Component.EventHandler();
+        eventHandler.target = this.node;
+        eventHandler.component = "World";
+        eventHandler.handler = "Quit";
+        cc.find("Canvas/Pause/Exit").getComponent(cc.Button).clickEvents.push(eventHandler);
+    }
+
+    playBGM() {
+        this.audioID = cc.audioEngine.playMusic(this.bgm, true); //repeat
+        cc.audioEngine.setVolume(this.audioID, 0.5);
+    }
+
+    start () {
+        this.playBGM();
     }
 
     update (dt) {
-        if(this.timer > 0) {
+        if(this.timer > 0 && !this.escapeDown) {
             this.timer -= dt;
+        }
+
+        if(this.escapeCounter == 1) {
+            this.Pause();
         }
 
         cc.find("Canvas/Main Camera/Timer_bar/time").getComponent(cc.Label).string = String(Math.floor(this.timer));
