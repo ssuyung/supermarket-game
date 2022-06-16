@@ -14,6 +14,15 @@ export default class NewClass extends cc.Component {
 
     private customerPath : number;
 
+    @property(cc.SpriteFrame)
+    idleSideFrame: cc.SpriteFrame = null;
+
+    @property(cc.SpriteFrame)
+    idleFrontFrame: cc.SpriteFrame = null;
+
+    @property(cc.SpriteFrame)
+    idleBackFrame: cc.SpriteFrame = null;
+
     // onLoad () {}
 
     start () {
@@ -53,16 +62,19 @@ export default class NewClass extends cc.Component {
             if(!this.anim.getAnimationState("BouncerXWalk").isPlaying) {
                 this.anim.play("BouncerXWalk");
             }
+            this.idleFrame = this.idleSideFrame;
         } else if(deltaY != 0){
             if(deltaY > 0){
                 if(!this.anim.getAnimationState("BouncerUpWalk").isPlaying) {
                     this.anim.play("BouncerUpWalk");
                 }
+                this.idleFrame = this.idleBackFrame;
             }
             else if(deltaY < 0){
                 if(!this.anim.getAnimationState("BouncerDownWalk").isPlaying) {
                     this.anim.play("BouncerDownWalk");
                 }
+                this.idleFrame = this.idleFrontFrame;
             }
         }
         

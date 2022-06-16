@@ -492,6 +492,15 @@
       "__id__": 1
     },
     "_enabled": true,
+    "idleSideFrame": {
+      "__uuid__": "f5a241be-c6ca-434e-9b7e-2ef3ad72b14c"
+    },
+    "idleFrontFrame": {
+      "__uuid__": "f673db51-da00-404f-a384-67c6f8d377d0"
+    },
+    "idleBackFrame": {
+      "__uuid__": "8f5bc018-b96e-4792-a73a-fe46264cc3ed"
+    },
     "_id": ""
   },
   {
