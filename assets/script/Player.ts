@@ -9,9 +9,12 @@ const {ccclass, property} = cc._decorator;
 
 @ccclass
 export default class NewClass extends cc.Component {
-
-    @property(cc.Label)
-    label: cc.Label = null;
+    @property(cc.SpriteFrame)
+    idle: cc.SpriteFrame = null;
+    @property(cc.SpriteFrame)
+    idle_up: cc.SpriteFrame = null;
+    @property(cc.SpriteFrame)
+    idle_down: cc.SpriteFrame = null;
 
     @property
     text: string = 'hello';
@@ -54,18 +57,21 @@ export default class NewClass extends cc.Component {
             if(!this.anim.getAnimationState("AdamXWalk").isPlaying) {
                 this.anim.play("AdamXWalk");
             }
+            this.idleFrame = this.idle;
         } else if(this.yMoveDir != 0){
             if(this.yMoveDir==1){
                 // console.log("up");
                 if(!this.anim.getAnimationState("AdamUpWalk").isPlaying) {
                     this.anim.play("AdamUpWalk");
                 }
+                this.idleFrame = this.idle_up;
             }
             else if(this.yMoveDir == -1){
                 // console.log("down");
                 if(!this.anim.getAnimationState("AdamDownWalk").isPlaying) {
                     this.anim.play("AdamDownWalk");
                 }
+                this.idleFrame = this.idle_down;
             }
         }
         

@@ -886,7 +886,15 @@
       "__id__": 15
     },
     "_enabled": true,
-    "label": null,
+    "idle": {
+      "__uuid__": "9c6ee7f0-0871-4bbc-857d-2d12018ddf99"
+    },
+    "idle_up": {
+      "__uuid__": "84754e93-c2df-4c15-9c9c-d256ddbb1d82"
+    },
+    "idle_down": {
+      "__uuid__": "03663a19-8bfd-4f41-9657-a0b103301e1c"
+    },
     "text": "hello",
     "playerXSpeed": 200,
     "playerYSpeed": 150,
