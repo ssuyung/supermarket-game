@@ -11,70 +11,50 @@ export default class NewClass extends cc.Component {
     @property(cc.EditBox)
     password: cc.EditBox = null;
 
-    private email:string;
-    private pwd:string;
-
-    // LIFE-CYCLE CALLBACKS:
-
     onLoad () {
         this.account.placeholder = "Account";
         this.password.placeholder = "Password";
     }
 
     start () {
-        this.handleWithEditBox("Account");
-        this.handleWithEditBox("Password");
-
         let loginbtn = new cc.Component.EventHandler();
         loginbtn.target = this.node;
-        loginbtn.component = "login";
-        loginbtn.handler = "login_click";
+        loginbtn.component = "Login";
+        loginbtn.handler = "loginclick";
         cc.find("Canvas/Login").getComponent(cc.Button).clickEvents.push(loginbtn);
 
         let signupbtn = new cc.Component.EventHandler();
         signupbtn.target = this.node;
-        signupbtn.component = "signup";
-        signupbtn.handler = "signup_click";
+        signupbtn.component = "Login";
+        signupbtn.handler = "signupclick";
         cc.find("Canvas/Signup").getComponent(cc.Button).clickEvents.push(signupbtn);
     }
 
-    handleWithEditBox(mode:string){
-        let box = new cc.Component.EventHandler();
-        box.target = this.node;
-        box.component = "login_signup";
-        box.handler = "onEditDidEnd";
-        cc.find("Canvas/" + mode).getComponent(cc.EditBox).editingDidEnded.push(box);
-    }
-
-    login_click() {
-        firebase.auth().signInWithEmailAndPassword(this.email, this.pwd)
+    loginclick() {
+        let email = cc.find("Canvas/Account").getComponent(cc.EditBox).string;
+        let password = cc.find("Canvas/Password").getComponent(cc.EditBox).string;
+        firebase.auth().signInWithEmailAndPassword(email, password)
         .then((userCredential) => {
-            this.LoadScene();
+            alert("Success!");
+            cc.director.loadScene("Stage1");
         })
         .catch((error) => {
             var errorMessage = error.message;
+            alert(errorMessage);
         });
     }
 
-    onEditDidEnd(box:cc.EditBox){
-        if(box.placeholder == "Account"){
-            this.email = box.string;
-        }else if(box.placeholder == "Password"){
-            this.pwd = box.string;
-        }
-    }
-
-    signup_click(){
-        firebase.auth().createUserWithEmailAndPassword(this.email, this.pwd)
+    signupclick(){
+        let email = cc.find("Canvas/Account").getComponent(cc.EditBox).string;
+        let password = cc.find("Canvas/Password").getComponent(cc.EditBox).string;
+        firebase.auth().createUserWithEmailAndPassword(email, password)
         .then((userCredential) => {
-            this.LoadScene();
+            alert("Success!");
+            cc.director.loadScene("Stage1");
         })
         .catch((error) => {
             var errorMessage = error.message;
+            alert(errorMessage);
         });
-    }
-
-    LoadScene(){
-        cc.director.loadScene("stage");
     }
 }
