@@ -4,7 +4,7 @@
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
-  "filterMode": "point",
+  "filterMode": "trilinear",
   "premultiplyAlpha": false,
   "genMipmaps": false,
   "packable": true,
