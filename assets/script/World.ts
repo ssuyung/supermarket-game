@@ -20,6 +20,8 @@ export default class NewClass extends cc.Component {
     PlayerNode: cc.Node = null;
     // LIFE-CYCLE CALLBACKS:
 
+    private timer: number = 180;
+
     private Player = null;
     private leftDown: boolean = false;
     private rightDown: boolean = false;
@@ -104,5 +106,11 @@ export default class NewClass extends cc.Component {
 
     }
 
-    // update (dt) {}
+    update (dt) {
+        if(this.timer > 0) {
+            this.timer -= dt;
+        }
+
+        cc.find("Canvas/Main Camera/Timer_bar/time").getComponent(cc.Label).string = String(Math.floor(this.timer));
+    }
 }
