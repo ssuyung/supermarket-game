@@ -4,7 +4,7 @@
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
-  "filterMode": "bilinear",
+  "filterMode": "trilinear",
   "premultiplyAlpha": false,
   "genMipmaps": false,
   "packable": true,
@@ -28,10 +28,10 @@
       "height": 64,
       "rawWidth": 64,
       "rawHeight": 64,
-      "borderTop": 0,
-      "borderBottom": 0,
-      "borderLeft": 0,
-      "borderRight": 0,
+      "borderTop": 10,
+      "borderBottom": 10,
+      "borderLeft": 10,
+      "borderRight": 10,
       "subMetas": {}
     }
   }
