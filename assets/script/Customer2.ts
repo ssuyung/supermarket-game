@@ -18,10 +18,6 @@ export default class NewClass extends cc.Component {
         this.idleFrame = this.getComponent(cc.Sprite).spriteFrame;
         this.anim  = this.getComponent(cc.Animation);
 
-        var sequence1 = cc.sequence(cc.moveBy(5.2, 0, -260), cc.moveBy(1, 50, 0), cc.moveBy(3, 0, 0), cc.moveBy(0.4, -20, 0), 
-        cc.moveBy(3.6, 0, -180), cc.moveBy(0.8, 40, 0), cc.moveBy(1, 0, -50), cc.moveBy(0.4, -20, 0), cc.moveBy(3, 0, 0), cc.moveBy(0.4, 20, 0), cc.moveBy(6, 0, -300));
-        this.action1 = cc.repeat(sequence1, 1);
-
         this.customerMove();
     }
 
@@ -66,8 +62,12 @@ export default class NewClass extends cc.Component {
 
     customerMove()
     {
+        var sequence1 = cc.sequence(cc.moveBy(5.2, 0, -260), cc.moveBy(1, 50, 0), cc.moveBy(3, 0, 0), cc.moveBy(0.4, -20, 0), 
+        cc.moveBy(3.6, 0, -180), cc.moveBy(0.8, 40, 0), cc.moveBy(1, 0, -50), cc.moveBy(0.4, -20, 0), cc.moveBy(3, 0, 0), cc.moveBy(0.4, 20, 0), cc.moveBy(6, 0, -300));
+        this.action1 = cc.repeat(sequence1, 1);
+
         this.scheduleOnce(() => {
             this.node.runAction(this.action1);
-        }, 3);
+        }, 0);
     }
 }

@@ -10,22 +10,23 @@ export default class NewClass extends cc.Component {
     private posX : number = 0;
     private posY : number = 0;
 
+    private customerPath : number;
+
     // onLoad () {}
 
     start () {
         this.posX = this.node.x;
         this.posY = this.node.y;
-
+        this.customerPath = Math.random();
         this.idleFrame = this.getComponent(cc.Sprite).spriteFrame;
         this.anim  = this.getComponent(cc.Animation);
 
-        var sequence1 = cc.sequence(cc.moveBy(4.4, 0, -220), cc.moveBy(3, 150, 0));
-        this.action1 = cc.repeat(sequence1, 1);
+        if (this.customerPath >= 0.5) this.customerMove();
+        else if (this.customerPath < 0.5) this.customerMove_2();
 
-        var sequence2 = cc.sequence(cc.moveBy(3, 150, 0), cc.moveBy(4, 0, 0), cc.moveBy(6, -300, 0), cc.moveBy(4, 0, 0), cc.moveBy(3, 150, 0));
-        this.action2 = cc.repeatForever(sequence2);
-
-        this.customerMove();
+        this.scheduleOnce(() => {
+            this.node.getChildByName("dialog").active = false;
+        }, 4);
     }
 
     update (dt) {
@@ -69,11 +70,33 @@ export default class NewClass extends cc.Component {
 
     customerMove()
     {
+        var sequence1 = cc.sequence(cc.moveBy(4.4, 0, -220), cc.moveBy(3, 150, 0));
+        this.action1 = cc.repeat(sequence1, 1);
+
+        var sequence2 = cc.sequence(cc.moveBy(3, 150, 0), cc.moveBy(4, 0, 0), cc.moveBy(6, -300, 0), cc.moveBy(4, 0, 0), cc.moveBy(3, 150, 0));
+        this.action2 = cc.repeatForever(sequence2);
+
         this.scheduleOnce(() => {
             this.node.runAction(this.action1);
         }, 0);
         this.scheduleOnce(() => {
             this.node.runAction(this.action2);
         }, 7.5);
+    }
+
+    customerMove_2()
+    {
+        var sequence1 = cc.sequence(cc.moveBy(4.4, 0, -220), cc.moveBy(6, 300, 0), cc.moveBy(0.6, 0, 30), cc.moveBy(3.4, 170, 0));
+        this.action1 = cc.repeat(sequence1, 1);
+
+        var sequence2 = cc.sequence(cc.moveBy(1, 50, 0), cc.moveBy(4, 0, 0), cc.moveBy(2, -100, 0), cc.moveBy(4, 0, 0), cc.moveBy(1, 50, 0));
+        this.action2 = cc.repeatForever(sequence2);
+
+        this.scheduleOnce(() => {
+            this.node.runAction(this.action1);
+        }, 0);
+        this.scheduleOnce(() => {
+            this.node.runAction(this.action2);
+        }, 14.5);
     }
 }
