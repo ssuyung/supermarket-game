@@ -58,7 +58,7 @@
     "_groupIndex": 0,
     "groupIndex": 0,
     "autoReleaseAssets": false,
-    "_id": "885e1469-69b6-4380-b8f7-219257eeb48d"
+    "_id": "a663f3d3-f3a0-4e73-8325-47b1d2f3e9d1"
   },
   {
     "__type__": "cc.Node",
@@ -84,19 +84,19 @@
         "__id__": 23
       },
       {
-        "__id__": 34
+        "__id__": 35
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 45
-      },
-      {
-        "__id__": 46
-      },
-      {
         "__id__": 47
+      },
+      {
+        "__id__": 48
+      },
+      {
+        "__id__": 49
       }
     ],
     "_prefab": null,
@@ -1579,7 +1579,11 @@
     "_tabIndex": 0,
     "editingDidBegan": [],
     "textChanged": [],
-    "editingDidEnded": [],
+    "editingDidEnded": [
+      {
+        "__id__": 34
+      }
+    ],
     "editingReturn": [],
     "_N$textLabel": {
       "__id__": 28
@@ -1596,6 +1600,16 @@
     "_id": "83k1s6WTdFSIxvc+z9QgLi"
   },
   {
+    "__type__": "cc.ClickEvent",
+    "target": {
+      "__id__": 23
+    },
+    "component": "",
+    "_componentId": "cc.EditBox",
+    "handler": "editBoxEditingDidEnded",
+    "customEventData": ""
+  },
+  {
     "__type__": "cc.Node",
     "_name": "Password",
     "_objFlags": 0,
@@ -1604,19 +1618,19 @@
     },
     "_children": [
       {
-        "__id__": 35
+        "__id__": 36
       },
       {
-        "__id__": 38
+        "__id__": 39
       },
       {
-        "__id__": 41
+        "__id__": 42
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 44
+        "__id__": 45
       }
     ],
     "_prefab": null,
@@ -1672,16 +1686,16 @@
     "_name": "BACKGROUND_SPRITE",
     "_objFlags": 512,
     "_parent": {
-      "__id__": 34
+      "__id__": 35
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 36
+        "__id__": 37
       },
       {
-        "__id__": 37
+        "__id__": 38
       }
     ],
     "_prefab": null,
@@ -1737,7 +1751,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 35
+      "__id__": 36
     },
     "_enabled": true,
     "_materials": [
@@ -1769,7 +1783,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 35
+      "__id__": 36
     },
     "_enabled": true,
     "alignMode": 0,
@@ -1796,16 +1810,16 @@
     "_name": "TEXT_LABEL",
     "_objFlags": 512,
     "_parent": {
-      "__id__": 34
+      "__id__": 35
     },
     "_children": [],
     "_active": false,
     "_components": [
       {
-        "__id__": 39
+        "__id__": 40
       },
       {
-        "__id__": 40
+        "__id__": 41
       }
     ],
     "_prefab": null,
@@ -1861,7 +1875,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 38
+      "__id__": 39
     },
     "_enabled": true,
     "_materials": [],
@@ -1892,7 +1906,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 38
+      "__id__": 39
     },
     "_enabled": true,
     "alignMode": 0,
@@ -1919,16 +1933,16 @@
     "_name": "PLACEHOLDER_LABEL",
     "_objFlags": 512,
     "_parent": {
-      "__id__": 34
+      "__id__": 35
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 42
+        "__id__": 43
       },
       {
-        "__id__": 43
+        "__id__": 44
       }
     ],
     "_prefab": null,
@@ -1984,7 +1998,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 41
+      "__id__": 42
     },
     "_enabled": true,
     "_materials": [
@@ -2019,7 +2033,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 41
+      "__id__": 42
     },
     "_enabled": true,
     "alignMode": 0,
@@ -2046,7 +2060,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 34
+      "__id__": 35
     },
     "_enabled": true,
     "_string": "",
@@ -2055,21 +2069,35 @@
     "_tabIndex": 0,
     "editingDidBegan": [],
     "textChanged": [],
-    "editingDidEnded": [],
+    "editingDidEnded": [
+      {
+        "__id__": 46
+      }
+    ],
     "editingReturn": [],
     "_N$textLabel": {
-      "__id__": 39
+      "__id__": 40
     },
     "_N$placeholderLabel": {
-      "__id__": 42
+      "__id__": 43
     },
     "_N$background": {
-      "__id__": 36
+      "__id__": 37
     },
     "_N$inputFlag": 5,
     "_N$inputMode": 6,
     "_N$stayOnTop": false,
     "_id": "aenkt5yBZKQqSCVyPvNZCU"
+  },
+  {
+    "__type__": "cc.ClickEvent",
+    "target": {
+      "__id__": 35
+    },
+    "component": "",
+    "_componentId": "cc.EditBox",
+    "handler": "editBoxEditingDidEnded",
+    "customEventData": ""
   },
   {
     "__type__": "cc.Canvas",
@@ -2127,7 +2155,7 @@
       "__id__": 33
     },
     "password": {
-      "__id__": 44
+      "__id__": 45
     },
     "_id": "f6uXN6yNxAIpksVfgWbKnA"
   }
