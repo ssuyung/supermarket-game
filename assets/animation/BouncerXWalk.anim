@@ -1,0 +1,61 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "BouncerXWalk",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.5166666666666667,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "7b8bbc2f-da25-4096-95cb-fa4acc7cb9b4"
+            }
+          },
+          {
+            "frame": 0.08333333333333333,
+            "value": {
+              "__uuid__": "7590a28a-8021-486e-9c1c-9985ca62d457"
+            }
+          },
+          {
+            "frame": 0.16666666666666666,
+            "value": {
+              "__uuid__": "1210b2f0-c7b4-4407-891a-45984fe1714f"
+            }
+          },
+          {
+            "frame": 0.25,
+            "value": {
+              "__uuid__": "1203eb7f-24d6-463b-9bea-090335d9f079"
+            }
+          },
+          {
+            "frame": 0.3333333333333333,
+            "value": {
+              "__uuid__": "df43b242-e914-4c99-a015-0ce16102fac6"
+            }
+          },
+          {
+            "frame": 0.4166666666666667,
+            "value": {
+              "__uuid__": "5bda1ad1-cbbb-4bcd-ac32-4b6902ec1643"
+            }
+          },
+          {
+            "frame": 0.5,
+            "value": {
+              "__uuid__": "7b8bbc2f-da25-4096-95cb-fa4acc7cb9b4"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Timer_bar",
+    "_name": "Money_bar",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -55,7 +55,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        75,
+        300,
         335,
         0,
         0,
@@ -82,7 +82,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "sanglass",
+    "_name": "UI_Graphic_Resource_Coins",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -107,7 +107,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 38,
+      "width": 48,
       "height": 48
     },
     "_anchorPoint": {
@@ -119,15 +119,15 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -90,
+        -80,
         0,
         0,
         0,
         0,
         0,
         1,
-        1.1,
-        1.1,
+        1,
+        1,
         1
       ]
     },
@@ -160,7 +160,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "631d6f96-1bbb-47f6-8cc2-d9234d8e6dec"
+      "__uuid__": "58279f09-b729-45d4-9a90-a1ef059ff219"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -184,12 +184,12 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "132vtCYP1P9qg0HD2irqDF",
+    "fileId": "da14Ts1plHLrn0rS8l53sg",
     "sync": false
   },
   {
     "__type__": "cc.Node",
-    "_name": "time",
+    "_name": "money",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -214,7 +214,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 38.33,
+      "width": 65.9,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -226,7 +226,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        45,
+        30.459,
         0,
         0,
         0,
@@ -266,8 +266,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "180",
-    "_N$string": "180",
+    "_string": "12345",
+    "_N$string": "12345",
     "_fontSize": 24,
     "_lineHeight": 40,
     "_enableWrapText": true,

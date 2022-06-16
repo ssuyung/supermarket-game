@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Customer",
+    "_name": "Customer3",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -217,7 +217,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "3e9de77d-f98d-4461-bcc5-a5c0706e53ff"
+      "__uuid__": "7b8bbc2f-da25-4096-95cb-fa4acc7cb9b4"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -231,7 +231,7 @@
     "_fillRange": 0,
     "_isTrimmedMode": true,
     "_atlas": {
-      "__uuid__": "84a8c3aa-592b-4f46-a585-2adcdfa63042"
+      "__uuid__": "917c5b68-dc23-4ee5-972d-7b7f9c78db0c"
     },
     "_id": ""
   },
@@ -271,13 +271,13 @@
     "_defaultClip": null,
     "_clips": [
       {
-        "__uuid__": "93c24902-36fd-4caf-83ac-cee2e5d0cb25"
+        "__uuid__": "cdf77f7a-4881-4a3d-a5fe-d63b8e67a1da"
       },
       {
-        "__uuid__": "eece0d5f-2596-498e-85b2-ed0ce05662e1"
+        "__uuid__": "8d353be1-8de1-4361-99ff-90b43a014f21"
       },
       {
-        "__uuid__": "1a2ae3c3-3d21-40cb-845a-0873aeb6069c"
+        "__uuid__": "15d8c7e3-f7d7-4222-8eab-c0038d374cb6"
       }
     ],
     "playOnLoad": false,
@@ -485,22 +485,13 @@
     "_id": ""
   },
   {
-    "__type__": "9a4175I5lJDWLBVMN2nEj82",
+    "__type__": "aa672cXUmZJZqRftiP32sk7",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 1
     },
     "_enabled": true,
-    "idleSideFrame": {
-      "__uuid__": "268d1263-0ce6-4836-9bf7-f1b985c1e3e7"
-    },
-    "idleFrontFrame": {
-      "__uuid__": "969fe2a3-2de8-4ef6-8fb8-160123e3630e"
-    },
-    "idleBackFrame": {
-      "__uuid__": "b4fb8875-bee1-4aeb-993b-bc17a2925b2b"
-    },
     "_id": ""
   },
   {
