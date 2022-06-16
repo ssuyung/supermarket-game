@@ -38,6 +38,10 @@ export default class NewClass extends cc.Component {
     }
 
     update (dt) {
+        if(this.node.parent.getComponent("World").getPauseState()) {
+            return;
+        }
+
         let velocity = this.node.getComponent(cc.RigidBody).linearVelocity 
         this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.playerXSpeed*this.xMoveDir, this.playerYSpeed*this.yMoveDir);
 

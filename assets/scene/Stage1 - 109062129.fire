@@ -9183,8 +9183,12 @@
       "__id__": 2
     },
     "_enabled": true,
-    "label": null,
-    "text": "hello",
+    "bgm": {
+      "__uuid__": "da4e9031-2c62-4405-8e4c-6cb6acd63e1e"
+    },
+    "pause": {
+      "__uuid__": "a783ed01-5eca-4bab-b2bb-61f7097ba298"
+    },
     "PlayerNode": {
       "__id__": 30
     },
