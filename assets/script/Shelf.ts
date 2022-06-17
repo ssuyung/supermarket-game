@@ -16,10 +16,10 @@ export default class NewClass extends cc.Component {
     @property
     text: string = 'hello';
 
-    private maxNumberOfItems = 6;
+    private maxNumberOfItems = 3;
     private curNumberOfItems = 0;
     private width = 32;
-    private height = 16;
+    private height = 6;
     private itemOnShelf:boolean[] = [false, false, false, false, false, false];
     // LIFE-CYCLE CALLBACKS:
 
@@ -29,7 +29,7 @@ export default class NewClass extends cc.Component {
 
     }
     getItemIndex(){
-        for(let i=0; i<=6;i++){
+        for(let i=0; i<=3;i++){
             if(this.itemOnShelf[i] == false){
                 this.itemOnShelf[i] = true;
                 return i+1;
@@ -38,10 +38,11 @@ export default class NewClass extends cc.Component {
     }
     getItemPosition(idx){
         let pos = this.node.getPosition();
-        if(idx>3) pos.y += this.height;
+        //if(idx<=3) pos.y += this.height;
+        pos.y += this.height;
         let seq = idx%3;
         if(seq == 1) pos.x = pos.x - this.width;
-        else if(seq == 3) pos.x = pos.x + this.width;
+        else if(seq == 0) pos.x = pos.x + this.width;
         return pos;
     }
 
