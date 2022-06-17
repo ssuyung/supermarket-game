@@ -38,7 +38,7 @@ export default class NewClass extends cc.Component {
     }
     getItemPosition(idx){
         let pos = this.node.getPosition();
-        pos.y += (idx/3)* this.height;
+        if(idx>3) pos.y += this.height;
         let seq = idx%3;
         if(seq == 1) pos.x = pos.x - this.width;
         else if(seq == 3) pos.x = pos.x + this.width;
