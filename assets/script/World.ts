@@ -6,6 +6,8 @@ export default class NewClass extends cc.Component {
     bgm: cc.AudioClip = null;
     @property({type:cc.Prefab})
     pause: cc.Prefab = null;
+    @property({type:cc.Prefab})
+    settingsPanel: cc.Prefab = null;
     @property(cc.Node)
     PlayerNode: cc.Node = null;
     // LIFE-CYCLE CALLBACKS:
@@ -13,6 +15,7 @@ export default class NewClass extends cc.Component {
     private timer: number = 180;
 
     private audioID: number;
+    private volume: number = 0.5;
     private Player = null;
     private escapeDown: boolean = false;
     private escapeCounter: number = 0;
@@ -122,6 +125,23 @@ export default class NewClass extends cc.Component {
         this.escapeCounter++;
     }
 
+    ContinueBtn() {
+        cc.log("Hi");
+        let eventHandler = new cc.Component.EventHandler();
+        eventHandler.target = this.node;
+        eventHandler.component = "World";
+        eventHandler.handler = "Continue";
+        cc.find("Canvas/Pause/Resume").getComponent(cc.Button).clickEvents.push(eventHandler);
+    }
+
+    QuitBtn() {
+        let eventHandler = new cc.Component.EventHandler();
+        eventHandler.target = this.node;
+        eventHandler.component = "World";
+        eventHandler.handler = "Quit";
+        cc.find("Canvas/Pause/Exit").getComponent(cc.Button).clickEvents.push(eventHandler);
+    }
+
     Continue() {
         
         cc.director.getScheduler().setTimeScale(1);
@@ -141,21 +161,46 @@ export default class NewClass extends cc.Component {
         this.node.runAction(seq);
     }
 
-    ContinueBtn() {
-        cc.log("Hi");
+    SettingsBtn() {
         let eventHandler = new cc.Component.EventHandler();
         eventHandler.target = this.node;
         eventHandler.component = "World";
-        eventHandler.handler = "Continue";
-        cc.find("Canvas/Pause/Resume").getComponent(cc.Button).clickEvents.push(eventHandler);
+        eventHandler.handler = "Settings";
+        cc.find("Canvas/Main Camera/Settings").getComponent(cc.Button).clickEvents.push(eventHandler);
     }
 
-    QuitBtn() {
+    Settings() {
+        this.escapeDown = true;
+        cc.director.getScheduler().setTimeScale(0);
+        //cc.audioEngine.pauseMusic();
+        var panel = cc.instantiate(this.settingsPanel);
+        cc.find("Canvas").addChild(panel);
+        panel.setPosition(0, 0);
+        //pause.destroy();
+        let handle = this;
+        //this.scheduleOnce(function() {
+            cc.log("Worked");
+            handle.CloseBtn();
+        //}, 0.5);
+        cc.log("Paused");
+        this.escapeCounter = 3;
+
+    }
+
+    CloseBtn() {
         let eventHandler = new cc.Component.EventHandler();
         eventHandler.target = this.node;
         eventHandler.component = "World";
-        eventHandler.handler = "Quit";
-        cc.find("Canvas/Pause/Exit").getComponent(cc.Button).clickEvents.push(eventHandler);
+        eventHandler.handler = "Close";
+        cc.find("Canvas/Panel/Close").getComponent(cc.Button).clickEvents.push(eventHandler);
+    }
+
+    Close() {
+        cc.director.getScheduler().setTimeScale(1);
+        cc.find("Canvas/Panel").destroy();
+        //cc.audioEngine.resumeMusic();
+        this.escapeDown = false;
+        this.escapeCounter = 0;
     }
 
     playBGM() {
@@ -165,6 +210,7 @@ export default class NewClass extends cc.Component {
 
     start () {
         this.playBGM();
+        this.SettingsBtn();
     }
 
     update (dt) {
@@ -174,6 +220,15 @@ export default class NewClass extends cc.Component {
 
         if(this.escapeCounter == 1) {
             this.Pause();
+        } else if(this.escapeCounter == 3) {
+            if(!cc.find("Canvas/Panel/Music").getComponent(cc.Toggle).isChecked) {
+                cc.audioEngine.pauseMusic();
+            } else {
+                cc.audioEngine.resumeMusic();
+            }
+            
+            this.volume = cc.find("Canvas/Panel/Volume").getComponent(cc.Slider).progress;
+            cc.audioEngine.setVolume(this.audioID, this.volume);
         }
 
         cc.find("Canvas/Main Camera/Timer_bar/time").getComponent(cc.Label).string = String(Math.floor(this.timer));

@@ -41,7 +41,7 @@ export default class NewClass extends cc.Component {
     }
 
     start () {
-
+        this.player = cc.find("Canvas/Player");
     }
 
     update (dt) {
