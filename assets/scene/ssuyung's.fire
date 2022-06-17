@@ -96,13 +96,13 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 218
-      },
-      {
         "__id__": 219
       },
       {
         "__id__": 220
+      },
+      {
+        "__id__": 221
       }
     ],
     "_prefab": null,
@@ -7538,7 +7538,9 @@
         "__id__": 217
       }
     ],
-    "_prefab": null,
+    "_prefab": {
+      "__id__": 218
+    },
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -7650,6 +7652,15 @@
     "_id": "7f+jj0Rl1Feo6Nja052zqs"
   },
   {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 214
+    },
+    "asset": null,
+    "fileId": "",
+    "sync": false
+  },
+  {
     "__type__": "cc.Canvas",
     "_name": "",
     "_objFlags": 0,
@@ -7707,6 +7718,7 @@
     "pause": {
       "__uuid__": "a783ed01-5eca-4bab-b2bb-61f7097ba298"
     },
+    "settingsPanel": null,
     "PlayerNode": {
       "__id__": 166
     },
