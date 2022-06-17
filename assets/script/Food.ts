@@ -34,6 +34,7 @@ export default class NewClass extends cc.Component {
                 //pick up from shelf
                 else if(this.selected) {
                     if(!this.player.getComponent("Player").holding){
+                        this.player.getComponent("Player").holding = true;
                         this.pickedUp = true;
                         this.node.scale = 1;
                         this.node.opacity = 255;
@@ -41,7 +42,7 @@ export default class NewClass extends cc.Component {
                         shelf.curNumberOfItems -- ;
                         shelf.itemOnShelf[this.indexOnShelf-1] = false;
                         console.log(this.targetShelf.node.getComponent("Shelf").curNumberOfItems);
-                        this.player.getComponent("Player").holding = true;
+                        
                     }
                 }
                 break;
