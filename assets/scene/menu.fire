@@ -15,9 +15,6 @@
     "_children": [
       {
         "__id__": 2
-      },
-      {
-        "__id__": 71
       }
     ],
     "_active": true,
@@ -82,18 +79,21 @@
       },
       {
         "__id__": 33
+      },
+      {
+        "__id__": 68
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 68
+        "__id__": 76
       },
       {
-        "__id__": 69
+        "__id__": 77
       },
       {
-        "__id__": 70
+        "__id__": 78
       }
     ],
     "_prefab": null,
@@ -440,8 +440,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 221,
-      "height": 61
+      "width": 250,
+      "height": 80
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -638,10 +638,10 @@
     "alignMode": 0,
     "_target": null,
     "_alignFlags": 45,
-    "_left": 74,
-    "_right": -74,
-    "_top": -140.318,
-    "_bottom": 140.318,
+    "_left": 59.5,
+    "_right": -88.5,
+    "_top": -149.818,
+    "_bottom": 130.818,
     "_verticalCenter": 0,
     "_horizontalCenter": 0,
     "_isAbsLeft": true,
@@ -772,7 +772,7 @@
         1,
         1,
         1,
-        null
+        0
       ]
     },
     "_eulerAngles": {
@@ -869,7 +869,7 @@
         1,
         1,
         1,
-        null
+        0
       ]
     },
     "_eulerAngles": {
@@ -3258,77 +3258,21 @@
     "_id": "1dxsaKYkhE1a3nhHM93KFD"
   },
   {
-    "__type__": "cc.Canvas",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 2
-    },
-    "_enabled": true,
-    "_designResolution": {
-      "__type__": "cc.Size",
-      "width": 1024,
-      "height": 768
-    },
-    "_fitWidth": false,
-    "_fitHeight": true,
-    "_id": "59Cd0ovbdF4byw5sbjJDx7"
-  },
-  {
-    "__type__": "cc.Widget",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 2
-    },
-    "_enabled": true,
-    "alignMode": 1,
-    "_target": null,
-    "_alignFlags": 45,
-    "_left": 0,
-    "_right": 0,
-    "_top": 0,
-    "_bottom": 0,
-    "_verticalCenter": 0,
-    "_horizontalCenter": 0,
-    "_isAbsLeft": true,
-    "_isAbsRight": true,
-    "_isAbsTop": true,
-    "_isAbsBottom": true,
-    "_isAbsHorizontalCenter": true,
-    "_isAbsVerticalCenter": true,
-    "_originalWidth": 0,
-    "_originalHeight": 0,
-    "_id": "29zXboiXFBKoIV4PQ2liTe"
-  },
-  {
-    "__type__": "a389akNcOFIS6UA3LJ+WsBI",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 2
-    },
-    "_enabled": true,
-    "label": null,
-    "text": "hello",
-    "_id": "28/BrtroxLd4czuSDZkLgA"
-  },
-  {
     "__type__": "cc.Node",
     "_name": "Start Button",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 1
+      "__id__": 2
     },
     "_children": [
       {
-        "__id__": 72
+        "__id__": 69
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 78
+        "__id__": 75
       }
     ],
     "_prefab": null,
@@ -3354,8 +3298,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        777.653,
-        144.252,
+        0,
+        -239.748,
         0,
         0,
         0,
@@ -3384,20 +3328,20 @@
     "_name": "Background",
     "_objFlags": 512,
     "_parent": {
-      "__id__": 71
+      "__id__": 68
     },
     "_children": [
       {
-        "__id__": 73
+        "__id__": 70
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 76
+        "__id__": 73
       },
       {
-        "__id__": 77
+        "__id__": 74
       }
     ],
     "_prefab": null,
@@ -3453,16 +3397,16 @@
     "_name": "Label",
     "_objFlags": 512,
     "_parent": {
-      "__id__": 72
+      "__id__": 69
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 74
+        "__id__": 71
       },
       {
-        "__id__": 75
+        "__id__": 72
       }
     ],
     "_prefab": null,
@@ -3518,7 +3462,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 73
+      "__id__": 70
     },
     "_enabled": true,
     "_materials": [
@@ -3553,7 +3497,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 73
+      "__id__": 70
     },
     "_enabled": true,
     "_color": {
@@ -3571,7 +3515,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 72
+      "__id__": 69
     },
     "_enabled": true,
     "_materials": [
@@ -3603,7 +3547,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 72
+      "__id__": 69
     },
     "_enabled": true,
     "alignMode": 0,
@@ -3630,7 +3574,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 71
+      "__id__": 68
     },
     "_enabled": true,
     "_normalMaterial": null,
@@ -3701,8 +3645,77 @@
     },
     "_N$disabledSprite": null,
     "_N$target": {
-      "__id__": 72
+      "__id__": 69
     },
     "_id": "3bMLQQX0BDb55tx1KNaDRE"
+  },
+  {
+    "__type__": "cc.Canvas",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 2
+    },
+    "_enabled": true,
+    "_designResolution": {
+      "__type__": "cc.Size",
+      "width": 1024,
+      "height": 768
+    },
+    "_fitWidth": false,
+    "_fitHeight": true,
+    "_id": "59Cd0ovbdF4byw5sbjJDx7"
+  },
+  {
+    "__type__": "cc.Widget",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 2
+    },
+    "_enabled": true,
+    "alignMode": 1,
+    "_target": null,
+    "_alignFlags": 45,
+    "_left": 0,
+    "_right": 0,
+    "_top": 0,
+    "_bottom": 0,
+    "_verticalCenter": 0,
+    "_horizontalCenter": 0,
+    "_isAbsLeft": true,
+    "_isAbsRight": true,
+    "_isAbsTop": true,
+    "_isAbsBottom": true,
+    "_isAbsHorizontalCenter": true,
+    "_isAbsVerticalCenter": true,
+    "_originalWidth": 0,
+    "_originalHeight": 0,
+    "_id": "29zXboiXFBKoIV4PQ2liTe"
+  },
+  {
+    "__type__": "a389akNcOFIS6UA3LJ+WsBI",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 2
+    },
+    "_enabled": true,
+    "easy": {
+      "__id__": 48
+    },
+    "medium": {
+      "__id__": 57
+    },
+    "hard": {
+      "__id__": 66
+    },
+    "player1": {
+      "__id__": 22
+    },
+    "player2": {
+      "__id__": 31
+    },
+    "_id": "28/BrtroxLd4czuSDZkLgA"
   }
 ]
