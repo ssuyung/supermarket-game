@@ -4,7 +4,7 @@ const {ccclass, property} = cc._decorator;
 export default class NewClass extends cc.Component {
 
     @property(cc.Prefab)
-    customerPrefabs : cc.Prefab = null;
+    customer1Prefabs : cc.Prefab = null;
 
     @property(cc.Prefab)
     customer2Prefabs : cc.Prefab = null;
@@ -12,19 +12,17 @@ export default class NewClass extends cc.Component {
     @property(cc.Prefab)
     customer3Prefabs : cc.Prefab = null;
 
-    time : number = 0;
-
     // time, customer type
     customerSpawn : number[][] = [ [  0,  1],
                                    [  3,  2],
-                                   [  6,  3],
+                                   [  6,  1],
                                    [  9,  1],
                                    [ 12,  2],
-                                   [ 15,  3],
+                                   [ 15,  1],
                                    [ 18,  1],
-                                   [ 21,  3],
+                                   [ 21,  1],
                                    [ 24,  2],
-                                   [ 27,  3],
+                                   [ 27,  1],
                                    [ 30,  1],
                                    [ 33,  1],
                                    [ 36,  2],
@@ -39,7 +37,7 @@ export default class NewClass extends cc.Component {
         for (let i = 0; i < this.customerSpawn.length; i++) {
             if (this.customerSpawn[i][1] == 1) {
                 this.scheduleOnce(() => {
-                    var customer = cc.instantiate(this.customerPrefabs);
+                    var customer = cc.instantiate(this.customer1Prefabs);
                     cc.find("Canvas/Customer").addChild(customer);
                 }, this.customerSpawn[i][0]);
             }
@@ -59,6 +57,5 @@ export default class NewClass extends cc.Component {
     }
 
     update (dt) {
-        this.time += dt;
     }
 }

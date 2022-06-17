@@ -37,9 +37,6 @@ export default class NewClass extends cc.Component {
         else if (this.customerPath >= 0.5 && this.customerPath < 0.75) this.customerMove_3();
         else if (this.customerPath >= 0.75) this.customerMove_4();
 
-        this.scheduleOnce(() => {
-            this.node.getChildByName("dialog").active = false;
-        }, 4);
     }
 
     update (dt) {
@@ -104,7 +101,8 @@ export default class NewClass extends cc.Component {
         var sequence1 = cc.sequence(cc.moveBy(4.4, 0, -220), cc.moveBy(6, 300, 0), cc.moveBy(0.6, 0, 30), cc.moveBy(3.4, 170, 0));
         this.action1 = cc.repeat(sequence1, 1);
 
-        var sequence2 = cc.sequence(cc.moveBy(1, 50, 0), cc.moveBy(3, 0, 0), cc.moveBy(2, -100, 0), cc.moveBy(3, 0, 0), cc.moveBy(1, 50, 0));
+        var sequence2 = cc.sequence(cc.moveBy(1, 50, 0), cc.moveBy(0.02, 0, 1), cc.moveBy(3, 0, 0), cc.moveBy(0.02, 0, -1), 
+        cc.moveBy(2, -100, 0), cc.moveBy(0.02, 0, 1), cc.moveBy(3, 0, 0), cc.moveBy(0.02, 0, -1), cc.moveBy(1, 50, 0));
         this.action2 = cc.repeatForever(sequence2);
 
         this.scheduleOnce(() => {
@@ -118,10 +116,11 @@ export default class NewClass extends cc.Component {
     // walk back and forth near the bakery
     customerMove_3()
     {
-        var sequence1 = cc.sequence(cc.moveBy(6.2, 0, -310), cc.moveBy(2, -150, 0));
+        var sequence1 = cc.sequence(cc.moveBy(6.2, 0, -310), cc.moveBy(3, -150, 0));
         this.action1 = cc.repeat(sequence1, 1);
 
-        var sequence2 = cc.sequence(cc.moveBy(1.4, -70, 0), cc.moveBy(3, 0, 0), cc.moveBy(2.8, 140, 0), cc.moveBy(3, 0, 0), cc.moveBy(1.4, -70, 0));
+        var sequence2 = cc.sequence(cc.moveBy(1.4, -70, 0), cc.moveBy(0.02, 0, 1), cc.moveBy(3, 0, 0), cc.moveBy(0.02, 0, -1), 
+        cc.moveBy(2.8, 140, 0), cc.moveBy(0.02, 0, 1), cc.moveBy(3, 0, 0), cc.moveBy(0.02, 0, -1), cc.moveBy(1.4, -70, 0));
         this.action2 = cc.repeatForever(sequence2);
 
         this.scheduleOnce(() => {
@@ -129,7 +128,7 @@ export default class NewClass extends cc.Component {
         }, 0);
         this.scheduleOnce(() => {
             this.node.runAction(this.action2);
-        }, 8.3);
+        }, 9.3);
     }
 
     // walk around (clockwise) near the shelves at bottom-right

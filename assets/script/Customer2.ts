@@ -27,9 +27,7 @@ export default class NewClass extends cc.Component {
         /*if (this.customerPath < 0.5)*/ this.customerMove();
         //else if (this.customerPath >= 0.5) this.customerMove_2();
 
-        this.scheduleOnce(() => {
-            this.node.getChildByName("dialog").active = false;
-        }, 4);
+
     }
 
     update (dt) {
@@ -55,13 +53,11 @@ export default class NewClass extends cc.Component {
         } else if(deltaY != 0){
             if(deltaY > 0){
                 if(!this.anim.getAnimationState("OldWomanUpWalk").isPlaying) {
-                    console.log("Up");
                     this.anim.play("OldWomanUpWalk");
                 }
             }
             else if(deltaY < 0){
                 if(!this.anim.getAnimationState("OldWomanDownWalk").isPlaying) {
-                    console.log("down");
                     this.anim.play("OldWomanDownWalk");
                 }
             }
