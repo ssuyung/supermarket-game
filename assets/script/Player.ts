@@ -26,6 +26,7 @@ export default class NewClass extends cc.Component {
     private yMoveDir = 0;
     private idleFrame = null;
     private anim = null;
+    private holding = false; //whether the player is holding object
     // private playerXSpeed = 300;
     // LIFE-CYCLE CALLBACKS:
 
