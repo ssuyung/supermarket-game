@@ -44,15 +44,10 @@ export default class NewClass extends cc.Component {
                         this.pickedUpbyPlayer = true;
                         this.node.scale = 1;
                         this.node.opacity = 255;
-<<<<<<< HEAD
-                        let shelf = this.targetShelf.getComponent("Shelf");
-                        shelf.occupied = false;
-=======
                         if(!this.touchStorage) {
-                            let shelf = this.targetShelf.getComponent("Shelf_1");
+                            let shelf = this.targetShelf.getComponent("Shelf");
                             shelf.occupied = false;
                         }
->>>>>>> food
                         this.player.getComponent("Player").holding = true;
                     }
                 }
