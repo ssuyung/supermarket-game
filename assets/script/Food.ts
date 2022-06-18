@@ -11,6 +11,12 @@ export default class NewClass extends cc.Component {
     private touchShelf = false;
     private targetShelf = null;
     private indexOnShelf = -1;
+
+    /* Modify-1 ycchu */
+    private touchworktable = false;
+    private targetworktable = null;
+    /* Modify end */
+
     onKeyDown(event){
         switch(event.keyCode)
         {
@@ -44,6 +50,21 @@ export default class NewClass extends cc.Component {
                         this.player.getComponent("Player").holding = true;
                     }
                 }
+                /* Modify-2 ycchu */
+                else if(this.pickedUp && this.touchworktable){
+                    console.log(this.targetworktable.node.name);
+                    let worktable = this.targetworktable.node.getComponent("worktable");
+                    if(worktable.isworking == false){
+                        worktable.isworking = true;
+                        setTimeout(function () {
+                            this.player.getComponent("Player").holding = false;
+                            this.pickedUp = false;
+                            this.node.destroy();
+                        }.bind(this), 100); 
+                    }
+                    this.targetShelf.node.getComponent("Shelf")
+                }
+                /* Modify end */
                 break;
         }
     }
@@ -57,7 +78,12 @@ export default class NewClass extends cc.Component {
             this.selected = true;
             this.node.opacity = 150;
         } 
-        
+        /* Modify-3 ycchu */
+        if(other.node.getComponent(cc.Collider).tag == 2){//tag2 = worktable 
+            this.touchworktable = true;
+            this.targetworktable = other;
+        }
+        /* Modify end */
     }
 
     onEndContact (contact, self, other) {
@@ -68,6 +94,12 @@ export default class NewClass extends cc.Component {
         if(other.node.getComponent(cc.Collider).tag == 1){
             this.touchShelf = false;
         }
+        /* Modify-4 ycchu */
+        if(other.node.getComponent(cc.Collider).tag == 2){//tag2 = worktable 
+            this.touchworktable = false;
+            this.targetworktable = other;
+        }
+        /* Modify end */
     }
 
     // LIFE-CYCLE CALLBACKS:
