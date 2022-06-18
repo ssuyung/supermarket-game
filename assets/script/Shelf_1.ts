@@ -17,4 +17,19 @@ export default class NewClass extends cc.Component {
         return pos;
     }
 
+    update (dt) {
+        if (this.occupied) this.node.getChildByName("mask").active = false;
+    }
+
+    onBeginContact (contact, self, other) {
+        if (other.node.name == "apple" || other.node.name == "watermelon"  || other.node.name == "banana"  || other.node.name == "pineapple" ) {
+            this.node.getChildByName("mask").active = true;
+        }
+    }
+
+    onEndContact (contact, self, other) {
+        if (other.node.name == "apple" || other.node.name == "watermelon"  || other.node.name == "banana"  || other.node.name == "pineapple" ) {
+            this.node.getChildByName("mask").active = false;
+        }
+    }
 }
