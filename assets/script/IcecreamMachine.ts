@@ -16,6 +16,17 @@ export default class NewClass extends cc.Component {
     @property
     text: string = 'hello';
 
+    @property(cc.Prefab)
+    icecream: cc.Prefab = null;
+
+    @property(cc.Node)
+    shelf1: cc.Node = null;
+
+    @property(cc.Node)
+    shelf2: cc.Node = null;
+
+    
+
     private playerBeside: boolean = false;
     private spaceDown: boolean = false;
     private progressTime: number = 0;
@@ -30,6 +41,7 @@ export default class NewClass extends cc.Component {
     start () {
 
     }
+
     onKeyDown(event){
         switch(event.keyCode){
             case cc.macro.KEY.space:
@@ -63,12 +75,33 @@ export default class NewClass extends cc.Component {
         }
     }
     update (dt) {
-        if(this.playerBeside && this.spaceDown){
+        let shelf1Node = this.shelf1.getComponent("Shelf_1");
+        let shelf2Node = this.shelf2.getComponent("Shelf_1");
+        if(this.playerBeside && this.spaceDown && (!shelf1Node.occupied || !shelf2Node.occupied)){
             console.log("doing icecream");
             // console.log(dt);
             this.progressTime += dt;
             if(this.progressTime >= this.requiredTime){
                 this.progressTime = 0;
+                let newItem = cc.instantiate(this.icecream);
+                if(!shelf1Node.occupied){
+                    shelf1Node.occupied = true;
+                    // console.log(shelf.getItemPosition());
+                    let pos = shelf1Node.getItemPosition();
+                    pos.y += 15;
+                    newItem.setPosition(pos);
+                    // newItem.getComponent("Food").pickedUpbyPlayer = false;
+                } else {
+                    shelf2Node.occupied = true;
+                    // console.log(shelf.getItemPosition());
+                    let pos = shelf2Node.getItemPosition();
+                    pos.y += 15;
+                    newItem.setPosition(pos);
+                    // newItem.getComponent("Food").pickedUpbyPlayer = false;
+                }
+                // newItem.setPosition(cc.v2());
+                // newItem.setPosition(cc.v2(this.node.x-100, this.node.y));
+                cc.find("Canvas/Food").addChild(newItem);
                 console.log("icecream done");
             }
         }
