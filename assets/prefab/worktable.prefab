@@ -234,7 +234,7 @@
     },
     "_angularVelocity": 0,
     "_fixedRotation": false,
-    "enabledContactListener": false,
+    "enabledContactListener": true,
     "bullet": false,
     "awakeOnLoad": true,
     "_id": ""
@@ -247,7 +247,7 @@
       "__id__": 1
     },
     "_enabled": true,
-    "tag": 2,
+    "tag": 4,
     "_density": 1,
     "_sensor": false,
     "_friction": 0.2,
@@ -273,6 +273,7 @@
       "__id__": 1
     },
     "_enabled": true,
+    "doughprefab": null,
     "_id": ""
   },
   {
