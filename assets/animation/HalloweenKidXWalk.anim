@@ -1,0 +1,61 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "HalloweenKidXWalk",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.5166666666666667,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "61b1e664-fa21-4dd6-8240-8f533e259d38"
+            }
+          },
+          {
+            "frame": 0.08333333333333333,
+            "value": {
+              "__uuid__": "00584f7e-3992-43f8-a26e-737ac7390e2c"
+            }
+          },
+          {
+            "frame": 0.16666666666666666,
+            "value": {
+              "__uuid__": "825c7767-4175-45e5-bf00-52f8e907de2f"
+            }
+          },
+          {
+            "frame": 0.25,
+            "value": {
+              "__uuid__": "7db01378-2970-425e-840b-ba4580cccef5"
+            }
+          },
+          {
+            "frame": 0.3333333333333333,
+            "value": {
+              "__uuid__": "650b07ef-139d-4963-bc4e-0930e9bdab90"
+            }
+          },
+          {
+            "frame": 0.4166666666666667,
+            "value": {
+              "__uuid__": "0205d138-c48c-4f95-8fef-919dc59b655f"
+            }
+          },
+          {
+            "frame": 0.5,
+            "value": {
+              "__uuid__": "61b1e664-fa21-4dd6-8240-8f533e259d38"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

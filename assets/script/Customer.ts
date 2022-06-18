@@ -89,23 +89,38 @@ export default class NewClass extends cc.Component {
         
     }
 
-    // instantiate a watermelon dialog
+    // set collider tag to 10 
+    // and instantiate an apple dialog
     // walk around (clockwise) near the fruit shelves
     customerMove()
     {
-        this.scheduleOnce(() => {
-            var appleDialog = cc.instantiate(this.appleDialogPrefabs);
-            this.node.addChild(appleDialog);
+        let randomFruit = Math.random();
+        if (randomFruit < 0.5) { // apple
+            this.node.getComponent(cc.Collider).tag = 10;
             this.scheduleOnce(() => {
-                appleDialog.destroy();
-            }, 5);
-        }, 0);
+                var appleDialog = cc.instantiate(this.appleDialogPrefabs);
+                this.node.addChild(appleDialog);
+                this.scheduleOnce(() => {
+                    appleDialog.destroy();
+                }, 5);
+            }, 0);
+        }
+        else if (randomFruit >= 0.5 && randomFruit <= 1) { // watermelon
+            this.node.getComponent(cc.Collider).tag = 11;
+            this.scheduleOnce(() => {
+                var watermelonDialog = cc.instantiate(this.watermelonDialogPrefabs);
+                this.node.addChild(watermelonDialog);
+                this.scheduleOnce(() => {
+                    watermelonDialog.destroy();
+                }, 5);
+            }, 0);
+        }
 
         var sequence1 = cc.sequence(cc.moveBy(4.4, 0, -220), cc.moveBy(1, 50, 0));
         this.action1 = cc.repeat(sequence1, 1);
 
-        var sequence2 = cc.sequence(cc.moveBy(5, 250, 0), cc.moveBy(4, 0, 0), cc.moveBy(2, 0, -100), cc.moveBy(4, 0, 0), cc.moveBy(5, -250, 0),
-         cc.moveBy(4, 0, 0), cc.moveBy(2, 0, 100), cc.moveBy(4, 0, 0));
+        var sequence2 = cc.sequence(cc.moveBy(5, 250, 0), cc.moveBy(4, 0, 0), cc.moveBy(1.8, 0, -90), cc.moveBy(4, 0, 0), cc.moveBy(5, -250, 0),
+         cc.moveBy(4, 0, 0), cc.moveBy(1.8, 0, 90), cc.moveBy(4, 0, 0));
         this.action2 = cc.repeatForever(sequence2);
 
         this.scheduleOnce(() => {
