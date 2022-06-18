@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "cabbage",
+    "_name": "Icecream",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -45,8 +45,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 24,
-      "height": 24
+      "width": 20,
+      "height": 32
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -57,8 +57,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        111.921,
-        -116.125,
+        150.299,
+        111.241,
         0,
         0,
         0,
@@ -66,7 +66,7 @@
         1,
         1,
         1,
-        1
+        2
       ]
     },
     "_eulerAngles": {
@@ -98,7 +98,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "c1bda1b1-a89e-4138-a197-b10109a03662"
+      "__uuid__": "349555fc-aba7-4e5c-8827-7bfa384eb9e9"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -152,7 +152,7 @@
     "_id": ""
   },
   {
-    "__type__": "cc.PhysicsCircleCollider",
+    "__type__": "cc.PhysicsBoxCollider",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -167,10 +167,14 @@
     "body": null,
     "_offset": {
       "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
+      "x": 0.2,
+      "y": 0.4
     },
-    "_radius": 24,
+    "_size": {
+      "__type__": "cc.Size",
+      "width": 14.3,
+      "height": 40.7
+    },
     "_id": ""
   },
   {

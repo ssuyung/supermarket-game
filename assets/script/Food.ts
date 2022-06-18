@@ -62,17 +62,7 @@ export default class NewClass extends cc.Component {
                             this.node.destroy();
                         }.bind(this), 100); 
                     }
-                }
-                else if(this.pickedUpbyPlayer && this.touchOven){
-                    let oven = this.targetOven.node.getComponent("oven");
-                    if(oven.isworking == false){
-                        oven.isworking = true;
-                        setTimeout(function () {
-                            this.player.getComponent("Player").holding = false;
-                            this.pickedUpbyPlayer = false;
-                            this.node.destroy();
-                        }.bind(this), 100); 
-                    }
+                    // this.targetShelf.getComponent("Shelf")
                 }
                 /* Modify end */
                 this.keyDown = true;
@@ -174,6 +164,7 @@ export default class NewClass extends cc.Component {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
         // console.log(this.player);
+        // console.log(this.node.name);
     }
 
     start () {
