@@ -90,7 +90,7 @@ export default class NewClass extends cc.Component {
     }
 
     // set collider tag to 10 
-    // and instantiate an apple dialog
+    // and instantiate an apple or watermelon dialog
     // walk around (clockwise) near the fruit shelves
     customerMove()
     {

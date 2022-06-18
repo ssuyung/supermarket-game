@@ -31,7 +31,7 @@ export default class NewClass extends cc.Component {
                 // put down on shelf
                 if (this.pickedUpbyPlayer && this.touchShelf) {
                     // console.log(this.targetShelf.node.name);
-                    let shelf = this.targetShelf.getComponent("Shelf_1");
+                    let shelf = this.targetShelf.getComponent("Shelf");
                     if (!shelf.occupied) {
                         shelf.occupied = true;
                         console.log(shelf.getItemPosition());
@@ -47,7 +47,7 @@ export default class NewClass extends cc.Component {
                         this.pickedUpbyPlayer = true;
                         this.node.scale = 1;
                         this.node.opacity = 255;
-                        let shelf = this.targetShelf.getComponent("Shelf_1");
+                        let shelf = this.targetShelf.getComponent("Shelf");
                         shelf.occupied = false;
                         this.player.getComponent("Player").holding = true;
                     }
