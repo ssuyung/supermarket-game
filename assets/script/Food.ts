@@ -50,6 +50,7 @@ export default class NewClass extends cc.Component {
     }
 
     onBeginContact (contact, self, other) {
+        console.log("food hit something");
         if(other.node.getComponent(cc.Collider).tag == 1){ // tag1 = shelf
             this.touchShelf = true;
             this.targetShelf = other;
@@ -58,6 +59,9 @@ export default class NewClass extends cc.Component {
             this.selected = true;
             this.node.opacity = 150;
         } 
+        if(other.node.getComponent(cc.Collider).tag == 3){ //tag3 = trashbin
+            console.log("hit trash");
+        }
         
     }
 

@@ -117,13 +117,13 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 292
+        "__id__": 295
       },
       {
-        "__id__": 293
+        "__id__": 296
       },
       {
-        "__id__": 294
+        "__id__": 297
       }
     ],
     "_prefab": null,
@@ -10131,7 +10131,17 @@
     },
     "_children": [],
     "_active": true,
-    "_components": [],
+    "_components": [
+      {
+        "__id__": 292
+      },
+      {
+        "__id__": 293
+      },
+      {
+        "__id__": 294
+      }
+    ],
     "_prefab": null,
     "_opacity": 255,
     "_color": {
@@ -10155,8 +10165,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        0,
-        0,
+        164.583,
+        155.236,
         0,
         0,
         0,
@@ -10179,6 +10189,69 @@
     "_groupIndex": 0,
     "groupIndex": 0,
     "_id": "11pzvJMkdKHoSnqZ6sv98P"
+  },
+  {
+    "__type__": "cc.RigidBody",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 291
+    },
+    "_enabled": true,
+    "_type": 0,
+    "_allowSleep": true,
+    "_gravityScale": 1,
+    "_linearDamping": 0,
+    "_angularDamping": 0,
+    "_linearVelocity": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_angularVelocity": 0,
+    "_fixedRotation": false,
+    "enabledContactListener": true,
+    "bullet": false,
+    "awakeOnLoad": true,
+    "_id": "adOBZLhx1BW6SQKqq0A+pZ"
+  },
+  {
+    "__type__": "cc.PhysicsBoxCollider",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 291
+    },
+    "_enabled": true,
+    "tag": 3,
+    "_density": 1,
+    "_sensor": false,
+    "_friction": 0.2,
+    "_restitution": 0,
+    "body": null,
+    "_offset": {
+      "__type__": "cc.Vec2",
+      "x": -5.3,
+      "y": -3.8
+    },
+    "_size": {
+      "__type__": "cc.Size",
+      "width": 62.3,
+      "height": 47.9
+    },
+    "_id": "e3aYJM5slHw7uXAs/djDo7"
+  },
+  {
+    "__type__": "07b6brXodJDkqyGvnWeS5m1",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 291
+    },
+    "_enabled": true,
+    "label": null,
+    "text": "hello",
+    "_id": "cayh8mRBZObIUrAhFIhSpL"
   },
   {
     "__type__": "cc.Canvas",
