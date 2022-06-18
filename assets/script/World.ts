@@ -221,10 +221,15 @@ export default class NewClass extends cc.Component {
         if(this.escapeCounter == 1) {
             this.Pause();
         } else if(this.escapeCounter == 3) {
-            if(!cc.find("Canvas/Panel/Music").getComponent(cc.Toggle).isChecked) {
+            
+            if (!cc.find("Canvas/Panel/Music").getComponent(cc.Toggle).isChecked) {
                 cc.audioEngine.pauseMusic();
             } else {
                 cc.audioEngine.resumeMusic();
+            }
+
+            if (cc.find("Canvas/Panel/Volume").getComponent(cc.Slider).progress == 0.5) {
+                cc.find("Canvas/Panel/Volume").getComponent(cc.Slider).progress = this.volume;
             }
             
             this.volume = cc.find("Canvas/Panel/Volume").getComponent(cc.Slider).progress;

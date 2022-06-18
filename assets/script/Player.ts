@@ -88,4 +88,7 @@ export default class NewClass extends cc.Component {
         // console.log(dir);
         this.yMoveDir = dir;
     }
+    playerDropItem(){
+        this.holding = false;
+    }
 }
