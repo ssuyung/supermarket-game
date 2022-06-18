@@ -58,8 +58,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -320.108,
-        224.428,
+        -320.216,
+        240.986,
         0,
         0,
         0,
@@ -273,7 +273,9 @@
       "__id__": 1
     },
     "_enabled": true,
-    "doughprefab": null,
+    "doughprefab": {
+      "__uuid__": "297ef60c-bf49-44d2-8c5d-390b53328753"
+    },
     "_id": ""
   },
   {
