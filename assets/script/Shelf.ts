@@ -22,7 +22,8 @@ export default class NewClass extends cc.Component {
     }
 
     onBeginContact (contact, self, other) {
-        if (other.node.name == "apple" || other.node.name == "watermelon"  || other.node.name == "banana"  || other.node.name == "pineapple" ) {
+        if (!this.occupied && (other.node.name == "apple" || other.node.name == "watermelon"  || other.node.name == "banana"  || other.node.name == "pineapple" ) &&
+        !other.node.getComponent("Food").pickedUpbyCustomer) {
             this.node.getChildByName("mask").active = true;
         }
     }

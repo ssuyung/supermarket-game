@@ -13,6 +13,7 @@ export default class NewClass extends cc.Component {
     private posY : number = 0;
 
     private customerDemand : number;
+    private toCheckOut : boolean = false;
 
     @property(cc.SpriteFrame)
     idleSideFrame: cc.SpriteFrame = null;
@@ -33,6 +34,12 @@ export default class NewClass extends cc.Component {
     appleDialogPrefabs : cc.Prefab = null;
 
     @property(cc.Prefab)
+    bananaDialogPrefabs : cc.Prefab = null;
+
+    @property(cc.Prefab)
+    pineappleDialogPrefabs : cc.Prefab = null;
+
+    @property(cc.Prefab)
     watermelonDialogPrefabs : cc.Prefab = null;
 
     // onLoad () {}
@@ -44,10 +51,10 @@ export default class NewClass extends cc.Component {
         this.idleFrame = this.getComponent(cc.Sprite).spriteFrame;
         this.anim  = this.getComponent(cc.Animation);
 
-        if (this.customerDemand < 0.25) this.customerMove();
-        else if (this.customerDemand >= 0.25 && this.customerDemand < 0.5) this.customerMove_2();
-        else if (this.customerDemand >= 0.5 && this.customerDemand < 0.75) this.customerMove_3();
-        else if (this.customerDemand >= 0.75) this.customerMove_4();
+        if (this.customerDemand < 0.4) this.customerMove1();
+        else if (this.customerDemand >= 0.4 && this.customerDemand < 0.6) this.customerMove_2();
+        else if (this.customerDemand >= 0.6 && this.customerDemand < 0.8) this.customerMove_3();
+        else if (this.customerDemand >= 0.8) this.customerMove_4();
 
     }
 
@@ -56,6 +63,11 @@ export default class NewClass extends cc.Component {
         else if (this.node.x - this.posX < 0) this.node.scaleX = -1;
 
         this.playAnimation();
+
+        if (this.customerDemand < 0.4) this.customerMove1Update();
+        //else if (this.customerDemand >= 0.4 && this.customerDemand < 0.6) this.customerMove_2();
+        //else if (this.customerDemand >= 0.6 && this.customerDemand < 0.8) this.customerMove_3();
+        //else if (this.customerDemand >= 0.8) this.customerMove_4();
     }
 
     playAnimation(){
@@ -89,13 +101,13 @@ export default class NewClass extends cc.Component {
         
     }
 
-    // set collider tag to 10 
-    // and instantiate an apple or watermelon dialog
-    // walk around (clockwise) near the fruit shelves
-    customerMove()
+    // set collider tag to 10, 11, 12 or 13 according to what this customer wants
+    // customer might want apple, banana, pineapple or watermelon
+    // walk around near the fruit shelves
+    customerMove1()
     {
         let randomFruit = Math.random();
-        if (randomFruit < 0.5) { // apple
+        if (randomFruit < 0.25) { // apple
             this.node.getComponent(cc.Collider).tag = 10;
             this.scheduleOnce(() => {
                 var appleDialog = cc.instantiate(this.appleDialogPrefabs);
@@ -105,8 +117,28 @@ export default class NewClass extends cc.Component {
                 }, 5);
             }, 0);
         }
-        else if (randomFruit >= 0.5 && randomFruit <= 1) { // watermelon
+        else if (randomFruit >= 0.25 && randomFruit < 0.5) { // banana
             this.node.getComponent(cc.Collider).tag = 11;
+            this.scheduleOnce(() => {
+                var bananaDialog = cc.instantiate(this.bananaDialogPrefabs);
+                this.node.addChild(bananaDialog);
+                this.scheduleOnce(() => {
+                    bananaDialog.destroy();
+                }, 5);
+            }, 0);
+        }
+        else if (randomFruit >= 0.5 && randomFruit < 0.75) { // pineapple
+            this.node.getComponent(cc.Collider).tag = 12;
+            this.scheduleOnce(() => {
+                var pineappleDialog = cc.instantiate(this.pineappleDialogPrefabs);
+                this.node.addChild(pineappleDialog);
+                this.scheduleOnce(() => {
+                    pineappleDialog.destroy();
+                }, 5);
+            }, 0);
+        }
+        else if (randomFruit >= 0.75) { // watermelon
+            this.node.getComponent(cc.Collider).tag = 13;
             this.scheduleOnce(() => {
                 var watermelonDialog = cc.instantiate(this.watermelonDialogPrefabs);
                 this.node.addChild(watermelonDialog);
@@ -116,11 +148,11 @@ export default class NewClass extends cc.Component {
             }, 0);
         }
 
-        var sequence1 = cc.sequence(cc.moveBy(4.4, 0, -220), cc.moveBy(1, 50, 0));
+        var sequence1 = cc.sequence(cc.moveBy(6.2, 0, -310), cc.moveBy(0.6, 30, 0));
         this.action1 = cc.repeat(sequence1, 1);
 
-        var sequence2 = cc.sequence(cc.moveBy(5, 250, 0), cc.moveBy(4, 0, 0), cc.moveBy(1.8, 0, -90), cc.moveBy(4, 0, 0), cc.moveBy(5, -250, 0),
-         cc.moveBy(4, 0, 0), cc.moveBy(1.8, 0, 90), cc.moveBy(4, 0, 0));
+        var sequence2 = cc.sequence(cc.moveBy(5, 250, 0), cc.moveBy(0, 0, 0), cc.moveBy(1.8, 0, -90), cc.moveBy(0, 0, 0), cc.moveBy(5, -250, 0),
+        cc.moveBy(0, 0, 0), cc.moveBy(1.8, 0, 90), cc.moveBy(0, 0, 0));
         this.action2 = cc.repeatForever(sequence2);
 
         this.scheduleOnce(() => {
@@ -128,7 +160,22 @@ export default class NewClass extends cc.Component {
         }, 0);
         this.scheduleOnce(() => {
             this.node.runAction(this.action2);
-        }, 5.5);
+        }, 6.9);
+    }
+
+    // when the customer wants apple, banana, pineapple or watermelon and their demand is met (tag set to 20)
+    // they will go to the checkout and leave
+    customerMove1Update() {
+        if (this.node.getComponent(cc.Collider).tag == 20 && !this.toCheckOut && this.node.position.y < -136) {
+            this.node.stopAllActions();
+            let moveTime = Math.sqrt(Math.pow(this.node.position.x - (-26), 2) + Math.pow(this.node.position.y - (-212), 2)) * 0.02;
+            var sequence = cc.sequence(cc.moveBy(1, 0, -50), cc.moveTo(moveTime, -26, -212), cc.moveBy(6, 0, -300));
+            let action = cc.repeat(sequence, 1);
+            this.scheduleOnce(() => {
+                this.node.runAction(action);
+            }, 0);
+            this.toCheckOut = true;
+        }
     }
 
     // instantiate an ice cream dialog
@@ -143,11 +190,12 @@ export default class NewClass extends cc.Component {
             }, 5);
         }, 0);
 
-        var sequence1 = cc.sequence(cc.moveBy(4.4, 0, -220), cc.moveBy(6, 300, 0), cc.moveBy(0.6, 0, 30), cc.moveBy(3.4, 170, 0));
+        var sequence1 = cc.sequence(cc.moveBy(4.4, 0, -220), cc.moveBy(6, 300, 0), cc.moveBy(0.6, 0, 30), cc.moveBy(2.4, 120, 0));
         this.action1 = cc.repeat(sequence1, 1);
 
-        var sequence2 = cc.sequence(cc.moveBy(1, 50, 0), cc.moveBy(0.02, 0, 1), cc.moveBy(4, 0, 0), cc.moveBy(0.02, 0, -1), 
-        cc.moveBy(2, -100, 0), cc.moveBy(0.02, 0, 1), cc.moveBy(4, 0, 0), cc.moveBy(0.02, 0, -1), cc.moveBy(1, 50, 0));
+        var sequence2 = cc.sequence(cc.moveBy(0.6, 0, 30), cc.moveBy(4, 0, 0), cc.moveBy(2, 100, 0), cc.moveBy(0.02, 0, 1), cc.moveBy(2, 0, 0), 
+        cc.moveBy(0.02, 0, -1), cc.moveBy(1, 50, 0), cc.moveBy(0.8, 0, -40), cc.moveBy(0.02, 1, 0), cc.moveBy(2, 0, 0), 
+        cc.moveBy(0.02, -1, 0), cc.moveBy(3, -150, 0), cc.moveBy(0.2, 0, 10));
         this.action2 = cc.repeatForever(sequence2);
 
         this.scheduleOnce(() => {
@@ -155,7 +203,7 @@ export default class NewClass extends cc.Component {
         }, 0);
         this.scheduleOnce(() => {
             this.node.runAction(this.action2);
-        }, 14.5);
+        }, 13.5);
     }
 
     // instantiate a pizza dialog

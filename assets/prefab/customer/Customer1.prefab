@@ -397,6 +397,12 @@
     "appleDialogPrefabs": {
       "__uuid__": "d7cf9f87-e94d-4094-aa86-da80c1e873c9"
     },
+    "bananaDialogPrefabs": {
+      "__uuid__": "435cba98-bc40-4ef0-b3b7-af006431f66e"
+    },
+    "pineappleDialogPrefabs": {
+      "__uuid__": "63890188-4af4-47fe-bda8-30684f76bfbb"
+    },
     "watermelonDialogPrefabs": {
       "__uuid__": "7eb61472-4efc-4221-8424-4bc5129c2f14"
     },

@@ -25,7 +25,7 @@ export default class NewClass extends cc.Component {
                                    [ 27,  1],
                                    [ 30,  1],
                                    [ 33,  1],
-                                   [ 36,  2],
+                                   [ 36,  1],
                                    [ 48,  2],
                                    [ 60,  2],
                                    [ 72,  2],

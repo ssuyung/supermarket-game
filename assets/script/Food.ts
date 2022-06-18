@@ -24,17 +24,12 @@ export default class NewClass extends cc.Component {
         {
             case cc.macro.KEY.enter:
                 if (this.keyDown) break;
-                console.log("pickedUpbyPlayer : " + this.pickedUpbyPlayer);
-                console.log("touchShelf : " + this.touchShelf);
-                console.log("selected: " + this.selected);
                 if (this.pickedUpbyCustomer) break;
                 // put down on shelf
                 if (this.pickedUpbyPlayer && this.touchShelf) {
-                    // console.log(this.targetShelf.node.name);
                     let shelf = this.targetShelf.getComponent("Shelf");
                     if (!shelf.occupied) {
                         shelf.occupied = true;
-                        console.log(shelf.getItemPosition());
                         this.node.setPosition(shelf.getItemPosition());
                         this.pickedUpbyPlayer = false;
                         this.player.getComponent("Player").holding = false;
@@ -43,7 +38,6 @@ export default class NewClass extends cc.Component {
                 // pick up from shelf
                 else if (this.selected) {
                     if (!this.player.getComponent("Player").holding) {
-                        //console.log("pickedUpbyPlayer set to true");
                         this.pickedUpbyPlayer = true;
                         this.node.scale = 1;
                         this.node.opacity = 255;
@@ -92,12 +86,26 @@ export default class NewClass extends cc.Component {
             this.node.opacity = 150;
         }
         // tag10 : customer wants apple
-        if (this.node.name == "apple" && other.node.getComponent(cc.Collider).tag == 10 && !this.pickedUpbyPlayer && !this.pickedUpbyCustomer) {
+        if (this.node.name == "apple" && other.tag == 10 && !this.pickedUpbyPlayer && !this.pickedUpbyCustomer) {
+            other.tag = 20;
             this.customer = other.node;
             this.pickedUpbyCustomer = true;
         }
-        // tag11 : customer wants watermelon
-        if (this.node.name == "watermelon" && other.node.getComponent(cc.Collider).tag == 11 && !this.pickedUpbyPlayer && !this.pickedUpbyCustomer) {
+        // tag11 : customer wants banana
+        if (this.node.name == "banana" && other.tag == 11 && !this.pickedUpbyPlayer && !this.pickedUpbyCustomer) {
+            other.tag = 20;
+            this.customer = other.node;
+            this.pickedUpbyCustomer = true;
+        }
+        // tag12 : customer wants pineapple
+        if (this.node.name == "pineapple" && other.tag == 12 && !this.pickedUpbyPlayer && !this.pickedUpbyCustomer) {
+            other.tag = 20;
+            this.customer = other.node;
+            this.pickedUpbyCustomer = true;
+        }
+        // tag13 : customer wants watermelon
+        if (this.node.name == "watermelon" && other.tag == 13 && !this.pickedUpbyPlayer && !this.pickedUpbyCustomer) {
+            other.tag = 20;
             this.customer = other.node;
             this.pickedUpbyCustomer = true;
         }
