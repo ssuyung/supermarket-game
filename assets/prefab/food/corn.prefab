@@ -124,7 +124,6 @@
       "__id__": 1
     },
     "_enabled": true,
-    "player": null,
     "_id": ""
   },
   {
@@ -160,7 +159,7 @@
       "__id__": 1
     },
     "_enabled": true,
-    "tag": 0,
+    "tag": 2,
     "_density": 1,
     "_sensor": true,
     "_friction": 0.2,
