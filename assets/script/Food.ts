@@ -3,8 +3,7 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class NewClass extends cc.Component {
 
-    @property(cc.Node)
-    player: cc.Node = null;
+    private player: cc.Node = null;
 
     private selected : boolean = false;
     private pickedUpbyPlayer : boolean = false;
@@ -12,6 +11,7 @@ export default class NewClass extends cc.Component {
     private touchShelf : boolean = false;
     private targetShelf : cc.Node = null;
     private customer: cc.Node = null;
+    private keyDown : boolean = false;
 
     /* Modify-1 ycchu */
     private touchworktable = false;
@@ -23,6 +23,10 @@ export default class NewClass extends cc.Component {
         switch(event.keyCode)
         {
             case cc.macro.KEY.enter:
+                if (this.keyDown) break;
+                console.log("pickedUpbyPlayer : " + this.pickedUpbyPlayer);
+                console.log("touchShelf : " + this.touchShelf);
+                console.log("selected: " + this.selected);
                 if (this.pickedUpbyCustomer) break;
                 // put down on shelf
                 if (this.pickedUpbyPlayer && this.touchShelf) {
@@ -30,7 +34,7 @@ export default class NewClass extends cc.Component {
                     let shelf = this.targetShelf.getComponent("Shelf_1");
                     if (!shelf.occupied) {
                         shelf.occupied = true;
-                        // console.log(shelf.getItemPosition());
+                        console.log(shelf.getItemPosition());
                         this.node.setPosition(shelf.getItemPosition());
                         this.pickedUpbyPlayer = false;
                         this.player.getComponent("Player").holding = false;
@@ -39,6 +43,7 @@ export default class NewClass extends cc.Component {
                 // pick up from shelf
                 else if (this.selected) {
                     if (!this.player.getComponent("Player").holding) {
+                        //console.log("pickedUpbyPlayer set to true");
                         this.pickedUpbyPlayer = true;
                         this.node.scale = 1;
                         this.node.opacity = 255;
@@ -62,18 +67,25 @@ export default class NewClass extends cc.Component {
                     this.targetShelf.getComponent("Shelf")
                 }
                 /* Modify end */
+                this.keyDown = true;
                 break;
         }
     }
 
+    onKeyUp(event) {
+        switch(event.keyCode)
+        {
+            case cc.macro.KEY.enter:
+                this.keyDown = false;
+                break;
+        }
+    }
+    //onBeginContact onPostsolve
     onBeginContact (contact, self, other) {
-        // console.log("food hit "+other.node.name);
-        
-        if(other.node.getComponent(cc.Collider).tag == 1){ // tag1 = shelf
+        if (other.tag == 1) { // tag1 : shelf
             this.touchShelf = true;
             this.targetShelf = other.node;
-            //console.log("touchshelf");
-            if (!this.targetShelf.getComponent("Shelf_1").occupied) this.targetShelf.getChildByName("mask").active = true;
+            cc.log("food touches shelf");
         }
         if (other.node.name == "Player" && !this.pickedUpbyPlayer && !this.pickedUpbyCustomer) {
             this.selected = true;
@@ -98,10 +110,9 @@ export default class NewClass extends cc.Component {
     }
 
     onEndContact (contact, self, other) {
-        if (other.node.getComponent(cc.Collider).tag == 1) {
+        if (other.tag == 1) {
             this.touchShelf = false;
-            this.targetShelf.getChildByName("mask").active = false;
-            cc.log("mask set to inactive");
+            cc.log("food leaves shelf");
         }
         if (other.node.name == "Player") {
             this.selected = false;
@@ -120,6 +131,7 @@ export default class NewClass extends cc.Component {
     onLoad () {
         //cc.director.getPhysicsManager().debugDrawFlags = cc.PhysicsManager.DrawBits.e_jointBit | cc.PhysicsManager.DrawBits.e_shapeBit;
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
+        cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
         // console.log(this.player);
     }
 
