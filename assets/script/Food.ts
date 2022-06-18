@@ -15,8 +15,10 @@ export default class NewClass extends cc.Component {
     private touchStorage: boolean = false;
 
     /* Modify-1 ycchu */
-    private touchworktable = false; // snake_case or camelCase please!!!
-    private targetworktable = null;
+    private touchWorkTable = false; // snake_case or camelCase please!!!
+    private targetWorkTable = null;
+    private touchOven = false;
+    private targetOven = null;
     /* Modify end */
 
     onKeyDown(event){
@@ -61,9 +63,8 @@ export default class NewClass extends cc.Component {
                     }
                 }
                 /* Modify-2 ycchu */
-                else if(this.pickedUpbyPlayer && this.touchworktable){
-                    console.log(this.targetworktable.node.name);
-                    let worktable = this.targetworktable.node.getComponent("worktable");
+                else if(this.pickedUpbyPlayer && this.touchWorkTable){
+                    let worktable = this.targetWorkTable.node.getComponent("worktable");
                     if(worktable.isworking == false){
                         worktable.isworking = true;
                         setTimeout(function () {
@@ -72,7 +73,17 @@ export default class NewClass extends cc.Component {
                             this.node.destroy();
                         }.bind(this), 100); 
                     }
-                    this.targetShelf.getComponent("Shelf")
+                }
+                else if(this.pickedUpbyPlayer && this.touchOven){
+                    let oven = this.targetOven.node.getComponent("oven");
+                    if(oven.isworking == false){
+                        oven.isworking = true;
+                        setTimeout(function () {
+                            this.player.getComponent("Player").holding = false;
+                            this.pickedUpbyPlayer = false;
+                            this.node.destroy();
+                        }.bind(this), 100); 
+                    }
                 }
                 /* Modify end */
                 this.keyDown = true;
@@ -112,8 +123,14 @@ export default class NewClass extends cc.Component {
         /* Modify-3 ycchu */
         if(other.node.getComponent(cc.Collider).tag == 4){//tag4 = worktable 
             console.log(other.node.name);
-            this.touchworktable = true;
-            this.targetworktable = other;
+            if(other.node.name == "worktable"){
+                this.touchWorkTable = true;
+                this.targetWorkTable = other;
+            }else if(other.node.name == "oven"){
+                this.touchOven = true;
+                this.targetOven = other;
+            }
+            
         }
         /* Modify end */
         if(other.node.name == "Storage") {
@@ -133,8 +150,13 @@ export default class NewClass extends cc.Component {
         }
         /* Modify-4 ycchu */
         if(other.node.getComponent(cc.Collider).tag == 4){//tag4 = worktable 
-            this.touchworktable = false;
-            this.targetworktable = other;
+            if(other.node.name == "worktable"){
+                this.touchWorkTable = false;
+                this.targetWorkTable = other;
+            }else if(other.node.name == "oven"){
+                this.touchOven = false;
+                this.targetOven = other;
+            }
         }
         /* Modify end */
         if(other.node.name == "Storage") {
