@@ -101,7 +101,8 @@ export default class NewClass extends cc.Component {
             this.pickedUpbyCustomer = true;
         }
         /* Modify-3 ycchu */
-        if(other.node.getComponent(cc.Collider).tag == 2){//tag2 = worktable 
+        if(other.node.getComponent(cc.Collider).tag == 4){//tag4 = worktable 
+            console.log(other.node.name);
             this.touchworktable = true;
             this.targetworktable = other;
         }
@@ -118,7 +119,7 @@ export default class NewClass extends cc.Component {
             this.node.opacity = 255;
         }
         /* Modify-4 ycchu */
-        if(other.node.getComponent(cc.Collider).tag == 2){//tag2 = worktable 
+        if(other.node.getComponent(cc.Collider).tag == 4){//tag4 = worktable 
             this.touchworktable = false;
             this.targetworktable = other;
         }
