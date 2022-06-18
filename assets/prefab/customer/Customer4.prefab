@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Customer",
+    "_name": "Customer4",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -33,13 +33,10 @@
       },
       {
         "__id__": 6
-      },
-      {
-        "__id__": 7
       }
     ],
     "_prefab": {
-      "__id__": 8
+      "__id__": 7
     },
     "_opacity": 255,
     "_color": {
@@ -51,7 +48,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 28,
+      "width": 30,
       "height": 46
     },
     "_anchorPoint": {
@@ -104,7 +101,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "3e9de77d-f98d-4461-bcc5-a5c0706e53ff"
+      "__uuid__": "a6b3852c-db0a-4e82-8ea1-e56ed5ac6a56"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -118,7 +115,7 @@
     "_fillRange": 0,
     "_isTrimmedMode": true,
     "_atlas": {
-      "__uuid__": "84a8c3aa-592b-4f46-a585-2adcdfa63042"
+      "__uuid__": "dea180e4-529e-49dd-9421-1f003024e184"
     },
     "_id": ""
   },
@@ -130,8 +127,8 @@
       "__id__": 1
     },
     "_enabled": true,
-    "_type": 1,
-    "_allowSleep": false,
+    "_type": 0,
+    "_allowSleep": true,
     "_gravityScale": 0,
     "_linearDamping": 0,
     "_angularDamping": 0,
@@ -158,13 +155,13 @@
     "_defaultClip": null,
     "_clips": [
       {
-        "__uuid__": "93c24902-36fd-4caf-83ac-cee2e5d0cb25"
+        "__uuid__": "3852970a-cb32-4288-9485-f023e309d5ba"
       },
       {
-        "__uuid__": "eece0d5f-2596-498e-85b2-ed0ce05662e1"
+        "__uuid__": "7558f3f5-3d4b-4739-90ea-2a751468d844"
       },
       {
-        "__uuid__": "1a2ae3c3-3d21-40cb-845a-0873aeb6069c"
+        "__uuid__": "7765dba9-ba33-409c-a277-25a305e68147"
       }
     ],
     "playOnLoad": false,
@@ -369,37 +366,6 @@
       "y": -8
     },
     "_radius": 12.8,
-    "_id": ""
-  },
-  {
-    "__type__": "9a4175I5lJDWLBVMN2nEj82",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "idleSideFrame": {
-      "__uuid__": "268d1263-0ce6-4836-9bf7-f1b985c1e3e7"
-    },
-    "idleFrontFrame": {
-      "__uuid__": "969fe2a3-2de8-4ef6-8fb8-160123e3630e"
-    },
-    "idleBackFrame": {
-      "__uuid__": "b4fb8875-bee1-4aeb-993b-bc17a2925b2b"
-    },
-    "pizzaDialogPrefabs": {
-      "__uuid__": "429206b2-677c-437b-966c-c89f7b7ee2f8"
-    },
-    "iceCreamDialogPrefabs": {
-      "__uuid__": "0b910143-91ec-4850-9de1-fb0403c2e09b"
-    },
-    "appleDialogPrefabs": {
-      "__uuid__": "d7cf9f87-e94d-4094-aa86-da80c1e873c9"
-    },
-    "watermelonDialogPrefabs": {
-      "__uuid__": "7eb61472-4efc-4221-8424-4bc5129c2f14"
-    },
     "_id": ""
   },
   {

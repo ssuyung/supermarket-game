@@ -14,14 +14,14 @@ export default class NewClass extends cc.Component {
 
     // time, customer type
     customerSpawn : number[][] = [ [  0,  1],
-                                   [  3,  2],
+                                   [  3,  1],
                                    [  6,  1],
                                    [  9,  1],
-                                   [ 12,  2],
+                                   [ 12,  1],
                                    [ 15,  1],
                                    [ 18,  1],
                                    [ 21,  1],
-                                   [ 24,  2],
+                                   [ 24,  1],
                                    [ 27,  1],
                                    [ 30,  1],
                                    [ 33,  1],
