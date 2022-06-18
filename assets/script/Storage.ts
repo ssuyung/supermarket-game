@@ -17,8 +17,9 @@ export default class NewClass extends cc.Component {
 
     restock() {
         var item = cc.instantiate(this.item);
-        this.node.addChild(item);
-        item.setPosition(0, 0);
+        //item.getComponent("Food").touchStorage = true;
+        cc.find("Canvas").addChild(item);
+        item.setPosition(this.node.x, this.node.y);
         item.opacity = 0;
         item.runAction(cc.fadeIn(1));
     }
@@ -29,8 +30,8 @@ export default class NewClass extends cc.Component {
 
     start () {
         var item = cc.instantiate(this.item);
-        this.node.addChild(item);
-        item.setPosition(0, 0);
+        cc.find("Canvas").addChild(item);
+        item.setPosition(this.node.x, this.node.y);
     }
 
     // update (dt) {}
