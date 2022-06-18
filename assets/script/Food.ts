@@ -12,9 +12,10 @@ export default class NewClass extends cc.Component {
     private targetShelf : cc.Node = null;
     private customer: cc.Node = null;
     private keyDown : boolean = false;
+    private touchStorage: boolean = false;
 
     /* Modify-1 ycchu */
-    private touchworktable = false;
+    private touchworktable = false; // snake_case or camelCase please!!!
     private targetworktable = null;
     /* Modify end */
 
@@ -47,8 +48,10 @@ export default class NewClass extends cc.Component {
                         this.pickedUpbyPlayer = true;
                         this.node.scale = 1;
                         this.node.opacity = 255;
-                        let shelf = this.targetShelf.getComponent("Shelf_1");
-                        shelf.occupied = false;
+                        if(!this.touchStorage) {
+                            let shelf = this.targetShelf.getComponent("Shelf_1");
+                            shelf.occupied = false;
+                        }
                         this.player.getComponent("Player").holding = true;
                     }
                 }
@@ -107,6 +110,10 @@ export default class NewClass extends cc.Component {
             this.targetworktable = other;
         }
         /* Modify end */
+        if(other.node.name == "Storage") {
+            cc.log("Storage touched");
+            this.touchStorage = true;
+        }
     }
 
     onEndContact (contact, self, other) {
@@ -124,6 +131,9 @@ export default class NewClass extends cc.Component {
             this.targetworktable = other;
         }
         /* Modify end */
+        if(other.node.name == "Storage") {
+            this.touchStorage = false;
+        }
     }
 
     // LIFE-CYCLE CALLBACKS:
