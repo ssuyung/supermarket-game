@@ -286,8 +286,8 @@ export default class NewClass extends cc.Component {
         this.action1 = cc.repeat(sequence1, 1);
 
         var sequence2 = cc.sequence(cc.moveBy(3.4, 170, 0), cc.moveBy(2.6, 0, -130), cc.moveBy(4, -200, 0), cc.moveBy(2, 0, 0), 
-        cc.moveBy(5, 250, 0), cc.moveBy(4, 0, -200), cc.moveBy(5, 250, 0), cc.moveBy(2, 0, -100), cc.moveBy(4.4, -220, 0), cc.moveBy(7.8, 0, 390),
-        cc.moveBy(5, -250, 0), cc.moveBy(0.8, 0, 40));
+        cc.moveBy(5, 250, 0), cc.moveBy(4, 0, -200), cc.moveBy(5.4, 270, 0), cc.moveBy(2, 0, -100), cc.moveBy(5, -250, 0), cc.moveBy(7.8, 0, 390),
+        cc.moveBy(4.8, -240, 0), cc.moveBy(0.8, 0, 40));
         this.action2 = cc.repeatForever(sequence2);
 
         this.scheduleOnce(() => {
@@ -303,9 +303,19 @@ export default class NewClass extends cc.Component {
     customerMove4Update() {
         let atPoint1 = false, atPoint2 = false;
         if (this.node.x < -40 && this.node.y < 100) atPoint1 = true;
-        if (this.node.getComponent(cc.Collider).tag == 20 && !this.toCheckOut && this.node.x < -40 && this.node.y < 80) {
+        if (this.node.x < 210 && this.node.y < -200) atPoint2 = true;
+        if (this.node.getComponent(cc.Collider).tag == 20 && !this.toCheckOut && atPoint1) {
             this.node.stopAllActions();
             var sequence = cc.sequence(cc.moveBy(1, -50, 0), cc.moveBy(5, 0, -250), cc.moveTo(1.5, -26, -212), cc.moveBy(6, 0, -300));
+            let action = cc.repeat(sequence, 1);
+            this.scheduleOnce(() => {
+                this.node.runAction(action);
+            }, 0);
+            this.toCheckOut = true;
+        }
+        else if (this.node.getComponent(cc.Collider).tag == 20 && !this.toCheckOut && atPoint2) {
+            this.node.stopAllActions();
+            var sequence = cc.sequence(cc.moveBy(2, -100, 0), cc.moveBy(1, 0, 50), cc.moveBy(2, -100, 0), cc.moveTo(1.5, -26, -212), cc.moveBy(6, 0, -300));
             let action = cc.repeat(sequence, 1);
             this.scheduleOnce(() => {
                 this.node.runAction(action);

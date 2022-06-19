@@ -15,7 +15,7 @@ export default class NewClass extends cc.Component {
     private touchStorage: boolean = false;
 
     /* Modify-1 ycchu */
-    private touchWorkTable = false; // snake_case or camelCase please!!!
+    private touchWorkTable = false;
     private targetWorkTable = null;
     private touchOven = false;
     private targetOven = null;
@@ -143,7 +143,7 @@ export default class NewClass extends cc.Component {
             this.pickedUpbyCustomer = true;
             this.targetShelf.getComponent("Shelf").occupied = false;
         }
-        // tag18 : customer wants snack
+        // tag18 : customer wants snacks
         if (this.node.name == "snacks" && other.tag == 18 && !this.pickedUpbyPlayer && !this.pickedUpbyCustomer) {
             other.tag = 20;
             this.customer = other.node;
