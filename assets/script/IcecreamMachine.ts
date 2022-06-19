@@ -27,6 +27,13 @@ export default class NewClass extends cc.Component {
 
     @property(cc.Node)
     progressBar: cc.Node = null;
+
+    @property(cc.Node)
+    icecreamParticle: cc.Node = null;
+
+    // @property(cc.ParticleSystem)
+    // icecreamParticle: cc.ParticleSystem = null;
+
     // @property(cc.Prefab)
     // progressBar: cc.Prefab = null;
     
@@ -40,7 +47,7 @@ export default class NewClass extends cc.Component {
     onLoad () {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
-        
+        this.icecreamParticle.getComponent(cc.ParticleSystem).stopSystem();
     }
 
     start () {
@@ -91,21 +98,30 @@ export default class NewClass extends cc.Component {
                 this.progressBar.getComponent(cc.ProgressBar).progress = 0;
                 this.progressTime = 0;
                 let newItem = cc.instantiate(this.icecream);
+                let pos = cc.v2(0,0);
                 if(!shelf1Node.occupied){
                     shelf1Node.occupied = true;
                     // console.log(shelf.getItemPosition());
-                    let pos = shelf1Node.getItemPosition();
+                    pos = shelf1Node.getItemPosition();
                     // pos.y += 15;
                     newItem.setPosition(pos);
                     // newItem.getComponent("Food").pickedUpbyPlayer = false;
                 } else {
                     shelf2Node.occupied = true;
                     // console.log(shelf.getItemPosition());
-                    let pos = shelf2Node.getItemPosition();
+                    pos = shelf2Node.getItemPosition();
                     // pos.y += 15;
                     newItem.setPosition(pos);
                     // newItem.getComponent("Food").pickedUpbyPlayer = false;
                 }
+                this.icecreamParticle.setPosition(pos);
+                // console.log(this.icecreamParticle.x, this.icecreamParticle.y);
+                // console.log(this.icecreamParticle);
+                // console.log(this.icecreamParticle.getComponent())
+                this.icecreamParticle.getComponent(cc.ParticleSystem).resetSystem();
+                this.scheduleOnce(()=>{
+                    this.icecreamParticle.getComponent(cc.ParticleSystem).stopSystem();
+                }, 1);
                 // newItem.setPosition(cc.v2());
                 // newItem.setPosition(cc.v2(this.node.x-100, this.node.y));
                 cc.find("Canvas/Food").addChild(newItem);

@@ -40,6 +40,7 @@ export default class NewClass extends cc.Component {
                 } 
                 // pick up from shelf
                 else if (this.selected) {
+                    console.log("food picked up from shelf");
                     if (!this.player.getComponent("Player").holding) {
                         this.pickedUpbyPlayer = true;
                         this.node.scale = 1;
@@ -82,6 +83,10 @@ export default class NewClass extends cc.Component {
         }
     }
 
+    putInTrash(){
+        this.player.getComponent("Player").holding = false;
+        this.node.destroy();
+    }
     onKeyUp(event) {
         switch(event.keyCode)
         {

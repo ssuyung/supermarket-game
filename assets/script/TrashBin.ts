@@ -16,9 +16,10 @@ export default class NewClass extends cc.Component {
     @property
     text: string = 'hello';
 
-    @property(cc.Node)
-    player: cc.Node = null;
+    // @property(cc.Node)
+    // player: cc.Node = null;
 
+    private targetPlayer = null;
     private targetItem = null;
     // LIFE-CYCLE CALLBACKS:
 
@@ -42,8 +43,8 @@ export default class NewClass extends cc.Component {
                 // console.log("Trash hit enter");
                 if(this.targetItem!=null){
                     // console.log("trash destroy node");
-                    this.targetItem.node.destroy();
-                    this.player.getComponent("Player").playerDropItem();
+                    this.targetItem.node.getComponent("Food").putInTrash();
+                    // this.targetItem.node.destroy();
                 }
                 break;
         }
@@ -57,9 +58,12 @@ export default class NewClass extends cc.Component {
         if(other.node.getComponent(cc.Collider).tag == 2){ // tag2 = items
             // console.log("touched item");
             this.targetItem = other;
-            other.node.getComponent("Food").opacity = 150;
+            other.node.opacity = 150;
             this.node.getChildByName("mask").active = true;
-        }
+        } 
+        if(other.tag == 6){// tag6 : player
+            this.targetPlayer = other;
+        } 
         
     }
 
@@ -67,7 +71,7 @@ export default class NewClass extends cc.Component {
         if(other.node.getComponent(cc.Collider).tag == 2){ // tag2 = items
             // console.log("left item");
             this.targetItem = null;
-            other.node.getComponent("Food").opacity = 255;
+            other.node.opacity = 255;
             this.node.getChildByName("mask").active = false;
         }
     }
