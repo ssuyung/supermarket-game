@@ -5,6 +5,7 @@ export default class NewClass extends cc.Component {
 
     private player: cc.Node = null;
 
+    private targetPlayer: cc.Node = null;
     private selected : boolean = false;
     private pickedUpbyPlayer : boolean = false;
     private pickedUpbyCustomer : boolean = false;
@@ -35,13 +36,13 @@ export default class NewClass extends cc.Component {
                         shelf.occupied = true;
                         this.node.setPosition(shelf.getItemPosition());
                         this.pickedUpbyPlayer = false;
-                        this.player.getComponent("Player").holding = false;
+                        this.targetPlayer.getComponent("Player").holding = false;
                     }
                 } 
                 // pick up from shelf
                 else if (this.selected) {
                     console.log("food picked up from shelf");
-                    if (!this.player.getComponent("Player").holding) {
+                    if (!this.targetPlayer.getComponent("Player").holding) {
                         this.pickedUpbyPlayer = true;
                         this.node.scale = 1;
                         this.node.opacity = 255;
@@ -49,7 +50,7 @@ export default class NewClass extends cc.Component {
                             let shelf = this.targetShelf.getComponent("Shelf");
                             shelf.occupied = false;
                         }
-                        this.player.getComponent("Player").holding = true;
+                        this.targetPlayer.getComponent("Player").holding = true;
                     }
                 }
                 /* Modify-2 ycchu */
@@ -58,7 +59,7 @@ export default class NewClass extends cc.Component {
                     if(worktable.isworking == false){
                         worktable.isworking = true;
                         setTimeout(function () {
-                            this.player.getComponent("Player").holding = false;
+                            this.targetPlayer.getComponent("Player").holding = false;
                             this.pickedUpbyPlayer = false;
                             this.node.destroy();
                         }.bind(this), 100); 
@@ -69,7 +70,7 @@ export default class NewClass extends cc.Component {
                     if(oven.isworking == false){
                         oven.isworking = true;
                         setTimeout(function () {
-                            this.player.getComponent("Player").holding = false;
+                            this.targetPlayer.getComponent("Player").holding = false;
                             this.pickedUpbyPlayer = false;
                             this.node.destroy();
                         }.bind(this), 100); 
@@ -84,7 +85,7 @@ export default class NewClass extends cc.Component {
     }
 
     putInTrash(){
-        this.player.getComponent("Player").holding = false;
+        this.targetPlayer.getComponent("Player").holding = false;
         this.node.destroy();
     }
     onKeyUp(event) {
@@ -100,9 +101,11 @@ export default class NewClass extends cc.Component {
         if (other.tag == 1) { // tag1 : shelf
             this.touchShelf = true;
             this.targetShelf = other.node;
-            cc.log("food touches shelf");
+            // cc.log("food touches shelf");
         }
-        if (other.node.name == "Player" && !this.pickedUpbyPlayer && !this.pickedUpbyCustomer) {
+        if (other.tag == 6 && !this.pickedUpbyPlayer && !this.pickedUpbyCustomer) {
+            console.log(this.node.name + " is touched by player");
+            this.targetPlayer = other.node;
             this.selected = true;
             this.node.opacity = 150;
         }
@@ -158,7 +161,9 @@ export default class NewClass extends cc.Component {
             this.touchShelf = false;
             cc.log("food leaves shelf");
         }
-        if (other.node.name == "Player") {
+        if (other.tag == 6) {
+            console.log(this.node.name + " left player");
+            this.targetPlayer = null;
             this.selected = false;
             this.node.opacity = 255;
         }
@@ -189,13 +194,18 @@ export default class NewClass extends cc.Component {
     }
 
     start () {
-        this.player = cc.find("Canvas/Player");
+        // this.player = cc.find("Canvas/Player");
         // console.log(this.node.name + "'s tag is "+this.node.getComponent(cc.Collider).tag);
     }
 
     update (dt) {
         if (this.pickedUpbyPlayer) {
-            if (this.player) this.node.setPosition(cc.v2(this.player.x, this.player.y + 42));
+            // console.log("check");
+            if (this.targetPlayer) {
+                // console.log(this.targetPlayer);
+                // console.log("targetPlayer pos: "+this.targetPlayer.getPosition());
+                this.node.setPosition(cc.v2(this.targetPlayer.x, this.targetPlayer.y + 42));
+            }
         }
         else if (this.pickedUpbyCustomer) {
             if (this.customer) this.node.setPosition(cc.v2(this.customer.x, this.customer.y + 42));
