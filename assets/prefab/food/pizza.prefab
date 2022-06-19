@@ -152,7 +152,7 @@
     "_id": ""
   },
   {
-    "__type__": "cc.PhysicsCircleCollider",
+    "__type__": "cc.PhysicsBoxCollider",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -170,7 +170,11 @@
       "x": 0,
       "y": 0
     },
-    "_radius": 24,
+    "_size": {
+      "__type__": "cc.Size",
+      "width": 24,
+      "height": 48
+    },
     "_id": ""
   },
   {

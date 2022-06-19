@@ -20,7 +20,7 @@ export default class oven extends cc.Component {
     private anim = null;
     private anim2 = null;
     private flag_for_paused = 0;
-    //When animation isn't playing, there are 3 possible cases. 1 means stop, 0 not play yet.
+    //When animation isn't playing, there are 2 possible cases. 1 means stop, 0 not play yet.
 
     start () {
         this.player = cc.find("Canvas/Player");
@@ -30,11 +30,11 @@ export default class oven extends cc.Component {
 
     update (dt) {
         if(this.anim.getAnimationState("oven").isPlaying == false && this.flag_for_paused == 1){
-            this.anim.getAnimationState("oven").isPlaying == false
             this.isworking = false;
             var pizza = cc.instantiate(this.pizzaPrefab);
             pizza.setPosition(cc.v2(this.node.x-1.5, this.node.y-5));
             cc.find("Canvas").addChild(pizza);
+            this.flag_for_paused = 0;
         }
         if(this.isworking == true){
             if(this.anim.getAnimationState("oven").isPlaying == false && this.flag_for_paused == 0){
