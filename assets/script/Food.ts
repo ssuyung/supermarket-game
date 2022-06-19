@@ -152,7 +152,6 @@ export default class NewClass extends cc.Component {
         }
         /* Modify-3 ycchu */
         if(other.node.getComponent(cc.Collider).tag == 4){//tag4 = worktable 
-            console.log(self.node.name);
             if(other.node.name == "worktable" && this.node.name == "Flour"){
                 this.touchWorkTable = true;
                 this.targetWorkTable = other;
@@ -160,7 +159,6 @@ export default class NewClass extends cc.Component {
                 this.touchOven = true;
                 this.targetOven = other;
             }
-            
         }
         /* Modify end */
         if(other.node.name == "Storage") {
