@@ -23,7 +23,7 @@ export default class worktable extends cc.Component {
 
     start () {
         this.player = cc.find("Canvas/Player");
-        this.anim = this.getComponentInChildren(cc.Animation)
+        this.anim = this.getComponentInChildren(cc.Animation);
         console.log(this.anim.name);
     }
 
