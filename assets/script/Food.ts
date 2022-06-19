@@ -153,10 +153,10 @@ export default class NewClass extends cc.Component {
         /* Modify-3 ycchu */
         if(other.node.getComponent(cc.Collider).tag == 4){//tag4 = worktable 
             console.log(self.node.name);
-            if(other.node.name == "worktable" /*&& self.node.name == "Flour"*/){
+            if(other.node.name == "worktable" && this.node.name == "Flour"){
                 this.touchWorkTable = true;
                 this.targetWorkTable = other;
-            }else if(other.node.name == "oven" /*&& self.node.name == "dough"*/){
+            }else if(other.node.name == "oven" && this.node.name == "dough"){
                 this.touchOven = true;
                 this.targetOven = other;
             }
