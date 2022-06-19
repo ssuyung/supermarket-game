@@ -9,7 +9,7 @@ export default class NewClass extends cc.Component {
     private available: boolean = false;
 
     onEndContact (contact, self, other) {
-        if(other.tag == 0) { // Food
+        if(other.tag == 2) { // Food
             this.scheduleOnce(() => {this.restock();}, 0.5);
             //this.restock();
         }
