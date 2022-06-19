@@ -22,14 +22,13 @@ export default class NewClass extends cc.Component {
     }
 
     onBeginContact (contact, self, other) {
-        if (!this.occupied && (other.node.name == "apple" || other.node.name == "watermelon"  || other.node.name == "banana"  || other.node.name == "pineapple" ) &&
-        !other.node.getComponent("Food").pickedUpbyCustomer) {
+        if (!this.occupied && other.tag == 2 && !other.node.getComponent("Food").pickedUpbyCustomer) {
             this.node.getChildByName("mask").active = true;
         }
     }
 
     onEndContact (contact, self, other) {
-        if (other.node.name == "apple" || other.node.name == "watermelon"  || other.node.name == "banana"  || other.node.name == "pineapple" ) {
+        if (other.tag == 2) {
             this.node.getChildByName("mask").active = false;
         }
     }
