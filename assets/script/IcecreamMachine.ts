@@ -83,7 +83,7 @@ export default class NewClass extends cc.Component {
         let shelf1Node = this.shelf1.getComponent("Shelf");
         let shelf2Node = this.shelf2.getComponent("Shelf");
         if(this.playerBeside && this.spaceDown && (!shelf1Node.occupied || !shelf2Node.occupied)){
-            console.log("doing icecream");
+            // console.log("doing icecream");
             // console.log(dt);
             this.progressTime += dt;
             this.progressBar.getComponent(cc.ProgressBar).progress += dt / this.requiredTime;
@@ -95,21 +95,21 @@ export default class NewClass extends cc.Component {
                     shelf1Node.occupied = true;
                     // console.log(shelf.getItemPosition());
                     let pos = shelf1Node.getItemPosition();
-                    pos.y += 15;
+                    // pos.y += 15;
                     newItem.setPosition(pos);
                     // newItem.getComponent("Food").pickedUpbyPlayer = false;
                 } else {
                     shelf2Node.occupied = true;
                     // console.log(shelf.getItemPosition());
                     let pos = shelf2Node.getItemPosition();
-                    pos.y += 15;
+                    // pos.y += 15;
                     newItem.setPosition(pos);
                     // newItem.getComponent("Food").pickedUpbyPlayer = false;
                 }
                 // newItem.setPosition(cc.v2());
                 // newItem.setPosition(cc.v2(this.node.x-100, this.node.y));
                 cc.find("Canvas/Food").addChild(newItem);
-                console.log("icecream done");
+                // console.log("icecream done");
             }
         }
     }

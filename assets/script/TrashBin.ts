@@ -52,10 +52,13 @@ export default class NewClass extends cc.Component {
     onBeginContact (contact, self, other) {
         // console.log("trash bin touched "+other.node.name);
         // console.log(other.node.name);
+        // console.log(other.tag);
+        // console.log(other.node.getComponent(cc.Collider).tag);
         if(other.node.getComponent(cc.Collider).tag == 2){ // tag2 = items
             // console.log("touched item");
             this.targetItem = other;
             other.node.getComponent("Food").opacity = 150;
+            this.node.getChildByName("mask").active = true;
         }
         
     }
@@ -65,7 +68,7 @@ export default class NewClass extends cc.Component {
             // console.log("left item");
             this.targetItem = null;
             other.node.getComponent("Food").opacity = 255;
-
+            this.node.getChildByName("mask").active = false;
         }
     }
     // update (dt) {}
