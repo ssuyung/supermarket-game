@@ -74,14 +74,15 @@ export default class NewClass extends cc.Component {
 
     onBeginContact(contact, self, other){
         // console.log("icecream machine touched something");
-        if(other.node.name == "Player"){
+        //tag6 : player
+        if(other.tag == 6){
             // console.log("icecream machine touched player");
             this.playerBeside = true;
         }
     }
 
     onEndContact(contact, self, other){
-        if(other.node.name == "Player"){
+        if(other.tag == 6){
             // console.log("player left icecream machine");
             this.playerBeside = false;
         }

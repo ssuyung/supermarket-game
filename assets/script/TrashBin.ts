@@ -37,17 +37,26 @@ export default class NewClass extends cc.Component {
     // }
     onKeyDown(event){
         // console.log("trash onkeydown");
-        switch(event.keyCode)
-        {
-            case cc.macro.KEY.enter:
-                // console.log("Trash hit enter");
-                if(this.targetItem!=null){
-                    // console.log("trash destroy node");
-                    this.targetItem.node.getComponent("Food").putInTrash();
-                    // this.targetItem.node.destroy();
-                }
-                break;
+        if(this.targetItem == null) return;
+        let idx = this.targetItem.node.getComponent("Food").playerHolding();
+        if((event.keyCode == cc.macro.KEY.e && idx == 1) || (event.keyCode == cc.macro.KEY.enter && idx == 2)){
+            if(this.targetItem!=null){
+                // console.log("trash destroy node");
+                this.targetItem.node.getComponent("Food").putInTrash();
+                // this.targetItem.node.destroy();
+            }
         }
+        // switch(event.keyCode)
+        // {
+        //     case cc.macro.KEY.enter:
+        //         // console.log("Trash hit enter");
+        //         if(this.targetItem!=null){
+        //             // console.log("trash destroy node");
+        //             this.targetItem.node.getComponent("Food").putInTrash();
+        //             // this.targetItem.node.destroy();
+        //         }
+        //         break;
+        // }
     }
 
     onBeginContact (contact, self, other) {
@@ -61,9 +70,9 @@ export default class NewClass extends cc.Component {
             other.node.opacity = 150;
             this.node.getChildByName("mask").active = true;
         } 
-        if(other.tag == 6){// tag6 : player
-            this.targetPlayer = other;
-        } 
+        // if(other.tag == 6){// tag6 : player
+        //     this.targetPlayer = other;
+        // } 
         
     }
 

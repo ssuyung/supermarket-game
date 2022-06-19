@@ -5,6 +5,7 @@ export default class NewClass extends cc.Component {
 
     private player1: cc.Node = null;
     private player2: cc.Node = null;
+    private indexOfPlayerHolding: number = 0;
 
     private targetPlayer: cc.Node = null;
     private selected : boolean = false;
@@ -25,65 +26,129 @@ export default class NewClass extends cc.Component {
 
     onKeyDown(event){
         // console.log("food keydown");
-        switch(event.keyCode)
-        {
-            case cc.macro.KEY.enter:
-                if (this.keyDown) break;
-                if (this.pickedUpbyCustomer) break;
-                // put down on shelf
-                if (this.pickedUpbyPlayer && this.touchShelf) {
-                    let shelf = this.targetShelf.getComponent("Shelf");
-                    if (!shelf.occupied) {
-                        shelf.occupied = true;
-                        this.node.setPosition(shelf.getItemPosition());
-                        this.pickedUpbyPlayer = false;
+        if((event.keyCode == cc.macro.KEY.enter && this.targetPlayer==this.player2) || (event.keyCode == cc.macro.KEY.e && this.targetPlayer==this.player1)){
+            if (this.keyDown) return;
+            if (this.pickedUpbyCustomer) return;
+            // put down on shelf
+            if (this.pickedUpbyPlayer && this.touchShelf) {
+                let shelf = this.targetShelf.getComponent("Shelf");
+                if (!shelf.occupied) {
+                    shelf.occupied = true;
+                    this.node.setPosition(shelf.getItemPosition());
+                    this.pickedUpbyPlayer = false;
+                    // this.indexOfPlayerHolding = 0;
+                    this.targetPlayer.getComponent("Player").holding = false;
+                    this.targetPlayer = null;
+                }
+            } 
+            // pick up from shelf
+            else if (this.selected) {
+                console.log("food picked up from shelf");
+                if (!this.targetPlayer.getComponent("Player").holding) {
+                    this.pickedUpbyPlayer = true;
+                    // if(this.targetPlayer == this.player1) this.indexOfPlayerHolding = 1;
+                    // else if(this.targetPlayer == this.player2) this.indexOfPlayerHolding = 2;
+                    this.node.scale = 1;
+                    this.node.opacity = 255;
+                    if(!this.touchStorage) {
+                        let shelf = this.targetShelf.getComponent("Shelf");
+                        shelf.occupied = false;
+                    }
+                    this.targetPlayer.getComponent("Player").holding = true;
+                }
+            }
+            /* Modify-2 ycchu */
+            else if(this.pickedUpbyPlayer && this.touchWorkTable){
+                let worktable = this.targetWorkTable.node.getComponent("worktable");
+                if(worktable.isworking == false){
+                    worktable.isworking = true;
+                    setTimeout(function () {
                         this.targetPlayer.getComponent("Player").holding = false;
-                        this.targetPlayer = null;
-                    }
-                } 
-                // pick up from shelf
-                else if (this.selected) {
-                    console.log("food picked up from shelf");
-                    if (!this.targetPlayer.getComponent("Player").holding) {
-                        this.pickedUpbyPlayer = true;
-                        this.node.scale = 1;
-                        this.node.opacity = 255;
-                        if(!this.touchStorage) {
-                            let shelf = this.targetShelf.getComponent("Shelf");
-                            shelf.occupied = false;
-                        }
-                        this.targetPlayer.getComponent("Player").holding = true;
-                    }
+                        this.pickedUpbyPlayer = false;
+                        this.node.destroy();
+                    }.bind(this), 100); 
                 }
-                /* Modify-2 ycchu */
-                else if(this.pickedUpbyPlayer && this.touchWorkTable){
-                    let worktable = this.targetWorkTable.node.getComponent("worktable");
-                    if(worktable.isworking == false){
-                        worktable.isworking = true;
-                        setTimeout(function () {
-                            this.targetPlayer.getComponent("Player").holding = false;
-                            this.pickedUpbyPlayer = false;
-                            this.node.destroy();
-                        }.bind(this), 100); 
-                    }
-                    // this.targetShelf.getComponent("Shelf")
-                }else if(this.pickedUpbyPlayer && this.touchOven){
-                    let oven = this.targetOven.node.getComponent("oven");
-                    if(oven.isworking == false){
-                        oven.isworking = true;
-                        setTimeout(function () {
-                            this.targetPlayer.getComponent("Player").holding = false;
-                            this.pickedUpbyPlayer = false;
-                            this.node.destroy();
-                        }.bind(this), 100); 
-                    }
-                    // this.targetShelf.getComponent("Shelf")
+                // this.targetShelf.getComponent("Shelf")
+            }else if(this.pickedUpbyPlayer && this.touchOven){
+                let oven = this.targetOven.node.getComponent("oven");
+                if(oven.isworking == false){
+                    oven.isworking = true;
+                    setTimeout(function () {
+                        this.targetPlayer.getComponent("Player").holding = false;
+                        this.pickedUpbyPlayer = false;
+                        this.node.destroy();
+                    }.bind(this), 100); 
                 }
+                // this.targetShelf.getComponent("Shelf")
+            }
 
-                /* Modify end */
-                this.keyDown = true;
-                break;
+            /* Modify end */
+            this.keyDown = true;
         }
+        // switch(event.keyCode)
+        // {
+        //     case cc.macro.KEY.enter:
+        //         if (this.keyDown) break;
+        //         if (this.pickedUpbyCustomer) break;
+        //         // put down on shelf
+        //         if (this.pickedUpbyPlayer && this.touchShelf) {
+        //             let shelf = this.targetShelf.getComponent("Shelf");
+        //             if (!shelf.occupied) {
+        //                 shelf.occupied = true;
+        //                 this.node.setPosition(shelf.getItemPosition());
+        //                 this.pickedUpbyPlayer = false;
+        //                 this.targetPlayer.getComponent("Player").holding = false;
+        //                 this.targetPlayer = null;
+        //             }
+        //         } 
+        //         // pick up from shelf
+        //         else if (this.selected) {
+        //             console.log("food picked up from shelf");
+        //             if (!this.targetPlayer.getComponent("Player").holding) {
+        //                 this.pickedUpbyPlayer = true;
+        //                 this.node.scale = 1;
+        //                 this.node.opacity = 255;
+        //                 if(!this.touchStorage) {
+        //                     let shelf = this.targetShelf.getComponent("Shelf");
+        //                     shelf.occupied = false;
+        //                 }
+        //                 this.targetPlayer.getComponent("Player").holding = true;
+        //             }
+        //         }
+        //         /* Modify-2 ycchu */
+        //         else if(this.pickedUpbyPlayer && this.touchWorkTable){
+        //             let worktable = this.targetWorkTable.node.getComponent("worktable");
+        //             if(worktable.isworking == false){
+        //                 worktable.isworking = true;
+        //                 setTimeout(function () {
+        //                     this.targetPlayer.getComponent("Player").holding = false;
+        //                     this.pickedUpbyPlayer = false;
+        //                     this.node.destroy();
+        //                 }.bind(this), 100); 
+        //             }
+        //             // this.targetShelf.getComponent("Shelf")
+        //         }else if(this.pickedUpbyPlayer && this.touchOven){
+        //             let oven = this.targetOven.node.getComponent("oven");
+        //             if(oven.isworking == false){
+        //                 oven.isworking = true;
+        //                 setTimeout(function () {
+        //                     this.targetPlayer.getComponent("Player").holding = false;
+        //                     this.pickedUpbyPlayer = false;
+        //                     this.node.destroy();
+        //                 }.bind(this), 100); 
+        //             }
+        //             // this.targetShelf.getComponent("Shelf")
+        //         }
+
+        //         /* Modify end */
+        //         this.keyDown = true;
+        //         break;
+        // }
+    }
+    playerHolding(){
+        if(this.targetPlayer == this.player1) return 1;
+        else if(this.targetPlayer == this.player2) return 2;
+        else return 0;
     }
 
     putInTrash(){
