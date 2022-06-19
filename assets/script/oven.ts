@@ -18,14 +18,24 @@ export default class oven extends cc.Component {
     private isworking = false;
     private contagwithplayer = false;
     private anim = null;
-    private anim2 = null;
     private flag_for_paused = 0;
     //When animation isn't playing, there are 2 possible cases. 1 means stop, 0 not play yet.
 
     start () {
         this.player = cc.find("Canvas/Player");
         this.anim = this.getComponent(cc.Animation);
-        this.anim2 = this.getComponentInChildren(cc.Animation);
+    }
+
+    onBeginContact (contact, self, other) {
+        if (other.node.name == "dough") {
+            this.node.getChildByName("mask").active = true;
+        }
+    }
+
+    onEndContact (contact, self, other) {
+        if (other.node.name == "dough") {
+            this.node.getChildByName("mask").active = false;
+        }
     }
 
     update (dt) {
