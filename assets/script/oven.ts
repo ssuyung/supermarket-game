@@ -23,7 +23,7 @@ export default class oven extends cc.Component {
 
     start () {
         this.player = cc.find("Canvas/Player");
-        this.anim = this.getComponent(cc.Animation)
+        this.anim = this.getComponent(cc.Animation);
     }
 
     update (dt) {
