@@ -1,6 +1,6 @@
-const {ccclass, property} = cc._decorator;
-
 // this is Bob
+
+const {ccclass, property} = cc._decorator;
 
 @ccclass
 export default class NewClass extends cc.Component {
@@ -11,6 +11,14 @@ export default class NewClass extends cc.Component {
     private action2: cc.Action = null;
     private posX : number = 0;
     private posY : number = 0;
+
+    private counter : cc.Node = null;
+    private getIndex : boolean = false;
+    private Index : number;
+    private atWaitingPoint : boolean = false;
+    private availCounter : number = 0;
+    private toCounter : boolean = false;
+    private toExit : boolean = false;
 
     private customerDemand : number;
     private toCheckOut : boolean = false;
@@ -56,12 +64,12 @@ export default class NewClass extends cc.Component {
         this.customerDemand = Math.random();
         this.idleFrame = this.getComponent(cc.Sprite).spriteFrame;
         this.anim  = this.getComponent(cc.Animation);
+        this.counter = cc.find("Canvas/Counter");
 
-        /*if (this.customerDemand < 0.4) this.customerMove1();
+        if (this.customerDemand < 0.4) this.customerMove1();
         else if (this.customerDemand >= 0.4 && this.customerDemand < 0.6) this.customerMove2();
         else if (this.customerDemand >= 0.6 && this.customerDemand < 0.8) this.customerMove_3();
-        else if (this.customerDemand >= 0.8) this.customerMove4();*/
-        this.customerMove4();
+        else if (this.customerDemand >= 0.8) this.customerMove4();
     }
 
     update (dt) {
@@ -70,11 +78,12 @@ export default class NewClass extends cc.Component {
 
         this.playAnimation();
 
-        //if (this.customerDemand < 0.4) this.customerMove1Update();
-        //else if (this.customerDemand >= 0.4 && this.customerDemand < 0.6) this.customerMove2Update();
+        if (this.customerDemand < 0.4) this.customerMove1Update();
+        else if (this.customerDemand >= 0.4 && this.customerDemand < 0.6) this.customerMove2Update();
         //else if (this.customerDemand >= 0.6 && this.customerDemand < 0.8) this.customerMove_3();
-        //else if (this.customerDemand >= 0.8) this.customerMove4Update();
-        this.customerMove4Update();
+        else if (this.customerDemand >= 0.8) this.customerMove4Update();
+
+        this.checkOutUpdate();
     }
 
     playAnimation(){
@@ -176,7 +185,8 @@ export default class NewClass extends cc.Component {
         if (this.node.getComponent(cc.Collider).tag == 20 && !this.toCheckOut && this.node.position.y < -136) {
             this.node.stopAllActions();
             let moveTime = Math.sqrt(Math.pow(this.node.position.x - (-26), 2) + Math.pow(this.node.position.y - (-212), 2)) * 0.02;
-            var sequence = cc.sequence(cc.moveBy(1, 0, -50), cc.moveTo(moveTime, -26, -212), cc.moveBy(6, 0, -300));
+            var sequence = cc.sequence(cc.moveBy(1, 0, -50), cc.moveTo(moveTime, -26, -212), cc.moveBy(0.02, 0, -1), 
+            cc.callFunc(() => {this.atWaitingPoint = true}, this));
             let action = cc.repeat(sequence, 1);
             this.scheduleOnce(() => {
                 this.node.runAction(action);
@@ -219,7 +229,8 @@ export default class NewClass extends cc.Component {
     customerMove2Update() {
         if (this.node.getComponent(cc.Collider).tag == 20 && !this.toCheckOut && this.node.position.x < 310 && this.node.position.y < 60) {
             this.node.stopAllActions();
-            var sequence = cc.sequence(cc.moveBy(2.6, -130, 0), cc.moveBy(5, 0, -250), cc.moveBy(4, -200, 0), cc.moveTo(0.5, -26, -212), cc.moveBy(6, 0, -300));
+            var sequence = cc.sequence(cc.moveBy(2.6, -130, 0), cc.moveBy(5, 0, -250), cc.moveBy(4, -200, 0), cc.moveTo(0.5, -26, -212), 
+            cc.moveBy(0.02, 0, -1), cc.callFunc(() => {this.atWaitingPoint = true}, this));
             let action = cc.repeat(sequence, 1);
             this.scheduleOnce(() => {
                 this.node.runAction(action);
@@ -306,7 +317,8 @@ export default class NewClass extends cc.Component {
         if (this.node.x < 210 && this.node.y < -200) atPoint2 = true;
         if (this.node.getComponent(cc.Collider).tag == 20 && !this.toCheckOut && atPoint1) {
             this.node.stopAllActions();
-            var sequence = cc.sequence(cc.moveBy(1, -50, 0), cc.moveBy(5, 0, -250), cc.moveTo(1.5, -26, -212), cc.moveBy(6, 0, -300));
+            var sequence = cc.sequence(cc.moveBy(1, -50, 0), cc.moveBy(5, 0, -250), cc.moveTo(1.5, -26, -212), cc.moveBy(0.02, 0, -1),
+            cc.callFunc(() => {this.atWaitingPoint = true}, this));
             let action = cc.repeat(sequence, 1);
             this.scheduleOnce(() => {
                 this.node.runAction(action);
@@ -315,12 +327,50 @@ export default class NewClass extends cc.Component {
         }
         else if (this.node.getComponent(cc.Collider).tag == 20 && !this.toCheckOut && atPoint2) {
             this.node.stopAllActions();
-            var sequence = cc.sequence(cc.moveBy(2, -100, 0), cc.moveBy(1, 0, 50), cc.moveBy(2, -100, 0), cc.moveTo(1.5, -26, -212), cc.moveBy(6, 0, -300));
+            var sequence = cc.sequence(cc.moveBy(2, -100, 0), cc.moveBy(1, 0, 50), cc.moveBy(2, -100, 0), cc.moveTo(1.5, -26, -212), cc.moveBy(0.02, 0, -1), 
+            cc.callFunc(() => {this.atWaitingPoint = true}, this));
             let action = cc.repeat(sequence, 1);
             this.scheduleOnce(() => {
                 this.node.runAction(action);
             }, 0);
             this.toCheckOut = true;
+        }
+    }
+
+    checkOutUpdate() {
+        if (this.atWaitingPoint) {
+            if (!this.getIndex) {
+                this.Index = this.counter.getComponent("CounterMgr").getCustomerIndex();
+                this.getIndex = true;
+            }
+
+            if (!this.toCounter) this.availCounter = this.counter.getComponent("CounterMgr").checkAvailablebyIndex(this.Index);
+            if (this.availCounter == 1 && !this.toCounter) {
+                this.toCounter = true;
+                var sequence = cc.sequence(cc.moveBy(1.6, 0, -80), cc.moveBy(1.2, -50, 0));
+                let action = cc.repeat(sequence, 1);
+                this.node.runAction(action);
+            }
+            else if (this.availCounter == 2 && !this.toCounter) {
+                this.toCounter = true;
+                var sequence = cc.sequence(cc.moveBy(1.6, 0, -80), cc.moveBy(0.8, 40, 0));
+                let action = cc.repeat(sequence, 1);
+                this.node.runAction(action);
+            }
+        }
+        // tag 21 : customer paid
+        if (this.node.getComponent(cc.Collider).tag == 21 && !this.toExit) {
+            this.toExit = true;
+            if (this.availCounter == 1) {
+                this.counter.getComponent("CounterMgr").counter_1_occupied = false;
+                var sequence = cc.sequence(cc.moveBy(0.6, 30, 0), cc.moveBy(4, 0, -200), cc.callFunc(() => {this.node.destroy()}, this));
+            }
+            else if (this.availCounter == 2) {
+                this.counter.getComponent("CounterMgr").counter_2_occupied = false;
+                var sequence = cc.sequence(cc.moveBy(0.6, -30, 0), cc.moveBy(4, 0, -200), cc.callFunc(() => {this.node.destroy()}, this));
+            }
+            let action = cc.repeat(sequence, 1);
+            this.node.runAction(action);
         }
     }
 }
