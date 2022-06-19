@@ -3,7 +3,8 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class NewClass extends cc.Component {
 
-    private player: cc.Node = null;
+    private player1: cc.Node = null;
+    private player2: cc.Node = null;
 
     private targetPlayer: cc.Node = null;
     private selected : boolean = false;
@@ -104,8 +105,15 @@ export default class NewClass extends cc.Component {
             // cc.log("food touches shelf");
         }
         if (other.tag == 6 && !this.pickedUpbyPlayer && !this.pickedUpbyCustomer) {
-            console.log(this.node.name + " is touched by player");
-            this.targetPlayer = other.node;
+            if(other.node.name == "Player1"){
+                console.log(this.node.name + " is touched by player1");
+                this.targetPlayer = this.player1;
+            } else if(other.node.name == "Player2"){
+                console.log(this.node.name + " is touched by player2");
+                this.targetPlayer = this.player2;
+            }
+            
+            // this.targetPlayer = other.node;
             this.selected = true;
             this.node.opacity = 150;
         }
@@ -194,7 +202,9 @@ export default class NewClass extends cc.Component {
     }
 
     start () {
-        // this.player = cc.find("Canvas/Player");
+        this.player1 = cc.find("Canvas/Player1");
+        this.player2 = cc.find("Canvas/Player2");
+
         // console.log(this.node.name + "'s tag is "+this.node.getComponent(cc.Collider).tag);
     }
 
@@ -203,7 +213,7 @@ export default class NewClass extends cc.Component {
             // console.log("check");
             if (this.targetPlayer) {
                 // console.log(this.targetPlayer);
-                // console.log("targetPlayer pos: "+this.targetPlayer.getPosition());
+                console.log("targetPlayer pos: "+this.targetPlayer.getPosition());
                 this.node.setPosition(cc.v2(this.targetPlayer.x, this.targetPlayer.y + 42));
             }
         }
