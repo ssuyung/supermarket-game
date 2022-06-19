@@ -4,22 +4,17 @@
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
-  "filterMode": "point",
+  "filterMode": "bilinear",
   "premultiplyAlpha": false,
   "genMipmaps": false,
   "packable": true,
-<<<<<<< HEAD
   "width": 64,
   "height": 66,
-=======
-  "width": 32,
-  "height": 32,
->>>>>>> 6117f7c74048d101ccc2a9d0b10a1708c6030c41
   "platformSettings": {},
   "subMetas": {
     "dough": {
       "ver": "1.0.6",
-      "uuid": "468d5575-7cb0-4f68-aa28-348c46014d53",
+      "uuid": "938c5a60-9682-4c74-876b-d60773354946",
       "importer": "sprite-frame",
       "rawTextureUuid": "c8b12730-91ae-4a6e-a9cf-4aaab073e9bb",
       "trimType": "auto",

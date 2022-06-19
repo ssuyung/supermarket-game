@@ -10,6 +10,8 @@ export default class NewClass extends cc.Component {
     private CustomerPaid : boolean = false;
     private enterDown : boolean = false;
 
+    private chargeMoney : number = 0;
+
     onLoad () {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
@@ -21,16 +23,28 @@ export default class NewClass extends cc.Component {
 
     // update (dt) {}
 
+    getPrice(num) {
+        this.chargeMoney = num;
+        cc.log(this.chargeMoney);
+        if (this.PlayeratCounter && this.CustomeratCounter && !this.CustomerPaid) {
+            let curMoney = parseInt(cc.find("Canvas/Main Camera/Money_bar/money").getComponent(cc.Label).string);
+            curMoney += this.chargeMoney;
+            cc.find("Canvas/Main Camera/Money_bar/money").getComponent(cc.Label).string = curMoney.toString();
+            this.CustomerPaid = true;
+            this.customer.getComponent(cc.Collider).tag = 21;
+        }
+    }
+
     onKeyDown(event) {
         if (event.keyCode == cc.macro.KEY.enter && !this.enterDown) {
             this.enterDown = true;
-            if (this.PlayeratCounter && this.CustomeratCounter && !this.CustomerPaid) {
+            /*if (this.PlayeratCounter && this.CustomeratCounter && !this.CustomerPaid) {
                 let curMoney = parseInt(cc.find("Canvas/Main Camera/Money_bar/money").getComponent(cc.Label).string);
                 curMoney += 20;
                 cc.find("Canvas/Main Camera/Money_bar/money").getComponent(cc.Label).string = curMoney.toString();
                 this.CustomerPaid = true;
                 this.customer.getComponent(cc.Collider).tag = 21;
-            }
+            }*/
         }
     }
 
@@ -42,9 +56,10 @@ export default class NewClass extends cc.Component {
 
     onBeginContact (contact, self, other) {
         if (other.node.name == "Player") {
-            console.log("player at counter");
+            //console.log("player at counter");
             this.PlayeratCounter = true;
             this.node.getChildByName("mask").active = true;
+            this.node.getChildByName("Calculator").active = true;
         }
         // tag 20 : customers that get what they want
         if (other.tag == 20 || other.tag == 21) {
@@ -56,9 +71,10 @@ export default class NewClass extends cc.Component {
 
     onEndContact (contact, self, other) {
         if (other.node.name == "Player") {
-            console.log("player leaves counter");
+            //console.log("player leaves counter");
             this.PlayeratCounter = false;
             this.node.getChildByName("mask").active = false;
+            this.node.getChildByName("Calculator").active = false;
         }
         // tag 20 : customers that get what they want
         if (other.tag == 20 || other.tag == 21) {
