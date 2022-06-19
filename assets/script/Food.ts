@@ -88,7 +88,7 @@ export default class NewClass extends cc.Component {
                 break;
         }
     }
-    //onBeginContact onPostsolve
+    
     onBeginContact (contact, self, other) {
         if (other.tag == 1) { // tag1 : shelf
             this.touchShelf = true;
@@ -104,24 +104,28 @@ export default class NewClass extends cc.Component {
             other.tag = 20;
             this.customer = other.node;
             this.pickedUpbyCustomer = true;
+            this.targetShelf.getComponent("Shelf").occupied = false;
         }
         // tag11 : customer wants banana
         if (this.node.name == "banana" && other.tag == 11 && !this.pickedUpbyPlayer && !this.pickedUpbyCustomer) {
             other.tag = 20;
             this.customer = other.node;
             this.pickedUpbyCustomer = true;
+            this.targetShelf.getComponent("Shelf").occupied = false;
         }
         // tag12 : customer wants pineapple
         if (this.node.name == "pineapple" && other.tag == 12 && !this.pickedUpbyPlayer && !this.pickedUpbyCustomer) {
             other.tag = 20;
             this.customer = other.node;
             this.pickedUpbyCustomer = true;
+            this.targetShelf.getComponent("Shelf").occupied = false;
         }
         // tag13 : customer wants watermelon
         if (this.node.name == "watermelon" && other.tag == 13 && !this.pickedUpbyPlayer && !this.pickedUpbyCustomer) {
             other.tag = 20;
             this.customer = other.node;
             this.pickedUpbyCustomer = true;
+            this.targetShelf.getComponent("Shelf").occupied = false;
         }
         /* Modify-3 ycchu */
         if(other.node.getComponent(cc.Collider).tag == 4){//tag4 = worktable 
@@ -170,7 +174,7 @@ export default class NewClass extends cc.Component {
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-        //cc.director.getPhysicsManager().debugDrawFlags = cc.PhysicsManager.DrawBits.e_jointBit | cc.PhysicsManager.DrawBits.e_shapeBit;
+        cc.director.getPhysicsManager().debugDrawFlags = cc.PhysicsManager.DrawBits.e_jointBit | cc.PhysicsManager.DrawBits.e_shapeBit;
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
         // console.log(this.player);
