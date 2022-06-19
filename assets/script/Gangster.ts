@@ -44,12 +44,12 @@ export default class NewClass extends cc.Component {
         // if(this.node.parent.getComponent("World").getPauseState()) {
         //     return;
         // }
-
+        // console.log("gangster update");
         let pos = this.node.getPosition();
         if(pos.y <= 250) this.yMoveDir = 1;
         else if(pos.y >= 550) this.yMoveDir = -1;
         this.xMoveDir = 0;
-
+        // console.log(this.)
         let velocity = this.node.getComponent(cc.RigidBody).linearVelocity;
         this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.playerXSpeed*this.xMoveDir, this.playerYSpeed*this.yMoveDir);
 
