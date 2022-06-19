@@ -586,7 +586,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "f693bbd8-9a84-4b07-9dad-dc9ae746aadd"
+      "__uuid__": "5c3bb932-6c3c-468f-88a9-c8c61d458641"
     },
     "_type": 1,
     "_sizeMode": 0,
@@ -626,8 +626,8 @@
     },
     "_touching": false,
     "_opacity": 255,
-    "enableAutoHide": true,
-    "autoHideTime": 0.5,
+    "enableAutoHide": false,
+    "autoHideTime": 1,
     "_N$handle": {
       "__id__": 13
     },
@@ -855,8 +855,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 181.04,
-      "height": 71.8
+      "width": 127.44,
+      "height": 49.2
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1010,7 +1010,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "ded97fc0-5857-47ad-be8a-2c627c083bad"
+      "__uuid__": "5fe5dcaa-b513-4dc5-a166-573627b3a159"
     },
     "_type": 1,
     "_sizeMode": 0,
@@ -1071,8 +1071,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 36,
-      "height": 36
+      "width": 35,
+      "height": 37.7777778
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1138,8 +1138,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 36,
-      "height": 36
+      "width": 35,
+      "height": 37.7777778
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1159,7 +1159,7 @@
         1,
         1,
         1,
-        0
+        1
       ]
     },
     "_eulerAngles": {
@@ -1191,7 +1191,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "fb402e6f-7190-442b-832e-0cfb2678e173"
+      "__uuid__": "642b4550-e34e-4c31-b0a2-a98cadb2b422"
     },
     "_type": 1,
     "_sizeMode": 0,
@@ -1253,7 +1253,7 @@
       "__id__": 29
     },
     "_children": [],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 35
@@ -1367,8 +1367,8 @@
     "clickEvents": [],
     "_N$interactable": true,
     "_N$enableAutoGrayEffect": false,
-    "_N$transition": 3,
-    "transition": 3,
+    "_N$transition": 2,
+    "transition": 2,
     "_N$normalColor": {
       "__type__": "cc.Color",
       "r": 230,
