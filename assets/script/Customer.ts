@@ -42,6 +42,12 @@ export default class NewClass extends cc.Component {
     @property(cc.Prefab)
     watermelonDialogPrefabs : cc.Prefab = null;
 
+    @property(cc.Prefab)
+    chipsDialogPrefabs : cc.Prefab = null;
+
+    @property(cc.Prefab)
+    snackDialogPrefabs : cc.Prefab = null;
+
     // onLoad () {}
 
     start () {
@@ -51,11 +57,11 @@ export default class NewClass extends cc.Component {
         this.idleFrame = this.getComponent(cc.Sprite).spriteFrame;
         this.anim  = this.getComponent(cc.Animation);
 
-        if (this.customerDemand < 0.4) this.customerMove1();
-        else if (this.customerDemand >= 0.4 && this.customerDemand < 0.6) this.customerMove_2();
+        /*if (this.customerDemand < 0.4) this.customerMove1();
+        else if (this.customerDemand >= 0.4 && this.customerDemand < 0.6) this.customerMove2();
         else if (this.customerDemand >= 0.6 && this.customerDemand < 0.8) this.customerMove_3();
-        else if (this.customerDemand >= 0.8) this.customerMove_4();
-
+        else if (this.customerDemand >= 0.8) this.customerMove4();*/
+        this.customerMove4();
     }
 
     update (dt) {
@@ -64,10 +70,11 @@ export default class NewClass extends cc.Component {
 
         this.playAnimation();
 
-        if (this.customerDemand < 0.4) this.customerMove1Update();
-        //else if (this.customerDemand >= 0.4 && this.customerDemand < 0.6) this.customerMove_2();
+        //if (this.customerDemand < 0.4) this.customerMove1Update();
+        //else if (this.customerDemand >= 0.4 && this.customerDemand < 0.6) this.customerMove2Update();
         //else if (this.customerDemand >= 0.6 && this.customerDemand < 0.8) this.customerMove_3();
-        //else if (this.customerDemand >= 0.8) this.customerMove_4();
+        //else if (this.customerDemand >= 0.8) this.customerMove4Update();
+        this.customerMove4Update();
     }
 
     playAnimation(){
@@ -101,9 +108,9 @@ export default class NewClass extends cc.Component {
         
     }
 
-    // set collider tag to 10, 11, 12 or 13 according to what this customer wants
+    // set collider tag to 10, 11, 12 or 13 and instantiate a dialog according to what this customer wants
     // customer might want apple, banana, pineapple or watermelon
-    // walk around near the fruit shelves
+    // walk around the fruit shelves
     customerMove1()
     {
         let randomFruit = Math.random();
@@ -163,7 +170,7 @@ export default class NewClass extends cc.Component {
         }, 6.9);
     }
 
-    // when the customer wants apple, banana, pineapple or watermelon and their demand is met (tag set to 20)
+    // when this customer wants apple, banana, pineapple or watermelon and their demand is met (tag set to 20)
     // they will go to the checkout and leave
     customerMove1Update() {
         if (this.node.getComponent(cc.Collider).tag == 20 && !this.toCheckOut && this.node.position.y < -136) {
@@ -178,10 +185,11 @@ export default class NewClass extends cc.Component {
         }
     }
 
-    // instantiate an ice cream dialog
-    // walk back and forth near the ice cream stand
-    customerMove_2()
+    // set collider tag to 14 and instantiate a dialog
+    // walk near the ice cream stand
+    customerMove2()
     {
+        this.node.getComponent(cc.Collider).tag = 14;
         this.scheduleOnce(() => {
             var iceCreamDialog = cc.instantiate(this.iceCreamDialogPrefabs);
             this.node.addChild(iceCreamDialog);
@@ -190,12 +198,12 @@ export default class NewClass extends cc.Component {
             }, 5);
         }, 0);
 
-        var sequence1 = cc.sequence(cc.moveBy(4.4, 0, -220), cc.moveBy(6, 300, 0), cc.moveBy(0.6, 0, 30), cc.moveBy(2.4, 120, 0));
+        var sequence1 = cc.sequence(cc.moveBy(4.4, 0, -220), cc.moveBy(6, 300, 0), cc.moveBy(0.6, 0, 30), cc.moveBy(2, 100, 0));
         this.action1 = cc.repeat(sequence1, 1);
 
-        var sequence2 = cc.sequence(cc.moveBy(0.6, 0, 30), cc.moveBy(4, 0, 0), cc.moveBy(2, 100, 0), cc.moveBy(0.02, 0, 1), cc.moveBy(2, 0, 0), 
-        cc.moveBy(0.02, 0, -1), cc.moveBy(1, 50, 0), cc.moveBy(0.8, 0, -40), cc.moveBy(0.02, 1, 0), cc.moveBy(2, 0, 0), 
-        cc.moveBy(0.02, -1, 0), cc.moveBy(3, -150, 0), cc.moveBy(0.2, 0, 10));
+        var sequence2 = cc.sequence(cc.moveBy(0.6, 0, 30), cc.moveBy(0.4, 20, 0), cc.moveBy(0.02, 0, 1), cc.moveBy(4, 0, 0), cc.moveBy(0.02, 0, -1), 
+        cc.moveBy(2, 100, 0), cc.moveBy(0.02, 0, 1), cc.moveBy(2, 0, 0), cc.moveBy(0.02, 0, -1), cc.moveBy(1, 50, 0), cc.moveBy(0.8, 0, -40), 
+        cc.moveBy(0.02, 1, 0), cc.moveBy(2, 0, 0), cc.moveBy(0.02, -1, 0), cc.moveBy(3.4, -170, 0), cc.moveBy(0.2, 0, 10));
         this.action2 = cc.repeatForever(sequence2);
 
         this.scheduleOnce(() => {
@@ -203,7 +211,21 @@ export default class NewClass extends cc.Component {
         }, 0);
         this.scheduleOnce(() => {
             this.node.runAction(this.action2);
-        }, 13.5);
+        }, 13);
+    }
+
+    // when this customer wants ice cream and their demand is met (tag set to 20)
+    // they will go to the checkout and leave
+    customerMove2Update() {
+        if (this.node.getComponent(cc.Collider).tag == 20 && !this.toCheckOut && this.node.position.x < 310 && this.node.position.y < 60) {
+            this.node.stopAllActions();
+            var sequence = cc.sequence(cc.moveBy(2.6, -130, 0), cc.moveBy(5, 0, -250), cc.moveBy(4, -200, 0), cc.moveTo(0.5, -26, -212), cc.moveBy(6, 0, -300));
+            let action = cc.repeat(sequence, 1);
+            this.scheduleOnce(() => {
+                this.node.runAction(action);
+            }, 0);
+            this.toCheckOut = true;
+        }
     }
 
     // instantiate a pizza dialog
@@ -233,14 +255,39 @@ export default class NewClass extends cc.Component {
         }, 9.3);
     }
 
-    // walk around (clockwise) near the shelves at bottom-right
-    customerMove_4()
+
+    // set collider tag to 17 or 18 and instantiate a dialog according to what this customer wants
+    // customer might want chips or snack
+    customerMove4()
     {
-        var sequence1 = cc.sequence(cc.moveBy(2, 0, -100), cc.moveBy(6, 300, 0), cc.moveBy(6, 0, -300), cc.moveBy(2, 100, 0));
+        let randomGood = Math.random();
+        if (randomGood < 0.5) { // chips
+            this.node.getComponent(cc.Collider).tag = 17;
+            this.scheduleOnce(() => {
+                var chipsDialog = cc.instantiate(this.chipsDialogPrefabs);
+                this.node.addChild(chipsDialog);
+                this.scheduleOnce(() => {
+                    chipsDialog.destroy();
+                }, 5);
+            }, 0);
+        }
+        else if (randomGood >= 0.5) { // snack
+            this.node.getComponent(cc.Collider).tag = 18;
+            this.scheduleOnce(() => {
+                var snackDialog = cc.instantiate(this.snackDialogPrefabs);
+                this.node.addChild(snackDialog);
+                this.scheduleOnce(() => {
+                    snackDialog.destroy();
+                }, 5);
+            }, 0);
+        }
+
+        var sequence1 = cc.sequence(cc.moveBy(1.4, 0, -70), cc.moveBy(1.6, 80, 0));
         this.action1 = cc.repeat(sequence1, 1);
 
-        var sequence2 = cc.sequence(cc.moveBy(2, 100, 0), cc.moveBy(4, 0, 0), cc.moveBy(2.6, 0, -130), cc.moveBy(4, 0, 0), cc.moveBy(2, -100, 0),
-         cc.moveBy(4, 0, 0), cc.moveBy(2.6, 0, 130), cc.moveBy(4, 0, 0));
+        var sequence2 = cc.sequence(cc.moveBy(3.4, 170, 0), cc.moveBy(2.6, 0, -130), cc.moveBy(4, -200, 0), cc.moveBy(2, 0, 0), 
+        cc.moveBy(5, 250, 0), cc.moveBy(4, 0, -200), cc.moveBy(5, 250, 0), cc.moveBy(2, 0, -100), cc.moveBy(4.4, -220, 0), cc.moveBy(7.8, 0, 390),
+        cc.moveBy(5, -250, 0), cc.moveBy(0.8, 0, 40));
         this.action2 = cc.repeatForever(sequence2);
 
         this.scheduleOnce(() => {
@@ -248,6 +295,22 @@ export default class NewClass extends cc.Component {
         }, 0);
         this.scheduleOnce(() => {
             this.node.runAction(this.action2);
-        }, 16.1);
+        }, 3);
+    }
+
+    // when this customer wants chips or snack and their demand is met (tag set to 20)
+    // they will go to the checkout and leave
+    customerMove4Update() {
+        let atPoint1 = false, atPoint2 = false;
+        if (this.node.x < -40 && this.node.y < 100) atPoint1 = true;
+        if (this.node.getComponent(cc.Collider).tag == 20 && !this.toCheckOut && this.node.x < -40 && this.node.y < 80) {
+            this.node.stopAllActions();
+            var sequence = cc.sequence(cc.moveBy(1, -50, 0), cc.moveBy(5, 0, -250), cc.moveTo(1.5, -26, -212), cc.moveBy(6, 0, -300));
+            let action = cc.repeat(sequence, 1);
+            this.scheduleOnce(() => {
+                this.node.runAction(action);
+            }, 0);
+            this.toCheckOut = true;
+        }
     }
 }

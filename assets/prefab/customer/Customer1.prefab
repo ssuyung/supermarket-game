@@ -202,6 +202,12 @@
     "watermelonDialogPrefabs": {
       "__uuid__": "7eb61472-4efc-4221-8424-4bc5129c2f14"
     },
+    "chipsDialogPrefabs": {
+      "__uuid__": "2d38f324-e683-496f-8735-38ed59f26e89"
+    },
+    "snackDialogPrefabs": {
+      "__uuid__": "33f0b081-4cce-4d78-a986-872262276ec6"
+    },
     "_id": ""
   },
   {

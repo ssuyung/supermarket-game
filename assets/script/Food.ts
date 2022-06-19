@@ -129,6 +129,27 @@ export default class NewClass extends cc.Component {
             this.pickedUpbyCustomer = true;
             this.targetShelf.getComponent("Shelf").occupied = false;
         }
+        // tag14 : customer wants ice cream
+        if (this.node.name == "Icecream" && other.tag == 14 && !this.pickedUpbyPlayer && !this.pickedUpbyCustomer) {
+            other.tag = 20;
+            this.customer = other.node;
+            this.pickedUpbyCustomer = true;
+            this.targetShelf.getComponent("Shelf").occupied = false;
+        }
+        // tag17 : customer wants chips
+        if (this.node.name == "chips" && other.tag == 17 && !this.pickedUpbyPlayer && !this.pickedUpbyCustomer) {
+            other.tag = 20;
+            this.customer = other.node;
+            this.pickedUpbyCustomer = true;
+            this.targetShelf.getComponent("Shelf").occupied = false;
+        }
+        // tag18 : customer wants snack
+        if (this.node.name == "snacks" && other.tag == 18 && !this.pickedUpbyPlayer && !this.pickedUpbyCustomer) {
+            other.tag = 20;
+            this.customer = other.node;
+            this.pickedUpbyCustomer = true;
+            this.targetShelf.getComponent("Shelf").occupied = false;
+        }
         /* Modify-3 ycchu */
         if(other.node.getComponent(cc.Collider).tag == 4){//tag4 = worktable 
             console.log(other.node.name);
