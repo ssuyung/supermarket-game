@@ -13,7 +13,7 @@ export default class NewClass extends cc.Component {
 
     getItemPosition(idx){
         let pos = this.node.getPosition();
-        pos.y -= 0;
+        pos.y -= 4;
         return pos;
     }
 
