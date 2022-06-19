@@ -25,6 +25,10 @@ export default class NewClass extends cc.Component {
     @property(cc.Node)
     shelf2: cc.Node = null;
 
+    @property(cc.Node)
+    progressBar: cc.Node = null;
+    // @property(cc.Prefab)
+    // progressBar: cc.Prefab = null;
     
 
     private playerBeside: boolean = false;
@@ -36,6 +40,7 @@ export default class NewClass extends cc.Component {
     onLoad () {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
+        
     }
 
     start () {
@@ -81,7 +86,9 @@ export default class NewClass extends cc.Component {
             console.log("doing icecream");
             // console.log(dt);
             this.progressTime += dt;
+            this.progressBar.getComponent(cc.ProgressBar).progress += dt / this.requiredTime;
             if(this.progressTime >= this.requiredTime){
+                this.progressBar.getComponent(cc.ProgressBar).progress = 0;
                 this.progressTime = 0;
                 let newItem = cc.instantiate(this.icecream);
                 if(!shelf1Node.occupied){
