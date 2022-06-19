@@ -26,6 +26,18 @@ export default class worktable extends cc.Component {
         this.anim = this.getComponentInChildren(cc.Animation);
     }
 
+    onBeginContact (contact, self, other) {
+        if (other.node.name == "Flour") {
+            this.node.getChildByName("mask").active = true;
+        }
+    }
+
+    onEndContact (contact, self, other) {
+        if (other.node.name == "Flour") {
+            this.node.getChildByName("mask").active = false;
+        }
+    }
+
     update (dt) {
         if(this.anim.getAnimationState("time_icon").isPlaying == false && this.flag_for_paused == 1){
             this.isworking = false;

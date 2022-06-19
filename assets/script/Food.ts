@@ -40,6 +40,7 @@ export default class NewClass extends cc.Component {
                 } 
                 // pick up from shelf
                 else if (this.selected) {
+                    console.log("food picked up from shelf");
                     if (!this.player.getComponent("Player").holding) {
                         this.pickedUpbyPlayer = true;
                         this.node.scale = 1;
@@ -82,6 +83,10 @@ export default class NewClass extends cc.Component {
         }
     }
 
+    putInTrash(){
+        this.player.getComponent("Player").holding = false;
+        this.node.destroy();
+    }
     onKeyUp(event) {
         switch(event.keyCode)
         {
@@ -152,7 +157,6 @@ export default class NewClass extends cc.Component {
         }
         /* Modify-3 ycchu */
         if(other.node.getComponent(cc.Collider).tag == 4){//tag4 = worktable 
-            console.log(self.node.name);
             if(other.node.name == "worktable" && this.node.name == "Flour"){
                 this.touchWorkTable = true;
                 this.targetWorkTable = other;
@@ -160,7 +164,6 @@ export default class NewClass extends cc.Component {
                 this.touchOven = true;
                 this.targetOven = other;
             }
-            
         }
         /* Modify end */
         if(other.node.name == "Storage") {
