@@ -38,6 +38,7 @@ export default class NewClass extends cc.Component {
                         this.node.setPosition(shelf.getItemPosition());
                         this.pickedUpbyPlayer = false;
                         this.targetPlayer.getComponent("Player").holding = false;
+                        this.targetPlayer = null;
                     }
                 } 
                 // pick up from shelf
@@ -159,7 +160,7 @@ export default class NewClass extends cc.Component {
         }
         /* Modify end */
         if(other.node.name == "Storage") {
-            cc.log("Storage touched");
+            // cc.log("Storage touched");
             this.touchStorage = true;
         }
     }
@@ -167,11 +168,11 @@ export default class NewClass extends cc.Component {
     onEndContact (contact, self, other) {
         if (other.tag == 1) {
             this.touchShelf = false;
-            cc.log("food leaves shelf");
+            // cc.log("food leaves shelf");
         }
         if (other.tag == 6) {
             console.log(this.node.name + " left player");
-            this.targetPlayer = null;
+            // this.targetPlayer = null;
             this.selected = false;
             this.node.opacity = 255;
         }
@@ -213,7 +214,7 @@ export default class NewClass extends cc.Component {
             // console.log("check");
             if (this.targetPlayer) {
                 // console.log(this.targetPlayer);
-                console.log("targetPlayer pos: "+this.targetPlayer.getPosition());
+                // console.log("targetPlayer pos: "+this.targetPlayer.getPosition());
                 this.node.setPosition(cc.v2(this.targetPlayer.x, this.targetPlayer.y + 42));
             }
         }
