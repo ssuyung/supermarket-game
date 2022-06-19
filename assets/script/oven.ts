@@ -12,6 +12,8 @@ export default class oven extends cc.Component {
 
     @property(cc.Prefab)
     pizzaPrefab: cc.Prefab = null;
+    @property({type:cc.AudioClip})
+    finishSound: cc.AudioClip = null;
 
     private player: cc.Node = null;
 
@@ -35,6 +37,7 @@ export default class oven extends cc.Component {
             pizza.setPosition(cc.v2(this.node.x-1.5, this.node.y-5));
             cc.find("Canvas").addChild(pizza);
             this.flag_for_paused = 0;
+            cc.audioEngine.setVolume(cc.audioEngine.playEffect(this.finishSound, false), 0.5);
         }
         if(this.isworking == true){
             if(this.anim.getAnimationState("oven").isPlaying == false && this.flag_for_paused == 0){

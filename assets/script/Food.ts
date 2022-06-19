@@ -2,6 +2,11 @@ const {ccclass, property} = cc._decorator;
 
 @ccclass
 export default class NewClass extends cc.Component {
+    @property({type:cc.AudioClip})
+    dropSound: cc.AudioClip = null;
+    @property({type:cc.AudioClip})
+    pickSound: cc.AudioClip = null;
+    private audioID: number;
 
     private player: cc.Node = null;
 
@@ -37,6 +42,7 @@ export default class NewClass extends cc.Component {
                         this.pickedUpbyPlayer = false;
                         this.player.getComponent("Player").holding = false;
                     }
+                    cc.audioEngine.setVolume(cc.audioEngine.playEffect(this.dropSound, false), 0.5);
                 } 
                 // pick up from shelf
                 else if (this.selected) {
@@ -50,6 +56,7 @@ export default class NewClass extends cc.Component {
                             shelf.occupied = false;
                         }
                         this.player.getComponent("Player").holding = true;
+                        cc.audioEngine.setVolume(cc.audioEngine.playEffect(this.pickSound, false), 0.5);
                     }
                 }
                 /* Modify-2 ycchu */
