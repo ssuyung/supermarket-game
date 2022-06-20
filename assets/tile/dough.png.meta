@@ -4,7 +4,7 @@
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
-  "filterMode": "point",
+  "filterMode": "bilinear",
   "premultiplyAlpha": false,
   "genMipmaps": false,
   "packable": true,
@@ -14,7 +14,7 @@
   "subMetas": {
     "dough": {
       "ver": "1.0.6",
-      "uuid": "468d5575-7cb0-4f68-aa28-348c46014d53",
+      "uuid": "c2c128ff-d5db-4d33-b8d9-8f27de7f1d75",
       "importer": "sprite-frame",
       "rawTextureUuid": "c8b12730-91ae-4a6e-a9cf-4aaab073e9bb",
       "trimType": "auto",

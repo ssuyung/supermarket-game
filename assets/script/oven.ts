@@ -12,20 +12,32 @@ export default class oven extends cc.Component {
 
     @property(cc.Prefab)
     pizzaPrefab: cc.Prefab = null;
+    @property({type:cc.AudioClip})
+    finishSound: cc.AudioClip = null;
 
     private player: cc.Node = null;
 
     private isworking = false;
     private contagwithplayer = false;
     private anim = null;
-    private anim2 = null;
     private flag_for_paused = 0;
     //When animation isn't playing, there are 2 possible cases. 1 means stop, 0 not play yet.
 
     start () {
         this.player = cc.find("Canvas/Player");
         this.anim = this.getComponent(cc.Animation);
-        this.anim2 = this.getComponentInChildren(cc.Animation);
+    }
+
+    onBeginContact (contact, self, other) {
+        if (other.node.name == "dough") {
+            this.node.getChildByName("mask").active = true;
+        }
+    }
+
+    onEndContact (contact, self, other) {
+        if (other.node.name == "dough") {
+            this.node.getChildByName("mask").active = false;
+        }
     }
 
     update (dt) {
@@ -35,6 +47,7 @@ export default class oven extends cc.Component {
             pizza.setPosition(cc.v2(this.node.x-1.5, this.node.y-5));
             cc.find("Canvas").addChild(pizza);
             this.flag_for_paused = 0;
+            cc.audioEngine.setVolume(cc.audioEngine.playEffect(this.finishSound, false), 0.5);
         }
         if(this.isworking == true){
             if(this.anim.getAnimationState("oven").isPlaying == false && this.flag_for_paused == 0){

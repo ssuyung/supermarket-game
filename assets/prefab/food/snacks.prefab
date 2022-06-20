@@ -124,6 +124,12 @@
       "__id__": 1
     },
     "_enabled": true,
+    "dropSound": {
+      "__uuid__": "6e894c7f-adee-4ac9-a383-3c8ed8114bca"
+    },
+    "pickSound": {
+      "__uuid__": "fcadff83-06ed-45e1-b8a3-f20fc7b81a4d"
+    },
     "_id": ""
   },
   {

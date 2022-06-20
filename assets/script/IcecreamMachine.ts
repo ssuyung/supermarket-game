@@ -89,7 +89,7 @@ export default class NewClass extends cc.Component {
     update (dt) {
         let shelf1Node = this.shelf1.getComponent("Shelf");
         let shelf2Node = this.shelf2.getComponent("Shelf");
-        if(this.playerBeside && this.spaceDown && (!shelf1Node.occupied || !shelf2Node.occupied)){
+        if(this.playerBeside && this.spaceDown && (!shelf1Node.occupied || !shelf2Node.occupied)) {
             // console.log("doing icecream");
             // console.log(dt);
             this.progressTime += dt;

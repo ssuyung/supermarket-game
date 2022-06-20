@@ -65,6 +65,11 @@ export default class NewClass extends cc.Component {
     clear(){
         this.node.getChildByName("Amount").getComponent(cc.Label).string = String(0);
     }
+    equal() {
+        var num = Number(this.node.getChildByName("Amount").getComponent(cc.Label).string);
+        if (this.node.getParent().name == "Counter1") cc.find("Canvas/Counter/Counter1").getComponent("Counter").getPrice(num);
+        else if (this.node.getParent().name == "Counter2") cc.find("Canvas/Counter/Counter2").getComponent("Counter").getPrice(num);
+    }
 
     // LIFE-CYCLE CALLBACKS:
 
@@ -128,6 +133,11 @@ export default class NewClass extends cc.Component {
         btn_clear.component = "Calculator";
         btn_clear.handler = "clear";
         this.node.getChildByName("C").getComponent(cc.Button).clickEvents.push(btn_clear);
+        let btn_equal = new cc.Component.EventHandler();
+        btn_equal.target = this.node;
+        btn_equal.component = "Calculator";
+        btn_equal.handler = "equal";
+        this.node.getChildByName("Equal").getComponent(cc.Button).clickEvents.push(btn_equal);
     }
 
     // update (dt) {}
