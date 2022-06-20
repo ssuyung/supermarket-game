@@ -32,8 +32,8 @@ export default class NewClass extends cc.Component {
     onKeyDown(event){
         // console.log("food keydown");
         if((event.keyCode == cc.macro.KEY.enter && this.targetPlayer==this.player2) || (event.keyCode == cc.macro.KEY.e && this.targetPlayer==this.player1)){
-            console.log("food in ");
-            console.log(this.selected);
+            //console.log("food in ");
+            //console.log(this.selected);
             // if (this.keyDown) return;
             if (this.pickedUpbyCustomer) return;
             // put down on shelf
@@ -45,7 +45,7 @@ export default class NewClass extends cc.Component {
                     this.pickedUpbyPlayer = false;
                     // this.indexOfPlayerHolding = 0;
                     this.targetPlayer.getComponent("Player").holding = false;
-                    this.targetPlayer = null;
+                    //this.targetPlayer = null;
                     cc.audioEngine.setVolume(cc.audioEngine.playEffect(this.dropSound, false), cc.find("Canvas").getComponent("World").getSfxVolume());
                 }
             } 
@@ -81,6 +81,7 @@ export default class NewClass extends cc.Component {
                     }.bind(this), 100);
                 }
             }else if(this.pickedUpbyPlayer && this.touchOven){
+                cc.log("touchOven");
                 let oven = this.targetOven.node.getComponent("oven");
                 if(oven.isworking == false){
                     oven.isworking = true;
@@ -117,7 +118,7 @@ export default class NewClass extends cc.Component {
     }
     
     onBeginContact (contact, self, other) {
-        console.log(this.node.name + " touches " +other.node.name);
+        console.log(this.node.name + " touches " + other.node.name);
         if (other.tag == 1) { // tag1 : shelf
             this.touchShelf = true;
             this.targetShelf = other.node;
@@ -193,15 +194,17 @@ export default class NewClass extends cc.Component {
             this.targetShelf.getComponent("Shelf").occupied = false;
         }
         /* Modify-3 ycchu */
-        if(other.node.getComponent(cc.Collider).tag == 4){//tag4 = worktable 
+        // tag4 = worktable 
+        //if(other.node.getComponent(cc.Collider).tag == 4){
             if(other.node.name == "worktable" && this.node.name == "Flour"){
                 this.touchWorkTable = true;
                 this.targetWorkTable = other;
-            }else if(other.node.name == "oven" && this.node.name == "dough"){
+            }
+            if(other.node.name == "oven" && this.node.name == "dough"){
                 this.touchOven = true;
                 this.targetOven = other;
             }
-        }
+        //}
         /* Modify end */
         if(other.node.name == "Storage") {
             // cc.log("Storage touched");
@@ -221,15 +224,16 @@ export default class NewClass extends cc.Component {
             this.node.opacity = 255;
         }
         /* Modify-4 ycchu */
-        if(other.node.getComponent(cc.Collider).tag == 4){//tag4 = worktable 
+        //if(other.node.getComponent(cc.Collider).tag == 4){//tag4 = worktable 
             if(other.node.name == "worktable"){
                 this.touchWorkTable = false;
                 this.targetWorkTable = other;
-            }else if(other.node.name == "oven"){
+            }
+            if(other.node.name == "oven"){
                 this.touchOven = false;
                 this.targetOven = other;
             }
-        }
+        //}
         /* Modify end */
         if(other.node.name == "Storage") {
             this.touchStorage = false;
