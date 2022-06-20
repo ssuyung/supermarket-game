@@ -77,18 +77,18 @@ export default class NewClass extends cc.Component {
         // else if(pos.y >= 550) this.yMoveDir = -1;
         // this.xMoveDir = 0;
         if(this.state == 0){
-            if(pos.y<=320) this.state = 1;
+            if(pos.y<=250) this.state = 1;
         } else if(this.state == 1){
-            if(pos.x <= 60) {
-                this.state = 4;
-                this.scheduleOnce(()=>{
-                    this.state = 2;
-                }, 3)
-            }
+            if(pos.y >= 540) this.state = 2;
         } else if(this.state == 2){
-            if(pos.x >= 370) this.state = 3;
+            if(pos.x >= 750){
+               this.state = 4;
+               this.scheduleOnce(()=>{
+                    this.state = 3;
+               }, 4)
+            }
         } else if(this.state == 3){
-            if(pos.y >= 550) this.state = 0;
+            if(pos.x <= 390) this.state = 0;
         }
 
         // let newVelocity = cc.v2(100,100);
@@ -99,22 +99,21 @@ export default class NewClass extends cc.Component {
                 this.xMoveDir = 0;
                 break;
             case 1:
-                this.xMoveDir = -1;
-                this.yMoveDir = 0;
+                this.xMoveDir = 0;
+                this.yMoveDir = 1;
                 break;
             case 2:
                 this.xMoveDir = 1;
                 this.yMoveDir = 0;
                 break;
             case 3:
-                this.yMoveDir = 1;
-                this.xMoveDir = 0;
+                this.yMoveDir = 0;
+                this.xMoveDir = -1;
                 break;
             case 4:
                 this.xMoveDir = 0;
                 this.yMoveDir = 0;
                 break;
-            
         }
         // console.log(this.)
         // let velocity = this.node.getComponent(cc.RigidBody).linearVelocity;

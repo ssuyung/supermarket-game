@@ -118,7 +118,7 @@ export default class NewClass extends cc.Component {
     }
     
     onBeginContact (contact, self, other) {
-        console.log(this.node.name + " touches " +other.node.name);
+        // console.log(this.node.name + " touches " +other.node.name);
         if (other.tag == 1) { // tag1 : shelf
             this.touchShelf = true;
             this.targetShelf = other.node;
