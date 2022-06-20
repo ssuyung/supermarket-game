@@ -51,7 +51,7 @@ export default class NewClass extends cc.Component {
                 this.eDown = true;
                 break;
             case cc.macro.KEY.enter:
-                console.log("enter down");
+                // console.log("enter down");
                 this.enterDown = true;
                 break;
         }

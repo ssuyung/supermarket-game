@@ -23,6 +23,10 @@ export default class NewClass extends cc.Component {
     start () {
 
     }
-
+    onBeginContact(contact, self, other){
+        if(other.tag == 99){
+            other.node.destroy();
+        }
+    }
     // update (dt) {}
 }
