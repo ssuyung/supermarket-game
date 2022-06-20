@@ -11,7 +11,7 @@ declare const firebase: any;//Make IntelliSense happy.(optional)
 
 @ccclass
 export default class NewClass extends cc.Component {
-
+    
     start () {
         this.readInfo();
         let btn = new cc.Component.EventHandler();
@@ -22,7 +22,6 @@ export default class NewClass extends cc.Component {
     }
 
     readInfo() {
-
         firebase.database().ref('leaderBoard/').orderByChild("score").once("value", function (snapshot) {
             var name = []
             var score = []
@@ -31,7 +30,7 @@ export default class NewClass extends cc.Component {
                 name.push(key.val().name);
                 score.push(key.val().score);
             })
-            score.reverse(); 
+            score.reverse();
             name.reverse();
             for (let i = 1; i <= score.length; i++) {
                 cc.find("Canvas/leaderBoard/No." + String(i)).active = true;
@@ -41,9 +40,11 @@ export default class NewClass extends cc.Component {
         }).catch(function (error) {
             alert(error.message);
         });
+        cc.find("Canvas/leaderBoard").active = true;
     }
 
     handler(){
+        cc.find("Canvas/leaderBoard").active = false;
         cc.director.loadScene("menu");
     }
 
