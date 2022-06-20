@@ -51,8 +51,7 @@ export default class NewClass extends cc.Component {
         console.log(this.player);
         console.log(this.teamName.string);
         let user = firebase.auth().currentUser;
-        firebase.database().ref('userData/'+user.uid.toString())
-        .set({
+        firebase.database().ref('userData/'+user.uid.toString()).update({
             numberOfPlayers: this.player,
             teamName: this.teamName.string
         });
