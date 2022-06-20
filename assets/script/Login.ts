@@ -36,7 +36,7 @@ export default class NewClass extends cc.Component {
         firebase.auth().signInWithEmailAndPassword(email, password)
         .then((userCredential) => {
             alert("Success!");
-            cc.director.loadScene("Stage1");
+            cc.director.loadScene("Start");
         })
         .catch((error) => {
             var errorMessage = error.message;
@@ -63,7 +63,7 @@ export default class NewClass extends cc.Component {
                 score: 0,
             }).then(function () {
                 alert("Success!");
-                cc.director.loadScene("menu");
+                cc.director.loadScene("Start");
             }).catch(function (error) {
                 alert(error.message);
             });
