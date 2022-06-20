@@ -68,7 +68,7 @@ export default class NewClass extends cc.Component {
 
         if (this.customerDemand < 0.4) this.customerMove1();
         else if (this.customerDemand >= 0.4 && this.customerDemand < 0.6) this.customerMove2();
-        else if (this.customerDemand >= 0.6 && this.customerDemand < 0.8) this.customerMove_3();
+        else if (this.customerDemand >= 0.6 && this.customerDemand < 0.8) this.customerMove3();
         else if (this.customerDemand >= 0.8) this.customerMove4();
     }
 
@@ -80,7 +80,7 @@ export default class NewClass extends cc.Component {
 
         if (this.customerDemand < 0.4) this.customerMove1Update();
         else if (this.customerDemand >= 0.4 && this.customerDemand < 0.6) this.customerMove2Update();
-        //else if (this.customerDemand >= 0.6 && this.customerDemand < 0.8) this.customerMove_3();
+        else if (this.customerDemand >= 0.6 && this.customerDemand < 0.8) this.customerMove3Update();
         else if (this.customerDemand >= 0.8) this.customerMove4Update();
 
         this.checkOutUpdate();
@@ -113,8 +113,7 @@ export default class NewClass extends cc.Component {
                 }
                 this.idleFrame = this.idleFrontFrame;
             }
-        }
-        
+        } 
     }
 
     // set collider tag to 10, 11, 12 or 13 and instantiate a dialog according to what this customer wants
@@ -239,10 +238,11 @@ export default class NewClass extends cc.Component {
         }
     }
 
-    // instantiate a pizza dialog
-    // walk back and forth near the bakery
-    customerMove_3()
+    // set collider tag to 15 instantiate a dialog
+    // walk back and forth in front of the bakery
+    customerMove3()
     {
+        this.node.getComponent(cc.Collider).tag = 15;
         this.scheduleOnce(() => {
             var pizzaDialog = cc.instantiate(this.pizzaDialogPrefabs);
             this.node.addChild(pizzaDialog);
@@ -251,11 +251,11 @@ export default class NewClass extends cc.Component {
             }, 5);
         }, 0);
 
-        var sequence1 = cc.sequence(cc.moveBy(6.2, 0, -310), cc.moveBy(3, -150, 0));
+        var sequence1 = cc.sequence(cc.moveBy(6.2, 0, -310), cc.moveBy(3.8, -190, 0));
         this.action1 = cc.repeat(sequence1, 1);
 
-        var sequence2 = cc.sequence(cc.moveBy(1.4, -70, 0), cc.moveBy(0.02, 0, 1), cc.moveBy(4, 0, 0), cc.moveBy(0.02, 0, -1), 
-        cc.moveBy(2.8, 140, 0), cc.moveBy(0.02, 0, 1), cc.moveBy(4, 0, 0), cc.moveBy(0.02, 0, -1), cc.moveBy(1.4, -70, 0));
+        var sequence2 = cc.sequence(cc.moveBy(1.8, -90, 0), cc.moveBy(0.02, 0, 1), cc.moveBy(1, 0, 0), cc.moveBy(0.02, 0, -1), 
+        cc.moveBy(3.8, 180, 0), cc.moveBy(0.02, 0, 1), cc.moveBy(1, 0, 0), cc.moveBy(0.02, 0, -1), cc.moveBy(1.8, -90, 0));
         this.action2 = cc.repeatForever(sequence2);
 
         this.scheduleOnce(() => {
@@ -263,9 +263,23 @@ export default class NewClass extends cc.Component {
         }, 0);
         this.scheduleOnce(() => {
             this.node.runAction(this.action2);
-        }, 9.3);
+        }, 10);
     }
 
+    // when this customer wants pizza and their demand is met (tag set to 20)
+    // they will go to the checkout and leave
+    customerMove3Update() {
+        if (this.node.getComponent(cc.Collider).tag == 20 && !this.toCheckOut && this.node.position.x > -240) {
+            this.node.stopAllActions();
+            var sequence = cc.sequence(cc.moveBy(2, 100, 0), cc.moveBy(2.6, 0, -130), cc.moveBy(1, 50, 0),cc.moveTo(1.5, -26, -212), cc.moveBy(0.02, 0, -1), 
+            cc.callFunc(() => {this.atWaitingPoint = true}, this));
+            let action = cc.repeat(sequence, 1);
+            this.scheduleOnce(() => {
+                this.node.runAction(action);
+            }, 0);
+            this.toCheckOut = true;
+        }
+    }
 
     // set collider tag to 17 or 18 and instantiate a dialog according to what this customer wants
     // customer might want chips or snack

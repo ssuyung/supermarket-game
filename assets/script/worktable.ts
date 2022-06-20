@@ -13,16 +13,20 @@ export default class worktable extends cc.Component {
     @property(cc.Prefab)
     doughprefab: cc.Prefab = null;
 
-    private player: cc.Node = null;
+    private player1: cc.Node = null;
+    private player2: cc.Node = null;
 
     private isworking = false;
     private contagwithplayer = false;
+    private contactWithPlayer1 = false;
+    private contactWithPlayer2 = false;
     private anim = null;
     private flag_for_paused = 0;
     //When animation isn't playing, there are 2 possible cases. 1 means stop, 0 not play yet.
 
     start () {
-        this.player = cc.find("Canvas/Player");
+        //this.player1 = cc.find("Canvas/Player1");
+        //this.player2 = cc.find("Canvas/Player2");
         this.anim = this.getComponentInChildren(cc.Animation);
     }
 
@@ -34,9 +38,28 @@ export default class worktable extends cc.Component {
 
     onEndContact (contact, self, other) {
         if (other.node.name == "Flour") {
+            console.log("worktable touched flour");
             this.node.getChildByName("mask").active = false;
         }
+        if(other.tag == 6){
+            if(other.node.name == "Player1") this.contactWithPlayer1 = true;
+            else if(other.node.name == "Player2") this.contactWithPlayer2 = true;
+        }
+        if (other.node.name == "Player" && !this.contagwithplayer) {
+            this.contagwithplayer = true;
+        }
     }
+
+    // onEndContact(contact, self, other){
+    //     if(other.tag == 6){
+    //         if(other.node.name == "Player1") this.contactWithPlayer1 = false;
+    //         else if(other.node.name == "Player2") this.contactWithPlayer2 = false;
+    //     }
+    //     if (other.node.name == "Player" && this.contagwithplayer) {
+    //         this.contagwithplayer = false;
+            
+    //     }
+    // }
 
     update (dt) {
         if(this.anim.getAnimationState("time_icon").isPlaying == false && this.flag_for_paused == 1){
