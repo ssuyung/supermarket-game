@@ -47,7 +47,7 @@ export default class oven extends cc.Component {
             pizza.setPosition(cc.v2(this.node.x-1.5, this.node.y-5));
             cc.find("Canvas").addChild(pizza);
             this.flag_for_paused = 0;
-            cc.audioEngine.setVolume(cc.audioEngine.playEffect(this.finishSound, false), 0.5);
+            cc.audioEngine.setVolume(cc.audioEngine.playEffect(this.finishSound, false), cc.find("Canvas").getComponent("World").getSfxVolume());
         }
         if(this.isworking == true){
             if(this.anim.getAnimationState("oven").isPlaying == false && this.flag_for_paused == 0){

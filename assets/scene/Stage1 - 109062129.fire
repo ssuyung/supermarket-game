@@ -7033,7 +7033,7 @@
         "__id__": 214
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 245
@@ -7288,9 +7288,7 @@
     "root": {
       "__id__": 205
     },
-    "asset": {
-      "__uuid__": "3396705d-b2d4-4623-b09f-6358f435002f"
-    },
+    "asset": null,
     "fileId": "73oDW4k99AhIJB1AJXAjyc",
     "sync": false
   },
@@ -7358,9 +7356,7 @@
     "root": {
       "__id__": 205
     },
-    "asset": {
-      "__uuid__": "3396705d-b2d4-4623-b09f-6358f435002f"
-    },
+    "asset": null,
     "fileId": "c1et2tgNxO762Mu/Xw4iPY",
     "sync": false
   },
@@ -7616,9 +7612,7 @@
     "root": {
       "__id__": 205
     },
-    "asset": {
-      "__uuid__": "3396705d-b2d4-4623-b09f-6358f435002f"
-    },
+    "asset": null,
     "fileId": "8bvw+4YjRF3Y/52Ueu8QPl",
     "sync": false
   },
@@ -7828,9 +7822,7 @@
     "root": {
       "__id__": 205
     },
-    "asset": {
-      "__uuid__": "3396705d-b2d4-4623-b09f-6358f435002f"
-    },
+    "asset": null,
     "fileId": "bcfMr5sG5ADZwhDltIFeYv",
     "sync": false
   },
@@ -7959,9 +7951,7 @@
     "root": {
       "__id__": 205
     },
-    "asset": {
-      "__uuid__": "3396705d-b2d4-4623-b09f-6358f435002f"
-    },
+    "asset": null,
     "fileId": "28hy3j9T1PnLqe18Kx/HC8",
     "sync": false
   },
@@ -7970,9 +7960,7 @@
     "root": {
       "__id__": 205
     },
-    "asset": {
-      "__uuid__": "3396705d-b2d4-4623-b09f-6358f435002f"
-    },
+    "asset": null,
     "fileId": "f1gnWC+y5LOIkZs4zg1hvr",
     "sync": false
   },
@@ -8040,9 +8028,7 @@
     "root": {
       "__id__": 205
     },
-    "asset": {
-      "__uuid__": "3396705d-b2d4-4623-b09f-6358f435002f"
-    },
+    "asset": null,
     "fileId": "2cSFAksq9OML1z3XNSgTkI",
     "sync": false
   },
@@ -8248,9 +8234,7 @@
     "root": {
       "__id__": 205
     },
-    "asset": {
-      "__uuid__": "3396705d-b2d4-4623-b09f-6358f435002f"
-    },
+    "asset": null,
     "fileId": "19A4Q4xtFEx55R7SX63NWO",
     "sync": false
   },
@@ -8355,9 +8339,7 @@
     "root": {
       "__id__": 205
     },
-    "asset": {
-      "__uuid__": "3396705d-b2d4-4623-b09f-6358f435002f"
-    },
+    "asset": null,
     "fileId": "56UzgUY4FCnKUXgmTjHZhL",
     "sync": false
   },
@@ -8448,9 +8430,7 @@
     "root": {
       "__id__": 205
     },
-    "asset": {
-      "__uuid__": "3396705d-b2d4-4623-b09f-6358f435002f"
-    },
+    "asset": null,
     "fileId": "55YzsM9ktHZr5tmmBb1yYS",
     "sync": false
   },
@@ -8491,9 +8471,7 @@
     "root": {
       "__id__": 205
     },
-    "asset": {
-      "__uuid__": "3396705d-b2d4-4623-b09f-6358f435002f"
-    },
+    "asset": null,
     "fileId": "62ZptJf+9H/4mkHND6EHVs",
     "sync": false
   },
@@ -8597,9 +8575,7 @@
     "root": {
       "__id__": 205
     },
-    "asset": {
-      "__uuid__": "3396705d-b2d4-4623-b09f-6358f435002f"
-    },
+    "asset": null,
     "fileId": "",
     "sync": false
   },
@@ -9684,9 +9660,7 @@
       "__id__": 279
     },
     "_enabled": true,
-    "item": {
-      "__uuid__": "35589c82-f634-48b3-91a9-e4c1757f2a6d"
-    },
+    "item": null,
     "_id": "499qShPadHuIbxskvJ+5OP"
   },
   {
@@ -23221,6 +23195,9 @@
     },
     "settingsPanel": {
       "__uuid__": "146a2c81-c72d-495f-941b-3d5d13a91c77"
+    },
+    "Gameover": {
+      "__uuid__": "1cbf6caf-d52d-45ee-8e08-da008750ab9e"
     },
     "PlayerNode": {
       "__id__": 27
