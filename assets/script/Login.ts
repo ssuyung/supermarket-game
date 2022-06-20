@@ -49,14 +49,7 @@ export default class NewClass extends cc.Component {
         let password = cc.find("Canvas/Password").getComponent(cc.EditBox).string;
         firebase.auth().createUserWithEmailAndPassword(email, password).then(function () {
             const uid = firebase.auth().currentUser.uid;
-            firebase.database().ref('leaderBoard/' + uid).set({
-                teamName:"null",
-                score: 0,
-            });
-            firebase.database().ref('leaderBoard2/' + uid).set({
-                teamName:"null",
-                score: 0,
-            });
+            
             firebase.database().ref("userData/" + uid).set({
                 teamName:"null",
                 numberOfPlayer: 0,

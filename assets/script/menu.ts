@@ -56,7 +56,7 @@ export default class NewClass extends cc.Component {
             teamName: this.teamName.string
         });
         //cc.director.loadScene("ssuyung's");
-        cc.director.loadScene("Stage");
+        cc.director.loadScene("Game");
         // if(this.mode==0 && this.player==1){
         //     cc.director.loadScene("Stage1 - 109062128");
         // }else if(this.mode==0 && this.player==2){

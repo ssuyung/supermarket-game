@@ -18,7 +18,7 @@ export default class NewClass extends cc.Component {
     @property(cc.Node)
     Player2Node: cc.Node = null;
     @property
-    number: number = 1;
+    playerNumber: number = 1;
     // LIFE-CYCLE CALLBACKS:
 
     private timer: number = 180;
@@ -53,10 +53,14 @@ export default class NewClass extends cc.Component {
         firebase.database().ref('userData/'+user.uid.toString()).once('value')
         .then((snapshot)=>{
             console.log(snapshot.val().numberOfPlayers, snapshot.val().teamName);
-            handle.number = snapshot.val().numberOfPlayers;
-            if(handle.number == 1) handle.Player2Node.setPosition(cc.v2(-20000,-20000));
+            handle.playerNumber = snapshot.val().numberOfPlayers;
+            if(handle.playerNumber == 1) handle.Player2Node.setPosition(cc.v2(-20000,-20000));
         })
         // if(this.number == 1) this.Player2Node.setPosition(cc.v2(-20000,-20000));
+    }
+
+    getPlayerNumber() {
+        return this.playerNumber;
     }
 
     onKeyDown(event){

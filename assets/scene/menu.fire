@@ -5000,7 +5000,7 @@
       "__id__": 97
     },
     "_N$inputFlag": 5,
-    "_N$inputMode": 1,
+    "_N$inputMode": 6,
     "_N$stayOnTop": false,
     "_id": "a3L6ox9HdPIJOTTUZZK7jo"
   },
@@ -5063,7 +5063,7 @@
       "__id__": 31
     },
     "teamName": {
-      "__id__": 89
+      "__id__": 100
     },
     "_id": "28/BrtroxLd4czuSDZkLgA"
   }

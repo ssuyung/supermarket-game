@@ -361,7 +361,7 @@ export default class NewClass extends cc.Component {
         }
         else if (this.node.getComponent(cc.Collider).tag == 20 && !this.toCheckOut && atPoint2) {
             this.node.stopAllActions();
-            var sequence = cc.sequence(cc.moveBy(2, -100, 0), cc.moveBy(1, 0, 50), cc.moveBy(2, -100, 0), cc.moveTo(1.5, -26, -212), cc.moveBy(0.02, 0, -1), 
+            var sequence = cc.sequence(cc.moveBy(1.6, -80, 0), cc.moveBy(1, 0, 50), cc.moveBy(2.4, -120, 0), cc.moveTo(1.5, -26, -212), cc.moveBy(0.02, 0, -1), 
             cc.callFunc(() => {this.atWaitingPoint = true}, this));
             let action = cc.repeat(sequence, 1);
             this.scheduleOnce(() => {
@@ -432,7 +432,7 @@ export default class NewClass extends cc.Component {
             Dialog.setPosition(this.node.x, this.node.y + 40);
             this.scheduleOnce(() => {
                 Dialog.destroy();
-            }, 5);
+            }, 3);
         }
         // customer feels nothing
         else if (this.timeSatisfaction == 1) {
@@ -441,7 +441,7 @@ export default class NewClass extends cc.Component {
             Dialog.setPosition(this.node.x, this.node.y + 40);
             this.scheduleOnce(() => {
                 Dialog.destroy();
-            }, 5);
+            }, 3);
         }
         // customer displeased
         else if (this.timeSatisfaction == 0) {
@@ -450,7 +450,7 @@ export default class NewClass extends cc.Component {
             Dialog.setPosition(this.node.x, this.node.y + 40);
             this.scheduleOnce(() => {
                 Dialog.destroy();
-            }, 5);
+            }, 3);
         }
     }
 
