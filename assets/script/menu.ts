@@ -7,6 +7,8 @@
 
 const {ccclass, property} = cc._decorator;
 
+declare const firebase: any;//Make IntelliSense happy.(optional)
+
 @ccclass
 export default class NewClass extends cc.Component {
 
