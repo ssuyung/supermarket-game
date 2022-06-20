@@ -48,7 +48,7 @@ export default class NewClass extends cc.Component {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
         this.Player1 = this.Player1Node.getComponent("Player");
         this.Player2 = this.Player2Node.getComponent("Player");
-        if(this.number == 1) this.Player2Node.setPosition(cc.v2(-200,-200));
+        if(this.number == 1) this.Player2Node.setPosition(cc.v2(-20000,-20000));
     }
 
     onKeyDown(event){
