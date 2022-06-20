@@ -17,7 +17,7 @@ export default class NewClass extends cc.Component {
     idle_down: cc.SpriteFrame = null;
 
     @property
-    text: string = 'hello';
+    text: string = 'Adam';
     // @property
     // name: string = "name";
     @property()
@@ -61,22 +61,22 @@ export default class NewClass extends cc.Component {
             this.anim.stop();
             this.getComponent(cc.Sprite).spriteFrame = this.idleFrame;
         } else if(this.xMoveDir != 0){
-            if(!this.anim.getAnimationState(this.text+"XWalk").isPlaying) {
-                this.anim.play(this.text+"XWalk");
+            if(!this.anim.getAnimationState("AdamXWalk").isPlaying) {
+                this.anim.play("AdamXWalk");
             }
             this.idleFrame = this.idle;
         } else if(this.yMoveDir != 0){
             if(this.yMoveDir==1){
                 // console.log("up");
-                if(!this.anim.getAnimationState(this.text+"UpWalk").isPlaying) {
-                    this.anim.play(this.text+"UpWalk");
+                if(!this.anim.getAnimationState("AdamUpWalk").isPlaying) {
+                    this.anim.play("AdamUpWalk");
                 }
                 this.idleFrame = this.idle_up;
             }
             else if(this.yMoveDir == -1){
                 // console.log("down");
-                if(!this.anim.getAnimationState(this.text+"DownWalk").isPlaying) {
-                    this.anim.play(this.text+"DownWalk");
+                if(!this.anim.getAnimationState("AdamDownWalk").isPlaying) {
+                    this.anim.play("AdamDownWalk");
                 }
                 this.idleFrame = this.idle_down;
             }
