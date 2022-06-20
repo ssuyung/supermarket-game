@@ -22,7 +22,7 @@ export default class NewClass extends cc.Component {
     gangster1Prefabs : cc.Prefab = null;
 
     // time, customer type
-    customerSpawn : number[][] = [ [  0,  6],
+    customerSpawn : number[][] = [ [  0,  1],
                                    [  3,  2],
                                    [  6,  3],
                                    [  9,  4],

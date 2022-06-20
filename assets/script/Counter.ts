@@ -7,6 +7,11 @@ export default class NewClass extends cc.Component {
 
     private customer : cc.Node = null;
 
+    @property(cc.Prefab)
+    incomePrefab : cc.Prefab = null;
+    @property({type:cc.AudioClip})
+    coinSound: cc.AudioClip = null;
+
     private PlayeratCounter : boolean = false;
     private CustomeratCounter : boolean = false;
     private CustomerPaid : boolean = false;
@@ -36,11 +41,20 @@ export default class NewClass extends cc.Component {
         cc.log(chargeMoney);
         if (this.PlayeratCounter && this.CustomeratCounter && !this.CustomerPaid) {
             let curMoney = parseInt(cc.find("Canvas/Main Camera/Money_bar/money").getComponent(cc.Label).string);
-            cc.log("this customer paid " + this.customer.getComponent("Customer").getCustomerPrice(chargeMoney).toString());
-            curMoney += this.customer.getComponent("Customer").getCustomerPrice(chargeMoney);
-            cc.find("Canvas/Main Camera/Money_bar/money").getComponent(cc.Label).string = curMoney.toString();
+            let finalPrice = this.customer.getComponent("Customer").getCustomerPrice(chargeMoney);
+            //cc.log("this customer paid " + this.customer.getComponent("Customer").getCustomerPrice(chargeMoney).toString());
+            //curMoney += this.customer.getComponent("Customer").getCustomerPrice(chargeMoney);
             this.CustomerPaid = true;
             this.customer.getComponent(cc.Collider).tag = 21;
+            cc.audioEngine.setVolume(cc.audioEngine.playEffect(this.coinSound, false), cc.find("Canvas").getComponent("World").getSfxVolume());
+            var income = cc.instantiate(this.incomePrefab);
+            income.getComponent(cc.Label).string = "+" + finalPrice.toString();
+            cc.find("Canvas").addChild(income);
+            this.scheduleOnce(() => {
+                income.destroy();
+                curMoney += finalPrice;
+                cc.find("Canvas/Main Camera/Money_bar/money").getComponent(cc.Label).string = curMoney.toString();
+            }, 1);
         }
     }
 

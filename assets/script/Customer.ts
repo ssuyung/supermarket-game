@@ -27,7 +27,7 @@ export default class NewClass extends cc.Component {
     private satisfaction : number = 1;
     private timeSatisfaction : number = 1;
     private waitingTime : number = 0;
-    private normalThreshold : number = 30;
+    private normalThreshold : number = 40;
     private angryThreshold : number = 60;
     private acceptablePrice : number = 0;
     private finalPrice : number = 0;
