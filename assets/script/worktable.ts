@@ -67,6 +67,8 @@ export default class worktable extends cc.Component {
             var dough = cc.instantiate(this.doughprefab);
             dough.setPosition(cc.v2(this.node.x, this.node.y+10));
             cc.find("Canvas").addChild(dough);
+            dough.active = false;
+            this.scheduleOnce(()=>{dough.active = true;}, 0.1);
             this.flag_for_paused = 0;
         }
         if(this.isworking == true){
