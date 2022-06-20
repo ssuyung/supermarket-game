@@ -65,6 +65,15 @@ export default class NewClass extends cc.Component {
     @property(cc.Prefab)
     snackDialogPrefabs : cc.Prefab = null;
 
+    @property(cc.Prefab)
+    angryDialogPrefabs : cc.Prefab = null;
+
+    @property(cc.Prefab)
+    normalDialogPrefabs : cc.Prefab = null;
+
+    @property(cc.Prefab)
+    happyDialogPrefabs : cc.Prefab = null;
+
     // onLoad () {}
 
     start () {
@@ -93,6 +102,8 @@ export default class NewClass extends cc.Component {
         else if (this.customerDemand >= 0.8) this.customerMove4Update();
 
         this.checkOutUpdate();
+
+        this.satisfactionUpdate(dt);
     }
 
     playAnimation(){
@@ -385,12 +396,16 @@ export default class NewClass extends cc.Component {
         if (this.node.getComponent(cc.Collider).tag == 21 && !this.toExit) {
             this.toExit = true;
             if (this.availCounter == 1) {
-                this.counter.getComponent("CounterMgr").counter_1_occupied = false;
-                var sequence = cc.sequence(cc.moveBy(0.6, 30, 0), cc.moveBy(4, 0, -200), cc.callFunc(() => {this.node.destroy()}, this));
+                //this.counter.getComponent("CounterMgr").counter_1_occupied = false;
+                var sequence = cc.sequence(cc.moveBy(3, 0, 0),
+                cc.callFunc(() => {this.counter.getComponent("CounterMgr").counter_1_occupied = false;}, this),
+                cc.moveBy(0.6, 30, 0), cc.moveBy(4, 0, -200), cc.callFunc(() => {this.node.destroy();}, this));
             }
             else if (this.availCounter == 2) {
-                this.counter.getComponent("CounterMgr").counter_2_occupied = false;
-                var sequence = cc.sequence(cc.moveBy(0.6, -30, 0), cc.moveBy(4, 0, -200), cc.callFunc(() => {this.node.destroy()}, this));
+                //this.counter.getComponent("CounterMgr").counter_2_occupied = false;
+                var sequence = cc.sequence(cc.moveBy(3, 0, 0),
+                cc.callFunc(() => {this.counter.getComponent("CounterMgr").counter_2_occupied = false;}, this),
+                cc.moveBy(0.6, -30, 0), cc.moveBy(4, 0, -200), cc.callFunc(() => {this.node.destroy()}, this));
             }
             let action = cc.repeat(sequence, 1);
             this.node.runAction(action);
@@ -409,6 +424,36 @@ export default class NewClass extends cc.Component {
         return this.timeSatisfaction;
     }
 
+    showDialog() {
+        // customer happy
+        if (this.timeSatisfaction == 2) {
+            var Dialog = cc.instantiate(this.happyDialogPrefabs);
+            cc.find('Canvas').addChild(Dialog);
+            Dialog.setPosition(this.node.x, this.node.y + 40);
+            this.scheduleOnce(() => {
+                Dialog.destroy();
+            }, 5);
+        }
+        // customer feels nothing
+        else if (this.timeSatisfaction == 1) {
+            var Dialog = cc.instantiate(this.normalDialogPrefabs);
+            cc.find('Canvas').addChild(Dialog);
+            Dialog.setPosition(this.node.x, this.node.y + 40);
+            this.scheduleOnce(() => {
+                Dialog.destroy();
+            }, 5);
+        }
+        // customer displeased
+        else if (this.timeSatisfaction == 0) {
+            var Dialog = cc.instantiate(this.angryDialogPrefabs);
+            cc.find('Canvas').addChild(Dialog);
+            Dialog.setPosition(this.node.x, this.node.y + 40);
+            this.scheduleOnce(() => {
+                Dialog.destroy();
+            }, 5);
+        }
+    }
+
     getCustomerPrice(listedPrice) {
         if (this.timeSatisfaction == 2) this.acceptablePrice = 60;
         else if (this.timeSatisfaction == 1) this.acceptablePrice = 40;
@@ -417,9 +462,24 @@ export default class NewClass extends cc.Component {
         if (listedPrice > this.acceptablePrice) this.satisfaction = 0; // customer displeased
         else this.satisfaction = 1; // customer happy
 
-        if (this.satisfaction == 0) this.finalPrice = Math.floor(
-            this.acceptablePrice * Math.max(0.5, (1 - ((listedPrice - this.acceptablePrice) / this.acceptablePrice))));
-        else if (this.satisfaction == 1) this.finalPrice = listedPrice;
+        if (this.satisfaction == 0) {
+            this.finalPrice = Math.floor(this.acceptablePrice * Math.max(0.5, (1 - ((listedPrice - this.acceptablePrice) / this.acceptablePrice))));
+            var Dialog = cc.instantiate(this.angryDialogPrefabs);
+            cc.find('Canvas').addChild(Dialog);
+            Dialog.setPosition(this.node.x, this.node.y + 40);
+            this.scheduleOnce(() => {
+                Dialog.destroy();
+            }, 3);
+        }
+        else if (this.satisfaction == 1) {
+            this.finalPrice = listedPrice;
+            var Dialog = cc.instantiate(this.happyDialogPrefabs);
+            cc.find('Canvas').addChild(Dialog);
+            Dialog.setPosition(this.node.x, this.node.y + 40);
+            this.scheduleOnce(() => {
+                Dialog.destroy();
+            }, 3);
+        }
 
         return this.finalPrice;
     }

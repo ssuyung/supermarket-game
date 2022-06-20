@@ -48,7 +48,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 32,
+      "width": 28,
       "height": 46
     },
     "_anchorPoint": {
@@ -101,7 +101,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "4168f987-4cc8-44ac-8003-1e516f78eee3"
+      "__uuid__": "f5a241be-c6ca-434e-9b7e-2ef3ad72b14c"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -115,7 +115,7 @@
     "_fillRange": 0,
     "_isTrimmedMode": true,
     "_atlas": {
-      "__uuid__": "bfecf7ff-cd29-4ba8-9f21-16b42dbe026a"
+      "__uuid__": "6865b60f-7b82-4ab8-a608-544d18deb9f9"
     },
     "_id": ""
   },
@@ -155,59 +155,16 @@
     "_defaultClip": null,
     "_clips": [
       {
-        "__uuid__": "fadef7f4-62ad-4d7f-a6b5-882e8040982b"
+        "__uuid__": "cdf77f7a-4881-4a3d-a5fe-d63b8e67a1da"
       },
       {
-        "__uuid__": "51f27e4d-efaf-4068-b2c8-c89d01c681b3"
+        "__uuid__": "8d353be1-8de1-4361-99ff-90b43a014f21"
       },
       {
-        "__uuid__": "abf3e832-390e-436a-a360-4d80b93dea73"
+        "__uuid__": "15d8c7e3-f7d7-4222-8eab-c0038d374cb6"
       }
     ],
     "playOnLoad": false,
-    "_id": ""
-  },
-  {
-    "__type__": "147cbkZxHdFv5gF3DHwiDKM",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "idleSideFrame": {
-      "__uuid__": "cf567fa3-3284-4f11-a6ba-3b08fea96003"
-    },
-    "idleFrontFrame": {
-      "__uuid__": "14356b73-8040-4a0a-a2c6-00cc056d6813"
-    },
-    "idleBackFrame": {
-      "__uuid__": "68362461-f4d1-41a4-848e-47ceb3f03db5"
-    },
-    "pizzaDialogPrefabs": {
-      "__uuid__": "429206b2-677c-437b-966c-c89f7b7ee2f8"
-    },
-    "iceCreamDialogPrefabs": {
-      "__uuid__": "0b910143-91ec-4850-9de1-fb0403c2e09b"
-    },
-    "appleDialogPrefabs": {
-      "__uuid__": "d7cf9f87-e94d-4094-aa86-da80c1e873c9"
-    },
-    "bananaDialogPrefabs": {
-      "__uuid__": "435cba98-bc40-4ef0-b3b7-af006431f66e"
-    },
-    "pineappleDialogPrefabs": {
-      "__uuid__": "63890188-4af4-47fe-bda8-30684f76bfbb"
-    },
-    "watermelonDialogPrefabs": {
-      "__uuid__": "7eb61472-4efc-4221-8424-4bc5129c2f14"
-    },
-    "chipsDialogPrefabs": {
-      "__uuid__": "2d38f324-e683-496f-8735-38ed59f26e89"
-    },
-    "snackDialogPrefabs": {
-      "__uuid__": "33f0b081-4cce-4d78-a986-872262276ec6"
-    },
     "_id": ""
   },
   {
@@ -233,6 +190,59 @@
       "__type__": "cc.Size",
       "width": 16,
       "height": 44
+    },
+    "_id": ""
+  },
+  {
+    "__type__": "9a4175I5lJDWLBVMN2nEj82",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "characterName": "Bouncer",
+    "idleSideFrame": {
+      "__uuid__": "f5a241be-c6ca-434e-9b7e-2ef3ad72b14c"
+    },
+    "idleFrontFrame": {
+      "__uuid__": "f673db51-da00-404f-a384-67c6f8d377d0"
+    },
+    "idleBackFrame": {
+      "__uuid__": "8f5bc018-b96e-4792-a73a-fe46264cc3ed"
+    },
+    "pizzaDialogPrefabs": {
+      "__uuid__": "429206b2-677c-437b-966c-c89f7b7ee2f8"
+    },
+    "iceCreamDialogPrefabs": {
+      "__uuid__": "0b910143-91ec-4850-9de1-fb0403c2e09b"
+    },
+    "appleDialogPrefabs": {
+      "__uuid__": "d7cf9f87-e94d-4094-aa86-da80c1e873c9"
+    },
+    "bananaDialogPrefabs": {
+      "__uuid__": "435cba98-bc40-4ef0-b3b7-af006431f66e"
+    },
+    "pineappleDialogPrefabs": {
+      "__uuid__": "63890188-4af4-47fe-bda8-30684f76bfbb"
+    },
+    "watermelonDialogPrefabs": {
+      "__uuid__": "7eb61472-4efc-4221-8424-4bc5129c2f14"
+    },
+    "chipsDialogPrefabs": {
+      "__uuid__": "2d38f324-e683-496f-8735-38ed59f26e89"
+    },
+    "snackDialogPrefabs": {
+      "__uuid__": "33f0b081-4cce-4d78-a986-872262276ec6"
+    },
+    "angryDialogPrefabs": {
+      "__uuid__": "8e9b560e-2a0f-4881-98b7-575701a2e9d6"
+    },
+    "normalDialogPrefabs": {
+      "__uuid__": "e7f05d3c-4ffe-4368-b86b-082fb493fa34"
+    },
+    "happyDialogPrefabs": {
+      "__uuid__": "2361ccb1-6182-4f4d-bc30-68d4b81207ff"
     },
     "_id": ""
   },

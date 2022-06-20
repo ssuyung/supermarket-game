@@ -10,6 +10,7 @@ export default class NewClass extends cc.Component {
     private PlayeratCounter : boolean = false;
     private CustomeratCounter : boolean = false;
     private CustomerPaid : boolean = false;
+    private dialogShown : boolean = false;
     private enterDown : boolean = false;
 
     onLoad () {
@@ -21,7 +22,15 @@ export default class NewClass extends cc.Component {
 
     }
 
-    // update (dt) {}
+    update (dt) {
+        if (this.PlayeratCounter && this.CustomeratCounter && !this.dialogShown) {
+            this.dialogShown = true;
+            this.customer.getComponent("Customer").showDialog();
+        }
+        if (!this.CustomeratCounter) {
+            this.dialogShown = false;
+        }
+    }
 
     getPrice(chargeMoney) {
         cc.log(chargeMoney);

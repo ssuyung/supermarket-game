@@ -209,6 +209,15 @@
     "snackDialogPrefabs": {
       "__uuid__": "33f0b081-4cce-4d78-a986-872262276ec6"
     },
+    "angryDialogPrefabs": {
+      "__uuid__": "8e9b560e-2a0f-4881-98b7-575701a2e9d6"
+    },
+    "normalDialogPrefabs": {
+      "__uuid__": "e7f05d3c-4ffe-4368-b86b-082fb493fa34"
+    },
+    "happyDialogPrefabs": {
+      "__uuid__": "2361ccb1-6182-4f4d-bc30-68d4b81207ff"
+    },
     "_id": ""
   },
   {

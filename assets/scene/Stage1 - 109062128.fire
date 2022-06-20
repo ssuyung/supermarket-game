@@ -6926,7 +6926,16 @@
       "__uuid__": "d920fe4f-e697-49c6-bc43-a449bf003371"
     },
     "customer3Prefabs": {
-      "__uuid__": "637662fc-61fc-4e82-b21d-de5e3f911773"
+      "__uuid__": "2ddb83d2-9ddb-4a42-8c1b-2b1085c41f4a"
+    },
+    "customer4Prefabs": {
+      "__uuid__": "e0df33ea-da9f-4f11-b35d-dccbc865e351"
+    },
+    "customer5Prefabs": {
+      "__uuid__": "ba3c9817-391a-4496-8641-f9eaab2fc7ff"
+    },
+    "gangster1Prefabs": {
+      "__uuid__": "dca4ba84-cba0-4d57-b2a0-d614a0427f30"
     },
     "_id": "c39lhtigxPLZALfGmWQSM0"
   },

@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "happy_dialog",
+    "_name": "normal_dialog",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -37,7 +37,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 26,
-      "height": 30
+      "height": 32
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -89,7 +89,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "eb8e133d-67bc-48e5-bfd7-9d7927e290e8"
+      "__uuid__": "2debaf34-6178-4005-a27f-ab5c6b18267d"
     },
     "_type": 0,
     "_sizeMode": 1,

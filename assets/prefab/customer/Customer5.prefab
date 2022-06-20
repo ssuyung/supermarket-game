@@ -48,8 +48,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 30,
-      "height": 52
+      "width": 32,
+      "height": 46
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -101,7 +101,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "61b1e664-fa21-4dd6-8240-8f533e259d38"
+      "__uuid__": "05881382-095d-400c-a949-7fec8924f08f"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -115,7 +115,7 @@
     "_fillRange": 0,
     "_isTrimmedMode": true,
     "_atlas": {
-      "__uuid__": "23cc97dd-7aa9-4e68-94f2-2b78e6811f4f"
+      "__uuid__": "1aab0c49-1084-48b5-a009-447855653526"
     },
     "_id": ""
   },
@@ -127,8 +127,8 @@
       "__id__": 1
     },
     "_enabled": true,
-    "_type": 0,
-    "_allowSleep": true,
+    "_type": 1,
+    "_allowSleep": false,
     "_gravityScale": 0,
     "_linearDamping": 0,
     "_angularDamping": 0,
@@ -155,199 +155,20 @@
     "_defaultClip": null,
     "_clips": [
       {
-        "__uuid__": "8023feaa-67bb-4f6a-bdc0-e2e94aafe714"
+        "__uuid__": "a7bfe90f-3809-48b1-b996-ce30fb63758f"
       },
       {
-        "__uuid__": "74a8bac9-edae-4f6a-a32c-0f245bfd38d6"
+        "__uuid__": "e3636a6a-d296-4d09-9029-52ae81f7f3d8"
       },
       {
-        "__uuid__": "2464e919-ebba-42c2-b84b-7d6b9a21bce2"
+        "__uuid__": "9f7b4296-c5a4-41d7-860b-0878604f999a"
       }
     ],
     "playOnLoad": false,
     "_id": ""
   },
   {
-    "__type__": "cc.PhysicsChainCollider",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": false,
-    "tag": 0,
-    "_density": 1,
-    "_sensor": false,
-    "_friction": 0.2,
-    "_restitution": 0,
-    "body": null,
-    "loop": false,
-    "points": [
-      {
-        "__type__": "cc.Vec2",
-        "x": -2,
-        "y": 24
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": -2,
-        "y": 22
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": -6,
-        "y": 20
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": -6,
-        "y": 16
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": -8,
-        "y": 16
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": -8,
-        "y": 6
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": -12,
-        "y": 4
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": -12,
-        "y": -4
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": -14,
-        "y": -4
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": -14,
-        "y": -8
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": -16,
-        "y": -8
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": -16,
-        "y": -18
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": -14,
-        "y": -18
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": -12,
-        "y": -22
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": 2,
-        "y": -22
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": 2,
-        "y": -20
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": 8,
-        "y": -20
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": 8,
-        "y": -18
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": 12,
-        "y": -16
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": 14,
-        "y": -8
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": 16,
-        "y": -8
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": 16,
-        "y": 0
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": 14,
-        "y": 0
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": 14,
-        "y": 2
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": 12,
-        "y": 2
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": 12,
-        "y": 4
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": 8,
-        "y": 6
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": 8,
-        "y": 16
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": 6,
-        "y": 16
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": 6,
-        "y": 22
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": 4,
-        "y": 22
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": 4,
-        "y": 24
-      }
-    ],
-    "_id": ""
-  },
-  {
-    "__type__": "cc.PhysicsCircleCollider",
+    "__type__": "cc.PhysicsBoxCollider",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -357,15 +178,72 @@
     "tag": 0,
     "_density": 1,
     "_sensor": false,
-    "_friction": 2,
+    "_friction": 0.2,
     "_restitution": 0,
     "body": null,
     "_offset": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": -8
+      "y": 0
     },
-    "_radius": 12.8,
+    "_size": {
+      "__type__": "cc.Size",
+      "width": 16,
+      "height": 44
+    },
+    "_id": ""
+  },
+  {
+    "__type__": "9a4175I5lJDWLBVMN2nEj82",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "characterName": "Nurse",
+    "idleSideFrame": {
+      "__uuid__": "05881382-095d-400c-a949-7fec8924f08f"
+    },
+    "idleFrontFrame": {
+      "__uuid__": "3a74c4e6-0575-4e93-8dae-155d497623d5"
+    },
+    "idleBackFrame": {
+      "__uuid__": "1bd57834-3ed4-4ade-87f1-86b4a4c6478f"
+    },
+    "pizzaDialogPrefabs": {
+      "__uuid__": "429206b2-677c-437b-966c-c89f7b7ee2f8"
+    },
+    "iceCreamDialogPrefabs": {
+      "__uuid__": "0b910143-91ec-4850-9de1-fb0403c2e09b"
+    },
+    "appleDialogPrefabs": {
+      "__uuid__": "d7cf9f87-e94d-4094-aa86-da80c1e873c9"
+    },
+    "bananaDialogPrefabs": {
+      "__uuid__": "435cba98-bc40-4ef0-b3b7-af006431f66e"
+    },
+    "pineappleDialogPrefabs": {
+      "__uuid__": "63890188-4af4-47fe-bda8-30684f76bfbb"
+    },
+    "watermelonDialogPrefabs": {
+      "__uuid__": "7eb61472-4efc-4221-8424-4bc5129c2f14"
+    },
+    "chipsDialogPrefabs": {
+      "__uuid__": "2d38f324-e683-496f-8735-38ed59f26e89"
+    },
+    "snackDialogPrefabs": {
+      "__uuid__": "33f0b081-4cce-4d78-a986-872262276ec6"
+    },
+    "angryDialogPrefabs": {
+      "__uuid__": "8e9b560e-2a0f-4881-98b7-575701a2e9d6"
+    },
+    "normalDialogPrefabs": {
+      "__uuid__": "e7f05d3c-4ffe-4368-b86b-082fb493fa34"
+    },
+    "happyDialogPrefabs": {
+      "__uuid__": "2361ccb1-6182-4f4d-bc30-68d4b81207ff"
+    },
     "_id": ""
   },
   {
