@@ -46,6 +46,8 @@ export default class oven extends cc.Component {
             var pizza = cc.instantiate(this.pizzaPrefab);
             pizza.setPosition(cc.v2(this.node.x-1.5, this.node.y-5));
             cc.find("Canvas").addChild(pizza);
+            pizza.active = false;
+            this.scheduleOnce(()=>{pizza.active = true;}, 0.1);
             this.flag_for_paused = 0;
             cc.audioEngine.setVolume(cc.audioEngine.playEffect(this.finishSound, false), cc.find("Canvas").getComponent("World").getSfxVolume());
         }
