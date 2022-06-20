@@ -1,5 +1,7 @@
 const {ccclass, property} = cc._decorator;
 
+declare const firebase: any;//Make IntelliSense happy.(optional)
+
 @ccclass
 export default class NewClass extends cc.Component {
 
@@ -30,6 +32,15 @@ export default class NewClass extends cc.Component {
             let curMoney = parseInt(cc.find("Canvas/Main Camera/Money_bar/money").getComponent(cc.Label).string);
             curMoney += this.chargeMoney;
             cc.find("Canvas/Main Camera/Money_bar/money").getComponent(cc.Label).string = curMoney.toString();
+            let money = Number(cc.find("Canvas/Main Camera/Money_bar/money").getComponent(cc.Label).string);
+            firebase.auth().onAuthStateChanged((user) => {
+                if (user) {
+                    const uid = firebase.auth().currentUser.uid;
+                    firebase.database().ref('userData/' + uid).update({
+                        score: money
+                    })
+                }
+            });
             this.CustomerPaid = true;
             this.customer.getComponent(cc.Collider).tag = 21;
         }

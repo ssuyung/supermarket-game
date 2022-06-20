@@ -7,22 +7,45 @@
 
 const {ccclass, property} = cc._decorator;
 
+declare const firebase: any;//Make IntelliSense happy.(optional)
+
 @ccclass
 export default class NewClass extends cc.Component {
 
-    @property(cc.Label)
-    label: cc.Label = null;
-
-    @property
-    text: string = 'hello';
-
-    // LIFE-CYCLE CALLBACKS:
-
-    // onLoad () {}
-
     start () {
-
+        this.readInfo();
+        let btn = new cc.Component.EventHandler();
+        btn.target = this.node;
+        btn.component = "leaderboard"
+        btn.handler = "handler";
+        cc.find("Canvas/leaderBoard/return").getComponent(cc.Button).clickEvents.push(btn);
     }
+
+    readInfo() {
+        firebase.database().ref('leaderBoard/').orderByChild("score").once("value", function (snapshot) {
+            var name = []
+            var score = []
+
+            snapshot.forEach(function (key) {
+                name.push(key.val().name);
+                score.push(key.val().score);
+            })
+
+            score.reverse(); 
+            name.reverse();
+
+            for (let i = 1; i <= score.length; i++) {
+                cc.find("Canvas/leaderboard/No." + String(i)).active = true;
+                cc.find("Canvas/leaderboard/No." + String(i) + "/name").getComponent(cc.Label).string = name[i - 1];
+                cc.find("Canvas/leaderboard/No." + String(i) + "/score").getComponent(cc.Label).string = score[i - 1];
+            }
+        });
+    }
+
+    handler(){
+        cc.director.loadScene("menu");
+    }
+
 
     // update (dt) {}
 }
