@@ -251,7 +251,9 @@
     "_enabled": true,
     "label": null,
     "text": "hello",
-    "player": null,
+    "trashSound": {
+      "__uuid__": "7b4341fe-622d-4d1e-aa17-be1263dc0887"
+    },
     "_id": ""
   },
   {

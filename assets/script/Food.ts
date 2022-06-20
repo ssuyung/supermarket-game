@@ -105,6 +105,7 @@ export default class NewClass extends cc.Component {
 
     putInTrash(){
         this.targetPlayer.getComponent("Player").holding = false;
+        
         this.node.destroy();
     }
     onKeyUp(event) {
