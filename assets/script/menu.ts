@@ -7,23 +7,27 @@
 
 const {ccclass, property} = cc._decorator;
 
+declare const firebase: any;//Make IntelliSense happy.(optional)
+
 @ccclass
 export default class NewClass extends cc.Component {
 
-    @property(cc.Toggle)
-    easy: cc.Toggle = null;
+    // @property(cc.Toggle)
+    // easy: cc.Toggle = null;
 
-    @property(cc.Toggle)
-    medium: cc.Toggle = null;
+    // @property(cc.Toggle)
+    // medium: cc.Toggle = null;
 
-    @property(cc.Toggle)
-    hard: cc.Toggle = null;
+    // @property(cc.Toggle)
+    // hard: cc.Toggle = null;
 
     @property(cc.Toggle)
     player1: cc.Toggle = null;
 
     @property(cc.Toggle)
     player2: cc.Toggle = null;
+    @property(cc.Label)
+    teamName: cc.Label = null;
 
     private mode=0;//easy: 0, medium: 1, hard: 2
     private player=1;//number of players.
@@ -44,26 +48,34 @@ export default class NewClass extends cc.Component {
 
     loadScene(){
         this.controller();
-        console.log(this.mode, this.player);
-        if(this.mode==0 && this.player==1){
-            cc.director.loadScene("Stage1 - 109062128");
-        }else if(this.mode==0 && this.player==2){
-            cc.director.loadScene("Stage1 - 109062128");
-        }else if(this.mode==1 && this.player==1){
-            cc.director.loadScene("Stage1 - 109062128");
-        }else if(this.mode==1 && this.player==2){
-            cc.director.loadScene("Stage1 - 109062128");
-        }else if(this.mode==2 && this.player==1){
-            cc.director.loadScene("Stage1 - 109062128");
-        }else if(this.mode==2 && this.player==2){
-            cc.director.loadScene("Stage1 - 109062128");
-        }
+        console.log(this.player);
+        console.log(this.teamName.string);
+        let user = firebase.auth().currentUser;
+        firebase.database().ref('userData/'+user.uid.toString())
+        .set({
+            numberOfPlayers: this.player,
+            teamName: this.teamName.string
+        });
+        cc.director.loadScene("ssuyung's");
+        // if(this.mode==0 && this.player==1){
+        //     cc.director.loadScene("Stage1 - 109062128");
+        // }else if(this.mode==0 && this.player==2){
+        //     cc.director.loadScene("Stage1 - 109062128");
+        // }else if(this.mode==1 && this.player==1){
+        //     cc.director.loadScene("Stage1 - 109062128");
+        // }else if(this.mode==1 && this.player==2){
+        //     cc.director.loadScene("Stage1 - 109062128");
+        // }else if(this.mode==2 && this.player==1){
+        //     cc.director.loadScene("Stage1 - 109062128");
+        // }else if(this.mode==2 && this.player==2){
+        //     cc.director.loadScene("Stage1 - 109062128");
+        // }
     }
 
     controller(){
-        if(this.easy.isChecked) this.mode=0;
-        else if(this.medium.isChecked) this.mode=1;
-        else if(this.hard.isChecked) this.mode=2;
+        // if(this.easy.isChecked) this.mode=0;
+        // else if(this.medium.isChecked) this.mode=1;
+        // else if(this.hard.isChecked) this.mode=2;
 
         if(this.player1.isChecked) this.player=1;
         else if(this.player2.isChecked) this.player=2;

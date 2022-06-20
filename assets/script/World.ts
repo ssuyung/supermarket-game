@@ -48,7 +48,15 @@ export default class NewClass extends cc.Component {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
         this.Player1 = this.Player1Node.getComponent("Player");
         this.Player2 = this.Player2Node.getComponent("Player");
-        if(this.number == 1) this.Player2Node.setPosition(cc.v2(-20000,-20000));
+        let user = firebase.auth().currentUser;
+        let handle = this;
+        firebase.database().ref('userData/'+user.uid.toString()).once('value')
+        .then((snapshot)=>{
+            console.log(snapshot.val().numberOfPlayers, snapshot.val().teamName);
+            handle.number = snapshot.val().numberOfPlayers;
+            if(handle.number == 1) handle.Player2Node.setPosition(cc.v2(-20000,-20000));
+        })
+        // if(this.number == 1) this.Player2Node.setPosition(cc.v2(-20000,-20000));
     }
 
     onKeyDown(event){
@@ -284,10 +292,18 @@ export default class NewClass extends cc.Component {
                 let money = Number(cc.find("Canvas/Main Camera/Money_bar/money").getComponent(cc.Label).string);
                 firebase.database().ref('userData/' + uid).update({
                     score: money
-                })
-                firebase.database().ref('leaderBoard/' + uid).once('value').then(snapshot => {  
-                    if(money > snapshot.val().score) {
+                });
+                firebase.database().ref('userData/' + uid).once('value').then(snapshot => {  
+                    let AmountOfPlayers = snapshot.val().numberOfPlayer;
+                    let TeamName = snapshot.val().teamName;
+                    if(  AmountOfPlayers == 1 && money > snapshot.val().score) {
                         firebase.database().ref('leaderBoard/' + uid).update({
+                            teamName:TeamName,
+                            score: money
+                        })
+                    }else if(AmountOfPlayers == 2 && money > snapshot.val().score){
+                        firebase.database().ref('leaderBoard2/' + uid).update({
+                            teamName:TeamName,
                             score: money
                         })
                     }
