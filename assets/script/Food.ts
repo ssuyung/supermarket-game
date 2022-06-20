@@ -46,6 +46,7 @@ export default class NewClass extends cc.Component {
                     // this.indexOfPlayerHolding = 0;
                     this.targetPlayer.getComponent("Player").holding = false;
                     this.targetPlayer = null;
+                    cc.audioEngine.setVolume(cc.audioEngine.playEffect(this.dropSound, false), cc.find("Canvas").getComponent("World").getSfxVolume());
                 }
             } 
             // pick up from shelf
@@ -59,10 +60,13 @@ export default class NewClass extends cc.Component {
                     this.node.scale = 1;
                     this.node.opacity = 255;
                     if(!this.touchStorage) {
-                        let shelf = this.targetShelf.getComponent("Shelf");
-                        shelf.occupied = false;
+                        if (this.targetShelf) {
+                            let shelf = this.targetShelf.getComponent("Shelf");
+                            shelf.occupied = false;
+                        }
                     }
                     this.targetPlayer.getComponent("Player").holding = true;
+                    cc.audioEngine.setVolume(cc.audioEngine.playEffect(this.pickSound, false), cc.find("Canvas").getComponent("World").getSfxVolume());
                 }
             }
             /* Modify-2 ycchu */
@@ -73,29 +77,9 @@ export default class NewClass extends cc.Component {
                     setTimeout(function () {
                         this.targetPlayer.getComponent("Player").holding = false;
                         this.pickedUpbyPlayer = false;
-                        this.player.getComponent("Player").holding = false;
-                    });
-                    // cc.audioEngine.setVolume(cc.audioEngine.playEffect(this.dropSound, false), cc.find("Canvas").getComponent("World").getSfxVolume());
-                    
-                } 
-                // pick up from shelf
-                else if (this.selected) {
-                    console.log("food picked up from shelf");
-                    if (!this.targetPlayer.getComponent("Player").holding) {
-                        this.pickedUpbyPlayer = true;
-                        this.node.scale = 1;
-                        this.node.opacity = 255;
-                        if(!this.touchStorage) {
-                            let shelf = this.targetShelf.getComponent("Shelf");
-                            shelf.occupied = false;
-                        }
-                        this.targetPlayer.getComponent("Player").holding = true;
-                        // cc.audioEngine.setVolume(cc.audioEngine.playEffect(this.pickSound, false), 0.5);
-                        // this.player.getComponent("Player").holding = true;
-                        cc.audioEngine.setVolume(cc.audioEngine.playEffect(this.pickSound, false), cc.find("Canvas").getComponent("World").getSfxVolume());
-                    }
+                        this.node.destroy();
+                    }.bind(this), 100);
                 }
-                // this.targetShelf.getComponent("Shelf")
             }else if(this.pickedUpbyPlayer && this.touchOven){
                 // console.log("send in oven");
                 let oven = this.targetOven.node.getComponent("oven");
@@ -107,7 +91,6 @@ export default class NewClass extends cc.Component {
                         this.node.destroy();
                     }.bind(this), 100); 
                 }
-                // this.targetShelf.getComponent("Shelf")
             }
 
             /* Modify end */
@@ -135,7 +118,7 @@ export default class NewClass extends cc.Component {
     }
     
     onBeginContact (contact, self, other) {
-        console.log(this.node.name + " touches "+other.node.name);
+        console.log(this.node.name + " touches " +other.node.name);
         if (other.tag == 1) { // tag1 : shelf
             this.touchShelf = true;
             this.targetShelf = other.node;
@@ -282,6 +265,9 @@ export default class NewClass extends cc.Component {
         }
         else if (this.pickedUpbyCustomer) {
             if (this.customer) this.node.setPosition(cc.v2(this.customer.x, this.customer.y + 42));
+        }
+        if (this.node.y < -400) {
+            this.node.destroy();
         }
     }
 }

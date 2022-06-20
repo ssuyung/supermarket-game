@@ -113,8 +113,7 @@ export default class NewClass extends cc.Component {
                 }
                 this.idleFrame = this.idleFrontFrame;
             }
-        }
-        
+        } 
     }
 
     // set collider tag to 10, 11, 12 or 13 and instantiate a dialog according to what this customer wants

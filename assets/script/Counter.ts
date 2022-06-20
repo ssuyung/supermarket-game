@@ -55,7 +55,7 @@ export default class NewClass extends cc.Component {
     }
 
     onBeginContact (contact, self, other) {
-        if (other.node.name == "Player") {
+        if (other.node.name == "Player1" || other.node.name == "Player2") {
             //console.log("player at counter");
             this.PlayeratCounter = true;
             this.node.getChildByName("mask").active = true;
@@ -70,7 +70,7 @@ export default class NewClass extends cc.Component {
     }
 
     onEndContact (contact, self, other) {
-        if (other.node.name == "Player") {
+        if (other.node.name == "Player1" || other.node.name == "Player2") {
             //console.log("player leaves counter");
             this.PlayeratCounter = false;
             this.node.getChildByName("mask").active = false;

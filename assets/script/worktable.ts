@@ -13,7 +13,8 @@ export default class worktable extends cc.Component {
     @property(cc.Prefab)
     doughprefab: cc.Prefab = null;
 
-    private player: cc.Node = null;
+    private player1: cc.Node = null;
+    private player2: cc.Node = null;
 
     private isworking = false;
     private contagwithplayer = false;
@@ -24,7 +25,8 @@ export default class worktable extends cc.Component {
     //When animation isn't playing, there are 2 possible cases. 1 means stop, 0 not play yet.
 
     start () {
-        this.player = cc.find("Canvas/Player");
+        //this.player1 = cc.find("Canvas/Player1");
+        //this.player2 = cc.find("Canvas/Player2");
         this.anim = this.getComponentInChildren(cc.Animation);
     }
 
