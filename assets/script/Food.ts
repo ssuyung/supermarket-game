@@ -8,8 +8,11 @@ export default class NewClass extends cc.Component {
     pickSound: cc.AudioClip = null;
     private audioID: number;
 
-    private player: cc.Node = null;
+    private player1: cc.Node = null;
+    private player2: cc.Node = null;
+    private indexOfPlayerHolding: number = 0;
 
+    private targetPlayer: cc.Node = null;
     private selected : boolean = false;
     private pickedUpbyPlayer : boolean = false;
     private pickedUpbyCustomer : boolean = false;
@@ -28,17 +31,44 @@ export default class NewClass extends cc.Component {
 
     onKeyDown(event){
         // console.log("food keydown");
-        switch(event.keyCode)
-        {
-            case cc.macro.KEY.enter:
-                if (this.keyDown) break;
-                if (this.pickedUpbyCustomer) break;
-                // put down on shelf
-                if (this.pickedUpbyPlayer && this.touchShelf) {
-                    let shelf = this.targetShelf.getComponent("Shelf");
-                    if (!shelf.occupied) {
-                        shelf.occupied = true;
-                        this.node.setPosition(shelf.getItemPosition());
+        if((event.keyCode == cc.macro.KEY.enter && this.targetPlayer==this.player2) || (event.keyCode == cc.macro.KEY.e && this.targetPlayer==this.player1)){
+            if (this.keyDown) return;
+            if (this.pickedUpbyCustomer) return;
+            // put down on shelf
+            if (this.pickedUpbyPlayer && this.touchShelf) {
+                let shelf = this.targetShelf.getComponent("Shelf");
+                if (!shelf.occupied) {
+                    shelf.occupied = true;
+                    this.node.setPosition(shelf.getItemPosition());
+                    this.pickedUpbyPlayer = false;
+                    // this.indexOfPlayerHolding = 0;
+                    this.targetPlayer.getComponent("Player").holding = false;
+                    this.targetPlayer = null;
+                }
+            } 
+            // pick up from shelf
+            else if (this.selected) {
+                console.log("food picked up from shelf");
+                if (!this.targetPlayer.getComponent("Player").holding) {
+                    this.pickedUpbyPlayer = true;
+                    // if(this.targetPlayer == this.player1) this.indexOfPlayerHolding = 1;
+                    // else if(this.targetPlayer == this.player2) this.indexOfPlayerHolding = 2;
+                    this.node.scale = 1;
+                    this.node.opacity = 255;
+                    if(!this.touchStorage) {
+                        let shelf = this.targetShelf.getComponent("Shelf");
+                        shelf.occupied = false;
+                    }
+                    this.targetPlayer.getComponent("Player").holding = true;
+                }
+            }
+            /* Modify-2 ycchu */
+            else if(this.pickedUpbyPlayer && this.touchWorkTable){
+                let worktable = this.targetWorkTable.node.getComponent("worktable");
+                if(worktable.isworking == false){
+                    worktable.isworking = true;
+                    setTimeout(function () {
+                        this.targetPlayer.getComponent("Player").holding = false;
                         this.pickedUpbyPlayer = false;
                         this.player.getComponent("Player").holding = false;
                     }
@@ -47,7 +77,7 @@ export default class NewClass extends cc.Component {
                 // pick up from shelf
                 else if (this.selected) {
                     console.log("food picked up from shelf");
-                    if (!this.player.getComponent("Player").holding) {
+                    if (!this.targetPlayer.getComponent("Player").holding) {
                         this.pickedUpbyPlayer = true;
                         this.node.scale = 1;
                         this.node.opacity = 255;
@@ -55,43 +85,95 @@ export default class NewClass extends cc.Component {
                             let shelf = this.targetShelf.getComponent("Shelf");
                             shelf.occupied = false;
                         }
-                        this.player.getComponent("Player").holding = true;
+                        this.targetPlayer.getComponent("Player").holding = true;
                         cc.audioEngine.setVolume(cc.audioEngine.playEffect(this.pickSound, false), 0.5);
                     }
                 }
-                /* Modify-2 ycchu */
-                else if(this.pickedUpbyPlayer && this.touchWorkTable){
-                    let worktable = this.targetWorkTable.node.getComponent("worktable");
-                    if(worktable.isworking == false){
-                        worktable.isworking = true;
-                        setTimeout(function () {
-                            this.player.getComponent("Player").holding = false;
-                            this.pickedUpbyPlayer = false;
-                            this.node.destroy();
-                        }.bind(this), 100); 
-                    }
-                    // this.targetShelf.getComponent("Shelf")
-                }else if(this.pickedUpbyPlayer && this.touchOven){
-                    let oven = this.targetOven.node.getComponent("oven");
-                    if(oven.isworking == false){
-                        oven.isworking = true;
-                        setTimeout(function () {
-                            this.player.getComponent("Player").holding = false;
-                            this.pickedUpbyPlayer = false;
-                            this.node.destroy();
-                        }.bind(this), 100); 
-                    }
-                    // this.targetShelf.getComponent("Shelf")
+                // this.targetShelf.getComponent("Shelf")
+            }else if(this.pickedUpbyPlayer && this.touchOven){
+                let oven = this.targetOven.node.getComponent("oven");
+                if(oven.isworking == false){
+                    oven.isworking = true;
+                    setTimeout(function () {
+                        this.targetPlayer.getComponent("Player").holding = false;
+                        this.pickedUpbyPlayer = false;
+                        this.node.destroy();
+                    }.bind(this), 100); 
                 }
+                // this.targetShelf.getComponent("Shelf")
+            }
 
-                /* Modify end */
-                this.keyDown = true;
-                break;
+            /* Modify end */
+            this.keyDown = true;
         }
+        // switch(event.keyCode)
+        // {
+        //     case cc.macro.KEY.enter:
+        //         if (this.keyDown) break;
+        //         if (this.pickedUpbyCustomer) break;
+        //         // put down on shelf
+        //         if (this.pickedUpbyPlayer && this.touchShelf) {
+        //             let shelf = this.targetShelf.getComponent("Shelf");
+        //             if (!shelf.occupied) {
+        //                 shelf.occupied = true;
+        //                 this.node.setPosition(shelf.getItemPosition());
+        //                 this.pickedUpbyPlayer = false;
+        //                 this.targetPlayer.getComponent("Player").holding = false;
+        //                 this.targetPlayer = null;
+        //             }
+        //         } 
+        //         // pick up from shelf
+        //         else if (this.selected) {
+        //             console.log("food picked up from shelf");
+        //             if (!this.targetPlayer.getComponent("Player").holding) {
+        //                 this.pickedUpbyPlayer = true;
+        //                 this.node.scale = 1;
+        //                 this.node.opacity = 255;
+        //                 if(!this.touchStorage) {
+        //                     let shelf = this.targetShelf.getComponent("Shelf");
+        //                     shelf.occupied = false;
+        //                 }
+        //                 this.targetPlayer.getComponent("Player").holding = true;
+        //             }
+        //         }
+        //         /* Modify-2 ycchu */
+        //         else if(this.pickedUpbyPlayer && this.touchWorkTable){
+        //             let worktable = this.targetWorkTable.node.getComponent("worktable");
+        //             if(worktable.isworking == false){
+        //                 worktable.isworking = true;
+        //                 setTimeout(function () {
+        //                     this.targetPlayer.getComponent("Player").holding = false;
+        //                     this.pickedUpbyPlayer = false;
+        //                     this.node.destroy();
+        //                 }.bind(this), 100); 
+        //             }
+        //             // this.targetShelf.getComponent("Shelf")
+        //         }else if(this.pickedUpbyPlayer && this.touchOven){
+        //             let oven = this.targetOven.node.getComponent("oven");
+        //             if(oven.isworking == false){
+        //                 oven.isworking = true;
+        //                 setTimeout(function () {
+        //                     this.targetPlayer.getComponent("Player").holding = false;
+        //                     this.pickedUpbyPlayer = false;
+        //                     this.node.destroy();
+        //                 }.bind(this), 100); 
+        //             }
+        //             // this.targetShelf.getComponent("Shelf")
+        //         }
+
+        //         /* Modify end */
+        //         this.keyDown = true;
+        //         break;
+        // }
+    }
+    playerHolding(){
+        if(this.targetPlayer == this.player1) return 1;
+        else if(this.targetPlayer == this.player2) return 2;
+        else return 0;
     }
 
     putInTrash(){
-        this.player.getComponent("Player").holding = false;
+        this.targetPlayer.getComponent("Player").holding = false;
         this.node.destroy();
     }
     onKeyUp(event) {
@@ -104,12 +186,22 @@ export default class NewClass extends cc.Component {
     }
     
     onBeginContact (contact, self, other) {
+        console.log(this.node.name + " touches "+other.node.name);
         if (other.tag == 1) { // tag1 : shelf
             this.touchShelf = true;
             this.targetShelf = other.node;
-            cc.log("food touches shelf");
+            // cc.log("food touches shelf");
         }
-        if (other.node.name == "Player" && !this.pickedUpbyPlayer && !this.pickedUpbyCustomer) {
+        if (other.tag == 6 && !this.pickedUpbyPlayer && !this.pickedUpbyCustomer) {
+            if(other.node.name == "Player1"){
+                console.log(this.node.name + " is touched by player1");
+                this.targetPlayer = this.player1;
+            } else if(other.node.name == "Player2"){
+                console.log(this.node.name + " is touched by player2");
+                this.targetPlayer = this.player2;
+            }
+            
+            // this.targetPlayer = other.node;
             this.selected = true;
             this.node.opacity = 150;
         }
@@ -174,7 +266,7 @@ export default class NewClass extends cc.Component {
         }
         /* Modify end */
         if(other.node.name == "Storage") {
-            cc.log("Storage touched");
+            // cc.log("Storage touched");
             this.touchStorage = true;
         }
     }
@@ -182,9 +274,11 @@ export default class NewClass extends cc.Component {
     onEndContact (contact, self, other) {
         if (other.tag == 1) {
             this.touchShelf = false;
-            cc.log("food leaves shelf");
+            // cc.log("food leaves shelf");
         }
-        if (other.node.name == "Player") {
+        if (other.tag == 6) {
+            console.log(this.node.name + " left player");
+            // this.targetPlayer = null;
             this.selected = false;
             this.node.opacity = 255;
         }
@@ -215,13 +309,20 @@ export default class NewClass extends cc.Component {
     }
 
     start () {
-        this.player = cc.find("Canvas/Player");
+        this.player1 = cc.find("Canvas/Player1");
+        this.player2 = cc.find("Canvas/Player2");
+
         // console.log(this.node.name + "'s tag is "+this.node.getComponent(cc.Collider).tag);
     }
 
     update (dt) {
         if (this.pickedUpbyPlayer) {
-            if (this.player) this.node.setPosition(cc.v2(this.player.x, this.player.y + 42));
+            // console.log("check");
+            if (this.targetPlayer) {
+                // console.log(this.targetPlayer);
+                // console.log("targetPlayer pos: "+this.targetPlayer.getPosition());
+                this.node.setPosition(cc.v2(this.targetPlayer.x, this.targetPlayer.y + 42));
+            }
         }
         else if (this.pickedUpbyCustomer) {
             if (this.customer) this.node.setPosition(cc.v2(this.customer.x, this.customer.y + 42));

@@ -17,6 +17,8 @@ export default class worktable extends cc.Component {
 
     private isworking = false;
     private contagwithplayer = false;
+    private contactWithPlayer1 = false;
+    private contactWithPlayer2 = false;
     private anim = null;
     private flag_for_paused = 0;
     //When animation isn't playing, there are 2 possible cases. 1 means stop, 0 not play yet.
@@ -36,7 +38,25 @@ export default class worktable extends cc.Component {
         if (other.node.name == "Flour") {
             this.node.getChildByName("mask").active = false;
         }
+        if(other.tag == 6){
+            if(other.node.name == "Player1") this.contactWithPlayer1 = true;
+            else if(other.node.name == "Player2") this.contactWithPlayer2 = true;
+        }
+        if (other.node.name == "Player" && !this.contagwithplayer) {
+            this.contagwithplayer = true;
+        }
     }
+
+    // onEndContact(contact, self, other){
+    //     if(other.tag == 6){
+    //         if(other.node.name == "Player1") this.contactWithPlayer1 = false;
+    //         else if(other.node.name == "Player2") this.contactWithPlayer2 = false;
+    //     }
+    //     if (other.node.name == "Player" && this.contagwithplayer) {
+    //         this.contagwithplayer = false;
+            
+    //     }
+    // }
 
     update (dt) {
         if(this.anim.getAnimationState("time_icon").isPlaying == false && this.flag_for_paused == 1){

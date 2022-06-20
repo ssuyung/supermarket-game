@@ -9,16 +9,23 @@ export default class NewClass extends cc.Component {
     @property({type:cc.Prefab})
     settingsPanel: cc.Prefab = null;
     @property(cc.Node)
-    PlayerNode: cc.Node = null;
+    Player1Node: cc.Node = null;
+    @property(cc.Node)
+    Player2Node: cc.Node = null;
     // LIFE-CYCLE CALLBACKS:
 
     private timer: number = 180;
 
     private audioID: number;
     private volume: number = 0.5;
-    private Player = null;
+    private Player1 = null;
+    private Player2 = null;
     private escapeDown: boolean = false;
     private escapeCounter: number = 0;
+    private wDown: boolean = false;
+    private aDown: boolean = false;
+    private sDown: boolean = false;
+    private dDown: boolean = false;
     private leftDown: boolean = false;
     private rightDown: boolean = false;
     private upDown: boolean = false;
@@ -27,31 +34,44 @@ export default class NewClass extends cc.Component {
         cc.director.getPhysicsManager().enabled = true;
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
-        this.Player = this.PlayerNode.getComponent("Player");
+        this.Player1 = this.Player1Node.getComponent("Player");
+        this.Player2 = this.Player2Node.getComponent("Player");
     }
 
     onKeyDown(event){
         switch(event.keyCode)
         {
-            case cc.macro.KEY.left:
             case cc.macro.KEY.a:
-                this.leftDown = true;
-                this.Player.playerXMove(-1);
+                this.aDown = true;
+                this.Player1.playerXMove(-1);
                 break;
-            case cc.macro.KEY.right:
             case cc.macro.KEY.d:
-                this.rightDown = true;
-                this.Player.playerXMove(1);
+                this.dDown = true;
+                this.Player1.playerXMove(1);
                 break;
             case cc.macro.KEY.w:
-            case cc.macro.KEY.up:
-                this.upDown = true;
-                this.Player.playerYMove(1);
+                this.wDown = true;
+                this.Player1.playerYMove(1);
                 break;
             case cc.macro.KEY.s:
+                this.sDown = true;
+                this.Player1.playerYMove(-1);
+                break;
+            case cc.macro.KEY.left:
+                this.leftDown = true;
+                this.Player2.playerXMove(-1);
+                break;
+            case cc.macro.KEY.right:
+                this.rightDown = true;
+                this.Player2.playerXMove(1);
+                break;
+            case cc.macro.KEY.up:
+                this.upDown = true;
+                this.Player2.playerYMove(1);
+                break;
             case cc.macro.KEY.down:
                 this.downDown = true;
-                this.Player.playerYMove(-1);
+                this.Player2.playerYMove(-1);
                 break;
             // case cc.macro.KEY.d:
             //     this.gameOver();
@@ -68,37 +88,61 @@ export default class NewClass extends cc.Component {
     {
         switch(event.keyCode)
         {
-            case cc.macro.KEY.left:
             case cc.macro.KEY.a:
-                this.leftDown = false;
-                if(this.rightDown)
-                    this.Player.playerXMove(1);
+                this.aDown = false;
+                if(this.dDown)
+                    this.Player1.playerXMove(1);
                 else
-                    this.Player.playerXMove(0);
+                    this.Player1.playerXMove(0);
                 break;
-            case cc.macro.KEY.right:
             case cc.macro.KEY.d:
-                this.rightDown = false;
-                if(this.leftDown)
-                    this.Player.playerXMove(-1);
+                this.dDown = false;
+                if(this.aDown)
+                    this.Player1.playerXMove(-1);
                 else
-                    this.Player.playerXMove(0);
+                    this.Player1.playerXMove(0);
                 break;
             case cc.macro.KEY.w:
+                this.wDown = false;
+                if(this.sDown)
+                    this.Player1.playerYMove(-1);
+                else 
+                    this.Player1.playerYMove(0);
+                break;
+            case cc.macro.KEY.s:
+                this.sDown = false;
+                if(this.wDown)
+                    this.Player1.playerYMove(1);
+                else 
+                    this.Player1.playerYMove(0);
+                break;
+            case cc.macro.KEY.left:
+                this.leftDown = false;
+                if(this.rightDown)
+                    this.Player2.playerXMove(1);
+                else
+                    this.Player2.playerXMove(0);
+                break;
+            case cc.macro.KEY.right:
+                this.rightDown = false;
+                if(this.leftDown)
+                    this.Player2.playerXMove(-1);
+                else
+                    this.Player2.playerXMove(0);
+                break;
             case cc.macro.KEY.up:
                 this.upDown = false;
                 if(this.downDown)
-                    this.Player.playerYMove(-1);
+                    this.Player2.playerYMove(-1);
                 else 
-                    this.Player.playerYMove(0);
+                    this.Player2.playerYMove(0);
                 break;
-            case cc.macro.KEY.s:
             case cc.macro.KEY.down:
                 this.downDown = false;
                 if(this.upDown)
-                    this.Player.playerYMove(1);
+                    this.Player2.playerYMove(1);
                 else 
-                    this.Player.playerYMove(0);
+                    this.Player2.playerYMove(0);
                 break;
         }
     }
