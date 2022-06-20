@@ -71,7 +71,7 @@ export default class NewClass extends cc.Component {
 
     onKeyUp(event){
         switch(event.keyCode){
-            case cc.macro.KEY.space:
+            case cc.macro.KEY.enter:
                 // console.log("space up");
                 this.enterDown = false;
                 break;

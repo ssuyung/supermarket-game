@@ -27,7 +27,9 @@ export default class NewClass extends cc.Component {
     onKeyDown(event){
         // console.log("food keydown");
         if((event.keyCode == cc.macro.KEY.enter && this.targetPlayer==this.player2) || (event.keyCode == cc.macro.KEY.e && this.targetPlayer==this.player1)){
-            if (this.keyDown) return;
+            console.log("food in ");
+            console.log(this.selected);
+            // if (this.keyDown) return;
             if (this.pickedUpbyCustomer) return;
             // put down on shelf
             if (this.pickedUpbyPlayer && this.touchShelf) {
@@ -44,6 +46,7 @@ export default class NewClass extends cc.Component {
             // pick up from shelf
             else if (this.selected) {
                 console.log("food picked up from shelf");
+                console.log(this.targetPlayer.getComponent("Player").holding);
                 if (!this.targetPlayer.getComponent("Player").holding) {
                     this.pickedUpbyPlayer = true;
                     // if(this.targetPlayer == this.player1) this.indexOfPlayerHolding = 1;
@@ -161,6 +164,7 @@ export default class NewClass extends cc.Component {
             case cc.macro.KEY.enter:
                 this.keyDown = false;
                 break;
+            case cc.macro.KEY.e:
         }
     }
     
