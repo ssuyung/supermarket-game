@@ -24,7 +24,7 @@ export default class oven extends cc.Component {
     //When animation isn't playing, there are 2 possible cases. 1 means stop, 0 not play yet.
 
     start () {
-        this.player = cc.find("Canvas/Player");
+        //this.player = cc.find("Canvas/Player");
         this.anim = this.getComponent(cc.Animation);
     }
 

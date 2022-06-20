@@ -70,7 +70,7 @@ export default class NewClass extends cc.Component {
                 }
             }
             /* Modify-2 ycchu */
-            else if(this.pickedUpbyPlayer && this.touchWorkTable){
+            if(this.pickedUpbyPlayer && this.touchWorkTable){
                 let worktable = this.targetWorkTable.node.getComponent("worktable");
                 if(worktable.isworking == false){
                     worktable.isworking = true;
@@ -80,8 +80,8 @@ export default class NewClass extends cc.Component {
                         this.node.destroy();
                     }.bind(this), 100);
                 }
-            }else if(this.pickedUpbyPlayer && this.touchOven){
-                cc.log("touchOven");
+            }
+            if(this.pickedUpbyPlayer && this.touchOven){
                 let oven = this.targetOven.node.getComponent("oven");
                 if(oven.isworking == false){
                     oven.isworking = true;
@@ -243,7 +243,7 @@ export default class NewClass extends cc.Component {
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-        //cc.director.getPhysicsManager().debugDrawFlags = cc.PhysicsManager.DrawBits.e_jointBit | cc.PhysicsManager.DrawBits.e_shapeBit;
+        cc.director.getPhysicsManager().debugDrawFlags = cc.PhysicsManager.DrawBits.e_jointBit | cc.PhysicsManager.DrawBits.e_shapeBit;
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
         // console.log(this.player);
