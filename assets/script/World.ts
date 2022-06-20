@@ -282,7 +282,10 @@ export default class NewClass extends cc.Component {
             if (user) {
                 const uid = firebase.auth().currentUser.uid;
                 let money = Number(cc.find("Canvas/Main Camera/Money_bar/money").getComponent(cc.Label).string);
-                firebase.database().ref('leaderBoard/' + uid).once('value').then(snapshot => {
+                firebase.database().ref('userData/' + uid).update({
+                    score: money
+                })
+                firebase.database().ref('leaderBoard/' + uid).once('value').then(snapshot => {  
                     if(money > snapshot.val().score) {
                         firebase.database().ref('leaderBoard/' + uid).update({
                             score: money
