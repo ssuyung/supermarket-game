@@ -15,6 +15,9 @@ export default class NewClass extends cc.Component {
 
     @property
     text: string = 'hello';
+    
+    @property({type:cc.AudioClip})
+    trashSound: cc.AudioClip = null;
 
     // @property(cc.Node)
     // player: cc.Node = null;
@@ -43,6 +46,7 @@ export default class NewClass extends cc.Component {
             if(this.targetItem!=null){
                 // console.log("trash destroy node");
                 this.targetItem.node.getComponent("Food").putInTrash();
+                cc.audioEngine.setVolume(cc.audioEngine.playEffect(this.trashSound, false), cc.find("Canvas").getComponent("World").getSfxVolume());
                 // this.targetItem.node.destroy();
             }
         }

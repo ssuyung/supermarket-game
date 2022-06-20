@@ -410,6 +410,9 @@
     "icecreamParticle": {
       "__id__": 2
     },
+    "majesticSound": {
+      "__uuid__": "32842f2e-dbd5-48c2-808f-30ecf90a895e"
+    },
     "_id": ""
   },
   {
@@ -1190,7 +1193,7 @@
       "__id__": 5
     },
     "asset": {
-      "__uuid__": "f1c76dc5-2d32-4f18-b58e-224cb5dc470c"
+      "__uuid__": "2f582472-84a5-4c59-9044-c19476a61fff"
     },
     "fileId": "77v0KwDC9MbppDgqEALKn3",
     "sync": false
