@@ -46,7 +46,7 @@ export default class NewClass extends cc.Component {
             var score = []
             console.log(snapshot);
             snapshot.forEach(function (key) {
-                name.push(key.val().player);
+                name.push(key.val().teamName);
                 score.push(key.val().score);
             })
             score.reverse();
@@ -68,7 +68,7 @@ export default class NewClass extends cc.Component {
             var score = []
             console.log(snapshot);
             snapshot.forEach(function (key) {
-                name.push(key.val().player);
+                name.push(key.val().teamName);
                 score.push(key.val().score);
             })
             score.reverse();

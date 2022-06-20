@@ -50,15 +50,15 @@ export default class NewClass extends cc.Component {
         firebase.auth().createUserWithEmailAndPassword(email, password).then(function () {
             const uid = firebase.auth().currentUser.uid;
             firebase.database().ref('leaderBoard/' + uid).set({
-                player:"null",
+                teamName:"null",
                 score: 0,
             });
             firebase.database().ref('leaderBoard2/' + uid).set({
-                player:"null",
+                teamName:"null",
                 score: 0,
             });
             firebase.database().ref("userData/" + uid).set({
-                player:"null",
+                teamName:"null",
                 numberOfPlayer: 0,
                 score: 0,
             }).then(function () {
