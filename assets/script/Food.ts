@@ -149,6 +149,13 @@ export default class NewClass extends cc.Component {
             this.pickedUpbyCustomer = true;
             if (this.targetShelf) this.targetShelf.getComponent("Shelf").occupied = false;
         }
+        // tag15 : customer wants pizza
+        if (this.node.name == "pizza" && other.tag == 15 && !this.pickedUpbyPlayer && !this.pickedUpbyCustomer) {
+            other.tag = 20;
+            this.customer = other.node;
+            this.pickedUpbyCustomer = true;
+            this.targetShelf.getComponent("Shelf").occupied = false;
+        }
         // tag17 : customer wants chips
         if (this.node.name == "chips" && other.tag == 17 && !this.pickedUpbyPlayer && !this.pickedUpbyCustomer) {
             other.tag = 20;
