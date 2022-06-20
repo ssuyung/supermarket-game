@@ -53,8 +53,10 @@ export default class NewClass extends cc.Component {
                         this.node.scale = 1;
                         this.node.opacity = 255;
                         if(!this.touchStorage) {
-                            let shelf = this.targetShelf.getComponent("Shelf");
-                            shelf.occupied = false;
+                            if (this.targetShelf) {
+                                var shelf = this.targetShelf.getComponent("Shelf");
+                                shelf.occupied = false;
+                            }
                         }
                         this.player.getComponent("Player").holding = true;
                         cc.audioEngine.setVolume(cc.audioEngine.playEffect(this.pickSound, false), cc.find("Canvas").getComponent("World").getSfxVolume());
@@ -233,6 +235,9 @@ export default class NewClass extends cc.Component {
         }
         else if (this.pickedUpbyCustomer) {
             if (this.customer) this.node.setPosition(cc.v2(this.customer.x, this.customer.y + 42));
+        }
+        if (this.node.y < -400) {
+            this.node.destroy();
         }
     }
 }
