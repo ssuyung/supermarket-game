@@ -1,9 +1,10 @@
-// this is Bob
-
 const {ccclass, property} = cc._decorator;
 
 @ccclass
 export default class NewClass extends cc.Component {
+
+    @property()
+    characterName : string = "";
 
     private idleFrame = null;
     private anim = null;
@@ -11,6 +12,9 @@ export default class NewClass extends cc.Component {
     private action2: cc.Action = null;
     private posX : number = 0;
     private posY : number = 0;
+
+    private customerDemand : number;
+    private toCheckOut : boolean = false;
 
     private counter : cc.Node = null;
     private getIndex : boolean = false;
@@ -20,17 +24,22 @@ export default class NewClass extends cc.Component {
     private toCounter : boolean = false;
     private toExit : boolean = false;
 
-    private customerDemand : number;
-    private toCheckOut : boolean = false;
+    private satisfaction : number = 1;
+    private timeSatisfaction : number = 1;
+    private waitingTime : number = 0;
+    private normalThreshold : number = 30;
+    private angryThreshold : number = 60;
+    private acceptablePrice : number = 0;
+    private finalPrice : number = 0;
 
     @property(cc.SpriteFrame)
-    idleSideFrame: cc.SpriteFrame = null;
+    idleSideFrame : cc.SpriteFrame = null;
 
     @property(cc.SpriteFrame)
-    idleFrontFrame: cc.SpriteFrame = null;
+    idleFrontFrame : cc.SpriteFrame = null;
 
     @property(cc.SpriteFrame)
-    idleBackFrame: cc.SpriteFrame = null;
+    idleBackFrame : cc.SpriteFrame = null;
 
     @property(cc.Prefab)
     pizzaDialogPrefabs : cc.Prefab = null;
@@ -96,20 +105,20 @@ export default class NewClass extends cc.Component {
             this.anim.stop();
             this.getComponent(cc.Sprite).spriteFrame = this.idleFrame;
         } else if(deltaX != 0){
-            if(!this.anim.getAnimationState("BobXWalk").isPlaying) {
-                this.anim.play("BobXWalk");
+            if(!this.anim.getAnimationState(this.characterName + "XWalk").isPlaying) {
+                this.anim.play(this.characterName + "XWalk");
             }
             this.idleFrame = this.idleSideFrame;
         } else if(deltaY != 0){
             if(deltaY > 0){
-                if(!this.anim.getAnimationState("BobUpWalk").isPlaying) {
-                    this.anim.play("BobUpWalk");
+                if(!this.anim.getAnimationState(this.characterName + "UpWalk").isPlaying) {
+                    this.anim.play(this.characterName + "UpWalk");
                 }
                 this.idleFrame = this.idleBackFrame;
             }
             else if(deltaY < 0){
-                if(!this.anim.getAnimationState("BobDownWalk").isPlaying) {
-                    this.anim.play("BobDownWalk");
+                if(!this.anim.getAnimationState(this.characterName + "DownWalk").isPlaying) {
+                    this.anim.play(this.characterName + "DownWalk");
                 }
                 this.idleFrame = this.idleFrontFrame;
             }
@@ -386,5 +395,32 @@ export default class NewClass extends cc.Component {
             let action = cc.repeat(sequence, 1);
             this.node.runAction(action);
         }
+    }
+
+    satisfactionUpdate(dt) {
+        this.waitingTime += dt;
+
+        if (this.waitingTime < this.normalThreshold) this.timeSatisfaction  = 2;
+        else if (this.waitingTime >= this.normalThreshold && this.waitingTime < this.angryThreshold) this.timeSatisfaction  = 1;
+        else if (this.waitingTime >= this.angryThreshold) this.timeSatisfaction  = 0;
+    }
+
+    getCustomerTimeSatisfaction() {
+        return this.timeSatisfaction;
+    }
+
+    getCustomerPrice(listedPrice) {
+        if (this.timeSatisfaction == 2) this.acceptablePrice = 60;
+        else if (this.timeSatisfaction == 1) this.acceptablePrice = 40;
+        else if (this.timeSatisfaction == 0) this.acceptablePrice = 30;
+
+        if (listedPrice > this.acceptablePrice) this.satisfaction = 0; // customer displeased
+        else this.satisfaction = 1; // customer happy
+
+        if (this.satisfaction == 0) this.finalPrice = Math.floor(
+            this.acceptablePrice * Math.max(0.5, (1 - ((listedPrice - this.acceptablePrice) / this.acceptablePrice))));
+        else if (this.satisfaction == 1) this.finalPrice = listedPrice;
+
+        return this.finalPrice;
     }
 }
