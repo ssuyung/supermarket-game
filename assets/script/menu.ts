@@ -51,12 +51,12 @@ export default class NewClass extends cc.Component {
         console.log(this.player);
         console.log(this.teamName.string);
         let user = firebase.auth().currentUser;
-        firebase.database().ref('userData/'+user.uid.toString())
-        .set({
+        firebase.database().ref('userData/'+user.uid.toString()).update({
             numberOfPlayers: this.player,
             teamName: this.teamName.string
         });
-        cc.director.loadScene("ssuyung's");
+        //cc.director.loadScene("ssuyung's");
+        cc.director.loadScene("Stage");
         // if(this.mode==0 && this.player==1){
         //     cc.director.loadScene("Stage1 - 109062128");
         // }else if(this.mode==0 && this.player==2){
