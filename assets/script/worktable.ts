@@ -48,6 +48,7 @@ export default class worktable extends cc.Component {
         }
         if(this.isworking == true){
             if(this.anim.getAnimationState("time_icon").isPlaying == false && this.flag_for_paused == 0){
+                cc.log("worktable working");
                 this.anim.play("time_icon");
                 this.flag_for_paused = 1;
             }
