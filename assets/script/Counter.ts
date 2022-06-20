@@ -12,8 +12,6 @@ export default class NewClass extends cc.Component {
     private CustomerPaid : boolean = false;
     private enterDown : boolean = false;
 
-    private chargeMoney : number = 0;
-
     onLoad () {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
@@ -25,12 +23,12 @@ export default class NewClass extends cc.Component {
 
     // update (dt) {}
 
-    getPrice(num) {
-        this.chargeMoney = num;
-        cc.log(this.chargeMoney);
+    getPrice(chargeMoney) {
+        cc.log(chargeMoney);
         if (this.PlayeratCounter && this.CustomeratCounter && !this.CustomerPaid) {
             let curMoney = parseInt(cc.find("Canvas/Main Camera/Money_bar/money").getComponent(cc.Label).string);
-            curMoney += this.chargeMoney;
+            cc.log("this customer paid " + this.customer.getComponent("Customer").getCustomerPrice(chargeMoney).toString());
+            curMoney += this.customer.getComponent("Customer").getCustomerPrice(chargeMoney);
             cc.find("Canvas/Main Camera/Money_bar/money").getComponent(cc.Label).string = curMoney.toString();
             let money = Number(cc.find("Canvas/Main Camera/Money_bar/money").getComponent(cc.Label).string);
             firebase.auth().onAuthStateChanged((user) => {

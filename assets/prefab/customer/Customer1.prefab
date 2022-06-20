@@ -48,7 +48,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 28,
+      "width": 32,
       "height": 46
     },
     "_anchorPoint": {
@@ -101,7 +101,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "3e9de77d-f98d-4461-bcc5-a5c0706e53ff"
+      "__uuid__": "cf567fa3-3284-4f11-a6ba-3b08fea96003"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -115,7 +115,7 @@
     "_fillRange": 0,
     "_isTrimmedMode": true,
     "_atlas": {
-      "__uuid__": "84a8c3aa-592b-4f46-a585-2adcdfa63042"
+      "__uuid__": "b2686e9b-36af-400a-8159-38f9151dd24b"
     },
     "_id": ""
   },
@@ -155,13 +155,13 @@
     "_defaultClip": null,
     "_clips": [
       {
-        "__uuid__": "93c24902-36fd-4caf-83ac-cee2e5d0cb25"
+        "__uuid__": "fadef7f4-62ad-4d7f-a6b5-882e8040982b"
       },
       {
-        "__uuid__": "eece0d5f-2596-498e-85b2-ed0ce05662e1"
+        "__uuid__": "51f27e4d-efaf-4068-b2c8-c89d01c681b3"
       },
       {
-        "__uuid__": "1a2ae3c3-3d21-40cb-845a-0873aeb6069c"
+        "__uuid__": "abf3e832-390e-436a-a360-4d80b93dea73"
       }
     ],
     "playOnLoad": false,
@@ -175,14 +175,15 @@
       "__id__": 1
     },
     "_enabled": true,
+    "characterName": "OldWoman",
     "idleSideFrame": {
-      "__uuid__": "268d1263-0ce6-4836-9bf7-f1b985c1e3e7"
+      "__uuid__": "cf567fa3-3284-4f11-a6ba-3b08fea96003"
     },
     "idleFrontFrame": {
-      "__uuid__": "969fe2a3-2de8-4ef6-8fb8-160123e3630e"
+      "__uuid__": "14356b73-8040-4a0a-a2c6-00cc056d6813"
     },
     "idleBackFrame": {
-      "__uuid__": "b4fb8875-bee1-4aeb-993b-bc17a2925b2b"
+      "__uuid__": "68362461-f4d1-41a4-848e-47ceb3f03db5"
     },
     "pizzaDialogPrefabs": {
       "__uuid__": "429206b2-677c-437b-966c-c89f7b7ee2f8"
