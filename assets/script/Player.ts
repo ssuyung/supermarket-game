@@ -61,22 +61,22 @@ export default class NewClass extends cc.Component {
             this.anim.stop();
             this.getComponent(cc.Sprite).spriteFrame = this.idleFrame;
         } else if(this.xMoveDir != 0){
-            if(!this.anim.getAnimationState("AdamXWalk").isPlaying) {
-                this.anim.play("AdamXWalk");
+            if(!this.anim.getAnimationState(this.text+"XWalk").isPlaying) {
+                this.anim.play(this.text+"XWalk");
             }
             this.idleFrame = this.idle;
         } else if(this.yMoveDir != 0){
             if(this.yMoveDir==1){
                 // console.log("up");
-                if(!this.anim.getAnimationState("AdamUpWalk").isPlaying) {
-                    this.anim.play("AdamUpWalk");
+                if(!this.anim.getAnimationState(this.text+"UpWalk").isPlaying) {
+                    this.anim.play(this.text+"UpWalk");
                 }
                 this.idleFrame = this.idle_up;
             }
             else if(this.yMoveDir == -1){
                 // console.log("down");
-                if(!this.anim.getAnimationState("AdamDownWalk").isPlaying) {
-                    this.anim.play("AdamDownWalk");
+                if(!this.anim.getAnimationState(this.text+"DownWalk").isPlaying) {
+                    this.anim.play(this.text+"DownWalk");
                 }
                 this.idleFrame = this.idle_down;
             }

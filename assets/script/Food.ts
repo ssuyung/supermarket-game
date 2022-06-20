@@ -51,8 +51,8 @@ export default class NewClass extends cc.Component {
             } 
             // pick up from shelf
             else if (this.selected) {
-                console.log("food picked up from shelf");
-                console.log(this.targetPlayer.getComponent("Player").holding);
+                // console.log("food picked up from shelf");
+                // console.log(this.targetPlayer.getComponent("Player").holding);
                 if (!this.targetPlayer.getComponent("Player").holding) {
                     this.pickedUpbyPlayer = true;
                     // if(this.targetPlayer == this.player1) this.indexOfPlayerHolding = 1;
@@ -126,10 +126,10 @@ export default class NewClass extends cc.Component {
         }
         if (other.tag == 6 && !this.pickedUpbyPlayer && !this.pickedUpbyCustomer) {
             if(other.node.name == "Player1"){
-                console.log(this.node.name + " is touched by player1");
+                // console.log(this.node.name + " is touched by player1");
                 this.targetPlayer = this.player1;
             } else if(other.node.name == "Player2"){
-                console.log(this.node.name + " is touched by player2");
+                // console.log(this.node.name + " is touched by player2");
                 this.targetPlayer = this.player2;
             }
             

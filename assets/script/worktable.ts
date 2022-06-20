@@ -38,6 +38,7 @@ export default class worktable extends cc.Component {
 
     onEndContact (contact, self, other) {
         if (other.node.name == "Flour") {
+            console.log("worktable touched flour");
             this.node.getChildByName("mask").active = false;
         }
         if(other.tag == 6){
