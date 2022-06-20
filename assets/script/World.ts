@@ -49,8 +49,14 @@ export default class NewClass extends cc.Component {
         this.Player1 = this.Player1Node.getComponent("Player");
         this.Player2 = this.Player2Node.getComponent("Player");
         let user = firebase.auth().currentUser;
-        firebase.database().ref('userData/'+user.uid.toString())
-        if(this.number == 1) this.Player2Node.setPosition(cc.v2(-20000,-20000));
+        let handle = this;
+        firebase.database().ref('userData/'+user.uid.toString()).once('value')
+        .then((snapshot)=>{
+            console.log(snapshot.val().numberOfPlayers, snapshot.val().teamName);
+            handle.number = snapshot.val().numberOfPlayers;
+            if(handle.number == 1) handle.Player2Node.setPosition(cc.v2(-20000,-20000));
+        })
+        // if(this.number == 1) this.Player2Node.setPosition(cc.v2(-20000,-20000));
     }
 
     onKeyDown(event){

@@ -52,9 +52,9 @@ export default class NewClass extends cc.Component {
         firebase.database().ref('userData/'+user.uid.toString())
         .set({
             numberOfPlayers: this.player,
-            teamName: this.teamName.string;
+            teamName: this.teamName.string
         });
-        
+        cc.director.loadScene("ssuyung's");
         // if(this.mode==0 && this.player==1){
         //     cc.director.loadScene("Stage1 - 109062128");
         // }else if(this.mode==0 && this.player==2){
