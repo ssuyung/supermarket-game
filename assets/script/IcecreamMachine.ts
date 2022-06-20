@@ -38,10 +38,13 @@ export default class NewClass extends cc.Component {
     // progressBar: cc.Prefab = null;
     
 
-    private playerBeside: boolean = false;
-    private spaceDown: boolean = false;
+    private player1Beside: boolean = false;
+    private player2Beside: boolean = false;
+    private enterDown: boolean = false;
+    private eDown: boolean = false;
     private progressTime: number = 0;
     private requiredTime: number = 5;
+    
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
@@ -56,40 +59,50 @@ export default class NewClass extends cc.Component {
 
     onKeyDown(event){
         switch(event.keyCode){
-            case cc.macro.KEY.space:
+            case cc.macro.KEY.enter:
                 // console.log("space down");
-                this.spaceDown = true;
+                this.enterDown = true;
+                break;
+            case cc.macro.KEY.e:
+                this.eDown = true;
                 break;
         }
     }
 
     onKeyUp(event){
         switch(event.keyCode){
-            case cc.macro.KEY.space:
+            case cc.macro.KEY.enter:
                 // console.log("space up");
-                this.spaceDown = false;
+                this.enterDown = false;
+                break;
+            case cc.macro.KEY.e:
+                this.eDown = false;
                 break;
         }
     }
 
     onBeginContact(contact, self, other){
         // console.log("icecream machine touched something");
-        if(other.node.name == "Player"){
+        //tag6 : player
+        if(other.tag == 6){
             // console.log("icecream machine touched player");
-            this.playerBeside = true;
+            // this.playerBeside = true;
+            if(other.node.name == "Player1") this.player1Beside = true;
+            else if(other.node.name == "Player2") this.player2Beside = true;
         }
     }
 
     onEndContact(contact, self, other){
-        if(other.node.name == "Player"){
+        if(other.tag == 6){
             // console.log("player left icecream machine");
-            this.playerBeside = false;
+            if(other.node.name == "Player1") this.player1Beside = false;
+            else if(other.node.name == "Player2") this.player2Beside = false;
         }
     }
     update (dt) {
         let shelf1Node = this.shelf1.getComponent("Shelf");
         let shelf2Node = this.shelf2.getComponent("Shelf");
-        if(this.playerBeside && this.spaceDown && (!shelf1Node.occupied || !shelf2Node.occupied)) {
+        if(((this.player1Beside && this.eDown) || (this.player2Beside && this.enterDown))&& (!shelf1Node.occupied || !shelf2Node.occupied)){
             // console.log("doing icecream");
             // console.log(dt);
             this.progressTime += dt;
