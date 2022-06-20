@@ -290,24 +290,60 @@ export default class NewClass extends cc.Component {
             if (user) {
                 const uid = firebase.auth().currentUser.uid;
                 let money = Number(cc.find("Canvas/Main Camera/Money_bar/money").getComponent(cc.Label).string);
-                firebase.database().ref('userData/' + uid).update({
-                    score: money
-                });
+                
+                
+
                 firebase.database().ref('userData/' + uid).once('value').then(snapshot => {  
-                    let AmountOfPlayers = snapshot.val().numberOfPlayer;
+                    let AmountOfPlayers = snapshot.val().numberOfPlayers;
                     let TeamName = snapshot.val().teamName;
-                    if(  AmountOfPlayers == 1 && money > snapshot.val().score) {
-                        firebase.database().ref('leaderBoard/' + uid).update({
-                            teamName:TeamName,
-                            score: money
+                    if(AmountOfPlayers == 1) {
+                        firebase.database().ref('leaderBoard/' + TeamName).once('value').then(snapshot => {
+                            if(!snapshot.exists() || money > snapshot.val().score) {
+                                firebase.database().ref('leaderBoard/' + TeamName).update({
+                                    teamName:TeamName,
+                                    score: money
+                                })
+                            }
                         })
-                    }else if(AmountOfPlayers == 2 && money > snapshot.val().score){
-                        firebase.database().ref('leaderBoard2/' + uid).update({
-                            teamName:TeamName,
-                            score: money
+                    }else if(AmountOfPlayers == 2){
+                        firebase.database().ref('leaderBoard2/' + TeamName).once('value').then(snapshot => {
+                            if(!snapshot.exists() || money > snapshot.val().score) {
+                                firebase.database().ref('leaderBoard2/' + TeamName).update({
+                                    teamName:TeamName,
+                                    score: money
+                                })
+                            }
                         })
                     }
                 });
+
+                /*let playerNumber = 0;
+                let teamName = "";
+                firebase.database().ref('userData/' + uid).once('value').then(snapshot => {  
+                    playerNumber = snapshot.val().numberOfPlayers;
+                    teamName = snapshot.val().teamName;
+                    cc.log(playerNumber);
+                    cc.log(teamName);
+                    if(playerNumber == 1) {
+                        firebase.database().ref('leaderBoard/' + uid).once('value').then(snapshot1 => {
+                            if(money > snapshot1.val().score) {
+                                firebase.database().ref('leaderBoard/' + uid).update({
+                                    teamName:teamName,
+                                    score: money
+                                })
+                            }
+                        });
+                    } else if(playerNumber == 2) {
+                        firebase.database().ref('leaderBoard2/' + uid).once('value').then(snapshot2 => {
+                            if(money > snapshot2.val().score) {
+                                firebase.database().ref('leaderBoard/' + uid).update({
+                                    teamName:teamName,
+                                    score: money
+                                })
+                            }
+                        });
+                    }
+                });*/
             }
         });
         var over = cc.instantiate(this.Gameover);
