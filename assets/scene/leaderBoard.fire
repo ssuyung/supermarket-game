@@ -852,7 +852,7 @@
         1,
         1,
         1,
-        1
+        0
       ]
     },
     "_eulerAngles": {
@@ -1060,8 +1060,8 @@
     "clickEvents": [],
     "_N$interactable": true,
     "_N$enableAutoGrayEffect": false,
-    "_N$transition": 2,
-    "transition": 2,
+    "_N$transition": 3,
+    "transition": 3,
     "_N$normalColor": {
       "__type__": "cc.Color",
       "r": 230,
@@ -3050,8 +3050,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 262.56,
-      "height": 94.4
+      "width": 263.56,
+      "height": 95.4
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -3137,7 +3137,7 @@
       "b": 0,
       "a": 255
     },
-    "_width": 2,
+    "_width": 2.5,
     "_id": "35gbatq9xHRrSoT/4irPXS"
   },
   {
