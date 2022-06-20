@@ -131,6 +131,12 @@
     "pickSound": {
       "__uuid__": "fcadff83-06ed-45e1-b8a3-f20fc7b81a4d"
     },
+    "doughSound": {
+      "__uuid__": "f4fcc059-1fd1-49e7-adfd-a8cc2edefbe5"
+    },
+    "tickSound": {
+      "__uuid__": "b051cd89-9555-4b01-ac1c-248918dfa3f0"
+    },
     "_id": ""
   },
   {
