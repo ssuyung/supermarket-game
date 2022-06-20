@@ -2779,7 +2779,7 @@
     "idle_down": {
       "__uuid__": "03663a19-8bfd-4f41-9657-a0b103301e1c"
     },
-    "text": "Adam",
+    "CharacterName": "Adam",
     "playerXSpeed": 150,
     "playerYSpeed": 150,
     "_id": "e4E3Zey5NEDbv39AYtQTnw"
@@ -2996,7 +2996,7 @@
     "idle_down": {
       "__uuid__": "3a74c4e6-0575-4e93-8dae-155d497623d5"
     },
-    "text": "Nurse",
+    "CharacterName": "Nurse",
     "playerXSpeed": 150,
     "playerYSpeed": 150,
     "_id": "28TD+eoBJF44u5y6tFaQeX"
@@ -20351,9 +20351,9 @@
       "__id__": 616
     },
     "_enabled": true,
-    "_type": 2,
+    "_type": 0,
     "_allowSleep": true,
-    "_gravityScale": 1,
+    "_gravityScale": 0,
     "_linearDamping": 0,
     "_angularDamping": 0,
     "_linearVelocity": {
@@ -20412,7 +20412,7 @@
       "__id__": 616
     },
     "asset": {
-      "__uuid__": "a3bc674a-edb7-4d4f-b976-1d1b060dd45a"
+      "__uuid__": "c179136a-5455-4633-a0d3-d6bb7ccfac38"
     },
     "fileId": "",
     "sync": false
