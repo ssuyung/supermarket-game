@@ -12,6 +12,8 @@ export default class NewClass extends cc.Component {
     Player1Node: cc.Node = null;
     @property(cc.Node)
     Player2Node: cc.Node = null;
+    @property
+    number: number = 1;
     // LIFE-CYCLE CALLBACKS:
 
     private timer: number = 180;
@@ -36,6 +38,7 @@ export default class NewClass extends cc.Component {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
         this.Player1 = this.Player1Node.getComponent("Player");
         this.Player2 = this.Player2Node.getComponent("Player");
+        if(this.number == 1) this.Player2Node.setPosition(cc.v2(-200,-200));
     }
 
     onKeyDown(event){
