@@ -8,6 +8,8 @@ export default class NewClass extends cc.Component {
     idle_up: cc.SpriteFrame = null;
     @property(cc.SpriteFrame)
     idle_down: cc.SpriteFrame = null;
+    // @property({type:cc.AudioClip})
+    // walkSound: cc.AudioClip = null;
 
     @property()
     CharacterName : string = '';
@@ -21,6 +23,7 @@ export default class NewClass extends cc.Component {
     private anim = null;
     private holding = false; //whether the player is holding object
     private touchGangster: boolean = false;
+    private lastWalkEffectTime: number = 0;
     // private playerXSpeed = 300;
     // LIFE-CYCLE CALLBACKS:
 
@@ -47,7 +50,18 @@ export default class NewClass extends cc.Component {
                 break;
         }
         this.playAnimation();
+        // this.playSfx();
     }
+    // playSfx(){
+    //     if(this.xMoveDir|| this.yMoveDir){
+    //         if(Date.now()-this.lastWalkEffectTime > 500){
+    //             // console.log("check");
+    //             // this.lastWalkEffectTime = Date.now();
+    //             cc.audioEngine.setVolume(cc.audioEngine.playEffect(this.walkSound, false), cc.find("Canvas").getComponent("World").getSfxVolume());
+    //             this.lastWalkEffectTime = Date.now();
+    //         }
+    //     }
+    // }
     playAnimation(){
         if(this.xMoveDir == 0 && this.yMoveDir == 0){
             this.anim.stop();

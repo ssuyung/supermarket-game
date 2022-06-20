@@ -31,6 +31,9 @@ export default class NewClass extends cc.Component {
     @property(cc.Node)
     icecreamParticle: cc.Node = null;
 
+    @property({type:cc.AudioClip})
+    majesticSound: cc.AudioClip = null;
+
     // @property(cc.ParticleSystem)
     // icecreamParticle: cc.ParticleSystem = null;
 
@@ -128,16 +131,12 @@ export default class NewClass extends cc.Component {
                     // newItem.getComponent("Food").pickedUpbyPlayer = false;
                 }
                 this.icecreamParticle.setPosition(pos);
-                // console.log(this.icecreamParticle.x, this.icecreamParticle.y);
-                // console.log(this.icecreamParticle);
-                // console.log(this.icecreamParticle.getComponent())
                 this.icecreamParticle.getComponent(cc.ParticleSystem).resetSystem();
                 this.scheduleOnce(()=>{
                     this.icecreamParticle.getComponent(cc.ParticleSystem).stopSystem();
                 }, 1);
-                // newItem.setPosition(cc.v2());
-                // newItem.setPosition(cc.v2(this.node.x-100, this.node.y));
                 cc.find("Canvas/Food").addChild(newItem);
+                cc.audioEngine.setVolume(cc.audioEngine.playEffect(this.majesticSound, false), cc.find("Canvas").getComponent("World").getSfxVolume());
                 // console.log("icecream done");
             }
         }

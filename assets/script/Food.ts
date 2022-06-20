@@ -6,6 +6,10 @@ export default class NewClass extends cc.Component {
     dropSound: cc.AudioClip = null;
     @property({type:cc.AudioClip})
     pickSound: cc.AudioClip = null;
+    @property({type:cc.AudioClip})
+    doughSound: cc.AudioClip = null;
+    @property({type:cc.AudioClip})
+    tickSound: cc.AudioClip = null;
     private audioID: number;
 
     private player1: cc.Node = null;
@@ -74,6 +78,7 @@ export default class NewClass extends cc.Component {
                 let worktable = this.targetWorkTable.node.getComponent("worktable");
                 if(worktable.isworking == false){
                     worktable.isworking = true;
+                    cc.audioEngine.setVolume(cc.audioEngine.playEffect(this.doughSound, false), cc.find("Canvas").getComponent("World").getSfxVolume());
                     setTimeout(function () {
                         this.targetPlayer.getComponent("Player").holding = false;
                         this.pickedUpbyPlayer = false;
@@ -85,6 +90,7 @@ export default class NewClass extends cc.Component {
                 let oven = this.targetOven.node.getComponent("oven");
                 if(oven.isworking == false){
                     oven.isworking = true;
+                    cc.audioEngine.setVolume(cc.audioEngine.playEffect(this.tickSound, false), cc.find("Canvas").getComponent("World").getSfxVolume());
                     setTimeout(function () {
                         this.targetPlayer.getComponent("Player").holding = false;
                         this.pickedUpbyPlayer = false;
