@@ -32,6 +32,8 @@ export default class NewClass extends cc.Component {
     private targetPlayer = null;
     private eDown = false;
     private enterDown = false;
+    private canvas_x = 512;
+    private canvas_y = 384;
     // private playerXSpeed = 300;
     // LIFE-CYCLE CALLBACKS:
 
@@ -77,18 +79,18 @@ export default class NewClass extends cc.Component {
         // else if(pos.y >= 550) this.yMoveDir = -1;
         // this.xMoveDir = 0;
         if(this.state == 0){
-            if(pos.y<=320) this.state = 1;
+            if(pos.y<=320-this.canvas_y) this.state = 1;
         } else if(this.state == 1){
-            if(pos.x <= 60) {
+            if(pos.x <= 60-this.canvas_x) {
                 this.state = 4;
                 this.scheduleOnce(()=>{
                     this.state = 2;
                 }, 3)
             }
         } else if(this.state == 2){
-            if(pos.x >= 370) this.state = 3;
+            if(pos.x >= 370-this.canvas_x) this.state = 3;
         } else if(this.state == 3){
-            if(pos.y >= 550) this.state = 0;
+            if(pos.y >= 550-this.canvas_y) this.state = 0;
         }
 
         // let newVelocity = cc.v2(100,100);
