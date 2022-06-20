@@ -32,8 +32,8 @@ export default class NewClass extends cc.Component {
     onKeyDown(event){
         // console.log("food keydown");
         if((event.keyCode == cc.macro.KEY.enter && this.targetPlayer==this.player2) || (event.keyCode == cc.macro.KEY.e && this.targetPlayer==this.player1)){
-            console.log("food in ");
-            console.log(this.selected);
+            // console.log("food in ");
+            // console.log(this.selected);
             // if (this.keyDown) return;
             if (this.pickedUpbyCustomer) return;
             // put down on shelf
@@ -50,8 +50,8 @@ export default class NewClass extends cc.Component {
             } 
             // pick up from shelf
             else if (this.selected) {
-                console.log("food picked up from shelf");
-                console.log(this.targetPlayer.getComponent("Player").holding);
+                // console.log("food picked up from shelf");
+                // console.log(this.targetPlayer.getComponent("Player").holding);
                 if (!this.targetPlayer.getComponent("Player").holding) {
                     this.pickedUpbyPlayer = true;
                     // if(this.targetPlayer == this.player1) this.indexOfPlayerHolding = 1;
@@ -74,8 +74,8 @@ export default class NewClass extends cc.Component {
                         this.targetPlayer.getComponent("Player").holding = false;
                         this.pickedUpbyPlayer = false;
                         this.player.getComponent("Player").holding = false;
-                    }
-                    cc.audioEngine.setVolume(cc.audioEngine.playEffect(this.dropSound, false), cc.find("Canvas").getComponent("World").getSfxVolume());
+                    });
+                    // cc.audioEngine.setVolume(cc.audioEngine.playEffect(this.dropSound, false), cc.find("Canvas").getComponent("World").getSfxVolume());
                     
                 } 
                 // pick up from shelf
@@ -97,6 +97,7 @@ export default class NewClass extends cc.Component {
                 }
                 // this.targetShelf.getComponent("Shelf")
             }else if(this.pickedUpbyPlayer && this.touchOven){
+                // console.log("send in oven");
                 let oven = this.targetOven.node.getComponent("oven");
                 if(oven.isworking == false){
                     oven.isworking = true;
@@ -112,65 +113,6 @@ export default class NewClass extends cc.Component {
             /* Modify end */
             this.keyDown = true;
         }
-        // switch(event.keyCode)
-        // {
-        //     case cc.macro.KEY.enter:
-        //         if (this.keyDown) break;
-        //         if (this.pickedUpbyCustomer) break;
-        //         // put down on shelf
-        //         if (this.pickedUpbyPlayer && this.touchShelf) {
-        //             let shelf = this.targetShelf.getComponent("Shelf");
-        //             if (!shelf.occupied) {
-        //                 shelf.occupied = true;
-        //                 this.node.setPosition(shelf.getItemPosition());
-        //                 this.pickedUpbyPlayer = false;
-        //                 this.targetPlayer.getComponent("Player").holding = false;
-        //                 this.targetPlayer = null;
-        //             }
-        //         } 
-        //         // pick up from shelf
-        //         else if (this.selected) {
-        //             console.log("food picked up from shelf");
-        //             if (!this.targetPlayer.getComponent("Player").holding) {
-        //                 this.pickedUpbyPlayer = true;
-        //                 this.node.scale = 1;
-        //                 this.node.opacity = 255;
-        //                 if(!this.touchStorage) {
-        //                     let shelf = this.targetShelf.getComponent("Shelf");
-        //                     shelf.occupied = false;
-        //                 }
-        //                 this.targetPlayer.getComponent("Player").holding = true;
-        //             }
-        //         }
-        //         /* Modify-2 ycchu */
-        //         else if(this.pickedUpbyPlayer && this.touchWorkTable){
-        //             let worktable = this.targetWorkTable.node.getComponent("worktable");
-        //             if(worktable.isworking == false){
-        //                 worktable.isworking = true;
-        //                 setTimeout(function () {
-        //                     this.targetPlayer.getComponent("Player").holding = false;
-        //                     this.pickedUpbyPlayer = false;
-        //                     this.node.destroy();
-        //                 }.bind(this), 100); 
-        //             }
-        //             // this.targetShelf.getComponent("Shelf")
-        //         }else if(this.pickedUpbyPlayer && this.touchOven){
-        //             let oven = this.targetOven.node.getComponent("oven");
-        //             if(oven.isworking == false){
-        //                 oven.isworking = true;
-        //                 setTimeout(function () {
-        //                     this.targetPlayer.getComponent("Player").holding = false;
-        //                     this.pickedUpbyPlayer = false;
-        //                     this.node.destroy();
-        //                 }.bind(this), 100); 
-        //             }
-        //             // this.targetShelf.getComponent("Shelf")
-        //         }
-
-        //         /* Modify end */
-        //         this.keyDown = true;
-        //         break;
-        // }
     }
     playerHolding(){
         if(this.targetPlayer == this.player1) return 1;
@@ -201,10 +143,10 @@ export default class NewClass extends cc.Component {
         }
         if (other.tag == 6 && !this.pickedUpbyPlayer && !this.pickedUpbyCustomer) {
             if(other.node.name == "Player1"){
-                console.log(this.node.name + " is touched by player1");
+                // console.log(this.node.name + " is touched by player1");
                 this.targetPlayer = this.player1;
             } else if(other.node.name == "Player2"){
-                console.log(this.node.name + " is touched by player2");
+                // console.log(this.node.name + " is touched by player2");
                 this.targetPlayer = this.player2;
             }
             
