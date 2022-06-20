@@ -47,14 +47,23 @@ export default class NewClass extends cc.Component {
     signupclick(){
         let email = cc.find("Canvas/Account").getComponent(cc.EditBox).string;
         let password = cc.find("Canvas/Password").getComponent(cc.EditBox).string;
-        firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-            alert("Success!");
-            cc.director.loadScene("Stage1");
-        })
-        .catch((error) => {
-            var errorMessage = error.message;
-            alert(errorMessage);
+        firebase.auth().createUserWithEmailAndPassword(email, password).then(function () {
+            const uid = firebase.auth().currentUser.uid;
+            firebase.database().ref('leaderBoard/' + uid).set({
+                name: email,
+                score: 0,
+            });
+            firebase.database().ref("userData/" + uid).set({
+                name: email,
+                score: 0,
+            }).then(function () {
+                alert("Success!");
+                cc.director.loadScene("menu");
+            }).catch(function (error) {
+                alert(error.message);
+            });
+        }).catch(function (error) {
+            alert(error.message);
         });
     }
 }

@@ -6444,7 +6444,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Backery",
+    "_name": "Bakery",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -6747,12 +6747,12 @@
     "_offset": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 0
+      "y": 16
     },
     "_size": {
       "__type__": "cc.Size",
       "width": 8,
-      "height": 32
+      "height": 64
     },
     "_id": ""
   },
@@ -7000,12 +7000,12 @@
     "_offset": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 0
+      "y": 16
     },
     "_size": {
       "__type__": "cc.Size",
       "width": 8,
-      "height": 32
+      "height": 64
     },
     "_id": ""
   },
@@ -7253,12 +7253,12 @@
     "_offset": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 0
+      "y": 16
     },
     "_size": {
       "__type__": "cc.Size",
       "width": 8,
-      "height": 32
+      "height": 64
     },
     "_id": ""
   },
@@ -7506,12 +7506,12 @@
     "_offset": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 0
+      "y": 16
     },
     "_size": {
       "__type__": "cc.Size",
       "width": 8,
-      "height": 32
+      "height": 64
     },
     "_id": ""
   },
@@ -7759,7 +7759,7 @@
     "_offset": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 0
+      "y": 32
     },
     "_size": {
       "__type__": "cc.Size",
@@ -8012,7 +8012,7 @@
     "_offset": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 0
+      "y": 32
     },
     "_size": {
       "__type__": "cc.Size",
@@ -8265,7 +8265,7 @@
     "_offset": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 0
+      "y": 32
     },
     "_size": {
       "__type__": "cc.Size",
