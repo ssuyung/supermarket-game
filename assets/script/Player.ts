@@ -29,6 +29,7 @@ export default class NewClass extends cc.Component {
     private idleFrame = null;
     private anim = null;
     private holding = false; //whether the player is holding object
+    private touchGangster: boolean = false;
     // private playerXSpeed = 300;
     // LIFE-CYCLE CALLBACKS:
 

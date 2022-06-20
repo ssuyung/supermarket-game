@@ -43,7 +43,7 @@ export default class NewClass extends cc.Component {
     private enterDown: boolean = false;
     private eDown: boolean = false;
     private progressTime: number = 0;
-    private requiredTime: number = 5;
+    private requiredTime: number = 2;
     
     // LIFE-CYCLE CALLBACKS:
 

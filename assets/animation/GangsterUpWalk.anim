@@ -1,0 +1,55 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "GangsterUpWalk",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.43333333333333335,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "15be9be0-4440-42f7-813c-713e5a50ffd1"
+            }
+          },
+          {
+            "frame": 0.08333333333333333,
+            "value": {
+              "__uuid__": "f13a725a-1bde-4075-a1ff-3e8f81a280b6"
+            }
+          },
+          {
+            "frame": 0.16666666666666666,
+            "value": {
+              "__uuid__": "e3c86df6-3909-4ac6-833f-2c601571b643"
+            }
+          },
+          {
+            "frame": 0.25,
+            "value": {
+              "__uuid__": "ae90a595-575a-4653-9454-654ded1d74c6"
+            }
+          },
+          {
+            "frame": 0.3333333333333333,
+            "value": {
+              "__uuid__": "98df09aa-c644-437d-8590-0bd31b8066db"
+            }
+          },
+          {
+            "frame": 0.4166666666666667,
+            "value": {
+              "__uuid__": "0b09a62f-d4c3-434d-a882-4e522401abba"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

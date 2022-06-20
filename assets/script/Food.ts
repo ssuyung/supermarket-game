@@ -45,7 +45,7 @@ export default class NewClass extends cc.Component {
                     this.pickedUpbyPlayer = false;
                     // this.indexOfPlayerHolding = 0;
                     this.targetPlayer.getComponent("Player").holding = false;
-                    this.targetPlayer = null;
+                    // this.targetPlayer = null;
                     cc.audioEngine.setVolume(cc.audioEngine.playEffect(this.dropSound, false), cc.find("Canvas").getComponent("World").getSfxVolume());
                 }
             } 
