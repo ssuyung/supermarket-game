@@ -11,7 +11,7 @@ export default class NewClass extends cc.Component {
 
     onKeyDown(event){
         if(event.keyCode == cc.macro.KEY.enter) {
-            cc.director.loadScene("menu");
+            cc.director.loadScene("Login");
         }
     }
 

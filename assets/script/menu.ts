@@ -34,23 +34,29 @@ export default class NewClass extends cc.Component {
         btn.component = "menu";
         btn.handler = "loadScene";
         cc.find("Canvas/Start Button").getComponent(cc.Button).clickEvents.push(btn);
+
+        let Lbtn = new cc.Component.EventHandler();
+        Lbtn.target = this.node;
+        Lbtn.component = "menu";
+        Lbtn.handler = "goLeaderBoard";
+        cc.find("Canvas/leaderBoardBtn").getComponent(cc.Button).clickEvents.push(Lbtn);
     }
 
     loadScene(){
         this.controller();
         console.log(this.mode, this.player);
         if(this.mode==0 && this.player==1){
-            //cc.director.loadScene("Stage1 - 109062129");
+            cc.director.loadScene("Stage1 - 109062128");
         }else if(this.mode==0 && this.player==2){
-            //cc.director.loadScene("Stage1 - 109062129");
+            cc.director.loadScene("Stage1 - 109062128");
         }else if(this.mode==1 && this.player==1){
-            //cc.director.loadScene("Stage1 - 109062129");
+            cc.director.loadScene("Stage1 - 109062128");
         }else if(this.mode==1 && this.player==2){
-            //cc.director.loadScene("Stage1 - 109062129");
+            cc.director.loadScene("Stage1 - 109062128");
         }else if(this.mode==2 && this.player==1){
-            //cc.director.loadScene("Stage1 - 109062129");
+            cc.director.loadScene("Stage1 - 109062128");
         }else if(this.mode==2 && this.player==2){
-            //cc.director.loadScene("Stage1 - 109062129");
+            cc.director.loadScene("Stage1 - 109062128");
         }
     }
 
@@ -61,5 +67,9 @@ export default class NewClass extends cc.Component {
 
         if(this.player1.isChecked) this.player=1;
         else if(this.player2.isChecked) this.player=2;
+    }
+
+    goLeaderBoard(){
+        cc.director.loadScene("leaderBoard");
     }
 }

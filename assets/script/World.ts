@@ -289,30 +289,13 @@ export default class NewClass extends cc.Component {
                         })
                     }
                 });
-
-                if(this.life <= 0) { // reset information
-                    firebase.database().ref('userData/' + uid).update({
-                        life: 5,
-                        coin: 0,
-                        score: 0
-                    })
-                } else {
-                    firebase.database().ref('userData/' + uid).update({
-                        life: this.life,
-                        coin: this.coin,
-                        score: this.score
-                    })
-                }
-            }
-            else { // No user is signed in.
-                //cc.director.loadScene("menu");
             }
         });
         var over = cc.instantiate(this.Gameover);
             cc.find("Canvas").addChild(over);
             var seq = cc.sequence(cc.fadeOut(1.5), cc.callFunc(function () {
                 cc.audioEngine.stopAll();
-                cc.director.loadScene('Login');
+                cc.director.loadScene('menu');
             }));
             this.scheduleOnce(() => {this.node.runAction(seq);}, 2);
     }
