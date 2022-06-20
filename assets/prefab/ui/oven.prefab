@@ -283,6 +283,9 @@
     "pizzaPrefab": {
       "__uuid__": "4d83e300-d0d9-4165-9760-8a159cd44e07"
     },
+    "finishSound": {
+      "__uuid__": "c16f96bb-3538-47fe-be43-d5c35cd95c17"
+    },
     "_id": ""
   },
   {

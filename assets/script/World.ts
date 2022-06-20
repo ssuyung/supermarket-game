@@ -8,6 +8,8 @@ export default class NewClass extends cc.Component {
     pause: cc.Prefab = null;
     @property({type:cc.Prefab})
     settingsPanel: cc.Prefab = null;
+    @property({type:cc.Prefab})
+    Gameover: cc.Prefab = null;
     @property(cc.Node)
     PlayerNode: cc.Node = null;
     // LIFE-CYCLE CALLBACKS:
@@ -16,7 +18,11 @@ export default class NewClass extends cc.Component {
 
     private audioID: number;
     private volume: number = 0.5;
+    private sfx_volume: number = 0.5;
     private Player = null;
+    private music_toggle: boolean = true;
+    private sfx_toggle: boolean = true;
+    private gameOver: boolean = false;
     private escapeDown: boolean = false;
     private escapeCounter: number = 0;
     private leftDown: boolean = false;
@@ -176,6 +182,8 @@ export default class NewClass extends cc.Component {
         var panel = cc.instantiate(this.settingsPanel);
         cc.find("Canvas").addChild(panel);
         panel.setPosition(0, 0);
+        cc.find("Canvas/Panel/Music").getComponent(cc.Toggle).isChecked = this.music_toggle;
+        cc.find("Canvas/Panel/SFX").getComponent(cc.Toggle).isChecked = this.sfx_toggle;
         //pause.destroy();
         let handle = this;
         //this.scheduleOnce(function() {
@@ -208,30 +216,59 @@ export default class NewClass extends cc.Component {
         cc.audioEngine.setVolume(this.audioID, 0.5);
     }
 
+    getSfxVolume() {
+        if(this.sfx_toggle) return this.sfx_volume;
+        else return 0;
+    }
+
     start () {
         this.playBGM();
         this.SettingsBtn();
     }
 
+    timeOut() {
+        var over = cc.instantiate(this.Gameover);
+            cc.find("Canvas").addChild(over);
+            var seq = cc.sequence(cc.fadeOut(1.5), cc.callFunc(function () {
+                cc.audioEngine.stopAll();
+                cc.director.loadScene('Login');
+            }));
+            this.scheduleOnce(() => {this.node.runAction(seq);}, 2);
+    }
+
     update (dt) {
-        if(this.timer > 0 && !this.escapeDown) {
+        if(this.timer > 1 && !this.escapeDown) {
             this.timer -= dt;
-        }
+        } else if(this.timer < 1 && !this.gameOver) {
+            this.timeOut();
+            this.gameOver = true;
+        }   
 
         if(this.escapeCounter == 1) {
             this.Pause();
         } else if(this.escapeCounter == 3) {
             
             if (!cc.find("Canvas/Panel/Music").getComponent(cc.Toggle).isChecked) {
-                cc.audioEngine.pauseMusic();
+                this.music_toggle = false;
             } else {
-                cc.audioEngine.resumeMusic();
+                this.music_toggle = true;
+            }
+            this.music_toggle == true ? cc.audioEngine.resumeMusic() : cc.audioEngine.pauseMusic();
+
+            if (!cc.find("Canvas/Panel/SFX").getComponent(cc.Toggle).isChecked) {
+                this.sfx_toggle = false;
+            } else {
+                this.sfx_toggle = true;
             }
 
             if (cc.find("Canvas/Panel/Volume").getComponent(cc.Slider).progress == 0.5) {
                 cc.find("Canvas/Panel/Volume").getComponent(cc.Slider).progress = this.volume;
             }
+            if (cc.find("Canvas/Panel/SFX_Volume").getComponent(cc.Slider).progress == 0.5) {
+                cc.find("Canvas/Panel/SFX_Volume").getComponent(cc.Slider).progress = this.sfx_volume;
+            }
             
+            this.sfx_volume = cc.find("Canvas/Panel/SFX_Volume").getComponent(cc.Slider).progress;
             this.volume = cc.find("Canvas/Panel/Volume").getComponent(cc.Slider).progress;
             cc.audioEngine.setVolume(this.audioID, this.volume);
         }

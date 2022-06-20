@@ -42,7 +42,8 @@ export default class NewClass extends cc.Component {
                         this.pickedUpbyPlayer = false;
                         this.player.getComponent("Player").holding = false;
                     }
-                    cc.audioEngine.setVolume(cc.audioEngine.playEffect(this.dropSound, false), 0.5);
+                    cc.audioEngine.setVolume(cc.audioEngine.playEffect(this.dropSound, false), cc.find("Canvas").getComponent("World").getSfxVolume());
+                    
                 } 
                 // pick up from shelf
                 else if (this.selected) {
@@ -56,7 +57,7 @@ export default class NewClass extends cc.Component {
                             shelf.occupied = false;
                         }
                         this.player.getComponent("Player").holding = true;
-                        cc.audioEngine.setVolume(cc.audioEngine.playEffect(this.pickSound, false), 0.5);
+                        cc.audioEngine.setVolume(cc.audioEngine.playEffect(this.pickSound, false), cc.find("Canvas").getComponent("World").getSfxVolume());
                     }
                 }
                 /* Modify-2 ycchu */
