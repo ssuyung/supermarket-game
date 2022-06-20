@@ -17,6 +17,8 @@ export default class worktable extends cc.Component {
 
     private isworking = false;
     private contagwithplayer = false;
+    private contactWithPlayer1 = false;
+    private contactWithPlayer2 = false;
     private anim = null;
     private flag_for_paused = 0;
     //When animation isn't playing, there are 3 possible cases. 2 means stop, 1 means paused, 0 not play yet.
@@ -28,12 +30,20 @@ export default class worktable extends cc.Component {
     }
 
     onBeginContact (contact, self, other) {
+        if(other.tag == 6){
+            if(other.node.name == "Player1") this.contactWithPlayer1 = true;
+            else if(other.node.name == "Player2") this.contactWithPlayer2 = true;
+        }
         if (other.node.name == "Player" && !this.contagwithplayer) {
             this.contagwithplayer = true;
         }
     }
 
     onEndContact(contact, self, other){
+        if(other.tag == 6){
+            if(other.node.name == "Player1") this.contactWithPlayer1 = false;
+            else if(other.node.name == "Player2") this.contactWithPlayer2 = false;
+        }
         if (other.node.name == "Player" && this.contagwithplayer) {
             this.contagwithplayer = false;
             
