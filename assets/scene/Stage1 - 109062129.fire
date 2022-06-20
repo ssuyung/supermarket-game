@@ -1872,7 +1872,7 @@
     "idle_down": {
       "__uuid__": "03663a19-8bfd-4f41-9657-a0b103301e1c"
     },
-    "text": "hello",
+    "CharacterName": "",
     "playerXSpeed": 150,
     "playerYSpeed": 150,
     "_id": "0byJNhW89AeLzrXkKCpPrc"
@@ -23986,9 +23986,9 @@
     "Gameover": {
       "__uuid__": "1cbf6caf-d52d-45ee-8e08-da008750ab9e"
     },
-    "PlayerNode": {
-      "__id__": 51
-    },
+    "Player1Node": null,
+    "Player2Node": null,
+    "number": 1,
     "_id": "90ReFdxbhO3qm2U/iStDxO"
   }
 ]

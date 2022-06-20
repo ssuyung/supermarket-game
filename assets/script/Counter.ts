@@ -30,15 +30,6 @@ export default class NewClass extends cc.Component {
             cc.log("this customer paid " + this.customer.getComponent("Customer").getCustomerPrice(chargeMoney).toString());
             curMoney += this.customer.getComponent("Customer").getCustomerPrice(chargeMoney);
             cc.find("Canvas/Main Camera/Money_bar/money").getComponent(cc.Label).string = curMoney.toString();
-            let money = Number(cc.find("Canvas/Main Camera/Money_bar/money").getComponent(cc.Label).string);
-            firebase.auth().onAuthStateChanged((user) => {
-                if (user) {
-                    const uid = firebase.auth().currentUser.uid;
-                    firebase.database().ref('userData/' + uid).update({
-                        score: money
-                    })
-                }
-            });
             this.CustomerPaid = true;
             this.customer.getComponent(cc.Collider).tag = 21;
         }
