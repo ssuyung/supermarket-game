@@ -284,10 +284,18 @@ export default class NewClass extends cc.Component {
                 let money = Number(cc.find("Canvas/Main Camera/Money_bar/money").getComponent(cc.Label).string);
                 firebase.database().ref('userData/' + uid).update({
                     score: money
-                })
-                firebase.database().ref('leaderBoard/' + uid).once('value').then(snapshot => {  
-                    if(money > snapshot.val().score) {
+                });
+                firebase.database().ref('userData/' + uid).once('value').then(snapshot => {  
+                    let AmountOfPlayers = snapshot.val().numberOfPlayer;
+                    let TeamName = snapshot.val().player;
+                    if(  AmountOfPlayers == 1 && money > snapshot.val().score) {
                         firebase.database().ref('leaderBoard/' + uid).update({
+                            player:TeamName,
+                            score: money
+                        })
+                    }else if(AmountOfPlayers == 2 && money > snapshot.val().score){
+                        firebase.database().ref('leaderBoard2/' + uid).update({
+                            player:TeamName,
                             score: money
                         })
                     }
