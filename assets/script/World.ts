@@ -221,7 +221,7 @@ export default class NewClass extends cc.Component {
         var pause = cc.find("Canvas/Pause");
         pause.destroy();
         var seq = cc.sequence(cc.fadeOut(2.5), cc.callFunc(function () {
-            cc.director.loadScene('Login');
+            cc.director.loadScene('menu');
         }));
         this.node.runAction(seq);
     }

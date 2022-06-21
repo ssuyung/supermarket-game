@@ -177,7 +177,8 @@ export default class NewClass extends cc.Component {
             other.tag = 20;
             this.customer = other.node;
             this.pickedUpbyCustomer = true;
-            if (this.targetShelf) this.targetShelf.getComponent("Shelf").occupied = false;
+            //if (this.targetShelf) this.targetShelf.getComponent("Shelf").occupied = false;
+            this.scheduleOnce(()=>{if (this.targetShelf) this.targetShelf.getComponent("Shelf").occupied = false;}, 0.1);
         }
         // tag15 : customer wants pizza
         if (this.node.name == "pizza" && other.tag == 15 && !this.pickedUpbyPlayer && !this.pickedUpbyCustomer) {

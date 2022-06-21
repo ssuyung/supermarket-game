@@ -38,6 +38,7 @@ export default class NewClass extends cc.Component {
         btn3.component = "leaderboard"
         btn3.handler = "handler";
         cc.find("Canvas/leaderBoard2/return").getComponent(cc.Button).clickEvents.push(btn3);
+        this.show1();
     }
 
     readInfo() {
