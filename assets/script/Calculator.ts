@@ -69,6 +69,7 @@ export default class NewClass extends cc.Component {
         var num = Number(this.node.getChildByName("Amount").getComponent(cc.Label).string);
         if (this.node.getParent().name == "Counter1") cc.find("Canvas/Counter/Counter1").getComponent("Counter").getPrice(num);
         else if (this.node.getParent().name == "Counter2") cc.find("Canvas/Counter/Counter2").getComponent("Counter").getPrice(num);
+        this.node.getChildByName("Amount").getComponent(cc.Label).string = '0';
     }
 
     // LIFE-CYCLE CALLBACKS:
