@@ -59,12 +59,7 @@ export default class NewClass extends cc.Component {
                                     [ 86,  1],
                                     [ 92,  2],
                                     [ 98,  3],
-                                    [105,  4],
-                                    [108,  5],
-                                    [110,  1],
-                                    [113,  2],
-                                    [114,  3],
-                                    [118,  4],
+                                    [110,  4],
                                     [120,  5], ];
 
     customerSpawn : number[][];
