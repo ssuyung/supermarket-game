@@ -149,7 +149,7 @@ export default class NewClass extends cc.Component {
                 this.node.addChild(appleDialog);
                 this.scheduleOnce(() => {
                     appleDialog.destroy();
-                }, 5);
+                }, 8);
             }, 0);
         }
         else if (randomFruit >= 0.25 && randomFruit < 0.5) { // banana
@@ -159,7 +159,7 @@ export default class NewClass extends cc.Component {
                 this.node.addChild(bananaDialog);
                 this.scheduleOnce(() => {
                     bananaDialog.destroy();
-                }, 5);
+                }, 8);
             }, 0);
         }
         else if (randomFruit >= 0.5 && randomFruit < 0.75) { // pineapple
@@ -169,7 +169,7 @@ export default class NewClass extends cc.Component {
                 this.node.addChild(pineappleDialog);
                 this.scheduleOnce(() => {
                     pineappleDialog.destroy();
-                }, 5);
+                }, 8);
             }, 0);
         }
         else if (randomFruit >= 0.75) { // watermelon
@@ -179,7 +179,7 @@ export default class NewClass extends cc.Component {
                 this.node.addChild(watermelonDialog);
                 this.scheduleOnce(() => {
                     watermelonDialog.destroy();
-                }, 5);
+                }, 8);
             }, 0);
         }
 
@@ -224,7 +224,7 @@ export default class NewClass extends cc.Component {
             this.node.addChild(iceCreamDialog);
             this.scheduleOnce(() => {
                 iceCreamDialog.destroy();
-            }, 5);
+            }, 8);
         }, 0);
 
         var sequence1 = cc.sequence(cc.moveBy(4.4, 0, -220), cc.moveBy(6, 300, 0), cc.moveBy(0.6, 0, 30), cc.moveBy(2, 100, 0));
@@ -268,7 +268,7 @@ export default class NewClass extends cc.Component {
             this.node.addChild(pizzaDialog);
             this.scheduleOnce(() => {
                 pizzaDialog.destroy();
-            }, 5);
+            }, 8);
         }, 0);
 
         var sequence1 = cc.sequence(cc.moveBy(6.2, 0, -310), cc.moveBy(3.8, -190, 0));
@@ -313,7 +313,7 @@ export default class NewClass extends cc.Component {
                 this.node.addChild(chipsDialog);
                 this.scheduleOnce(() => {
                     chipsDialog.destroy();
-                }, 5);
+                }, 8);
             }, 0);
         }
         else if (randomGood >= 0.5) { // snack
@@ -323,7 +323,7 @@ export default class NewClass extends cc.Component {
                 this.node.addChild(snackDialog);
                 this.scheduleOnce(() => {
                     snackDialog.destroy();
-                }, 5);
+                }, 8);
             }, 0);
         }
 
