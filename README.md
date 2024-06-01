@@ -1,5 +1,6 @@
 # Supermarket Game
-link: https://final-project-72f57.web.app  
+Game link: https://final-project-72f57.web.app  
+Demo video: https://youtu.be/MNEeg1nLzw0  
 Built with Cocos Creator and Typescript, and deployed onto Google Firebase.
 
 # Game Intro
