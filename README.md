@@ -1,10 +1,10 @@
 # Supermarket Game
-link: https://final-project-72f57.web.app
+link: https://final-project-72f57.web.app  
 Built with Cocos Creator and Typescript, and deployed onto Google Firebase.
 
 # Game Intro
-You play as the owner of the supermarket, where you need to load the goods from the storage onto the shelves, produce fresh food products such as pizzas and ice cream, and help the customers to check out.
-![dual player](https://github.com/ssuyung/supermarket-game/assets/39045469/7ce5eb2c-3998-45d2-8fd4-0036d99a5d97)
+You play as the owner of the supermarket, where you need to load the goods from the storage onto the shelves, produce fresh food products such as pizzas and ice cream, and help the customers to check out.  
+![dual player](https://github.com/ssuyung/supermarket-game/assets/39045469/7ce5eb2c-3998-45d2-8fd4-0036d99a5d97)  
 ![load goods](https://github.com/ssuyung/supermarket-game/assets/39045469/cbd3f0c7-00c1-4e7b-a4f3-c56a5d98792a)
 
 # Game Features
@@ -12,7 +12,8 @@ You play as the owner of the supermarket, where you need to load the goods from 
 
  - There are options to choose one or two player mode. Player 1 uses WASD and E to control; Player 2 uses the arrows and ENTER.<img width="988" alt="Screenshot 2024-06-01 at 7 31 23 PM" src="https://github.com/ssuyung/supermarket-game/assets/39045469/173763bb-aa62-4866-9a5d-e895bb05294e">
 
- - Leaderboard for both modes.
+ - Leaderboard for both modes. <img width="980" alt="Screenshot 2024-06-01 at 7 40 24 PM" src="https://github.com/ssuyung/supermarket-game/assets/39045469/41888146-6d8f-4537-964a-9fa268ac0f37">
+
  - You can choose any amount you desire to charge the customer at checkout, but it reflects on the customer's satisfaction and the amount of money they choose to pay. Also keeping them waiting for too long affects their satisfaction.![cashier](https://github.com/ssuyung/supermarket-game/assets/39045469/b776ec53-8e04-4c92-8f03-0612985fc632)
  - You have to make pizzas and ice cream yourself.
      - For pizzas, take a bag of flour to the bakery and put it on the table, then hold E/Enter to make dough. Then put the dough in the oven and hold E/Enter to bake the pizza. Finally put the pizza onto the counter outside the bakery.
